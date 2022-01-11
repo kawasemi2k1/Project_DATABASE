@@ -54,6 +54,7 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
     ResultSet rs;
     String Store_ID = Login.Store_ID;
     Map<String, Double> map = new LinkedHashMap<>();
+    String hienThi;
 
     public ThongKe_Staff_byTimeNew() {
         initComponents();
@@ -102,7 +103,7 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
                 if(tbl_NV.getSelectedRow() >= 0){
                     String Staff_ID = tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 0)+ "";
                     createMap(Staff_ID);
-                    initFrame();
+                    initFrame(hienThi);
                       
                 }
             }
@@ -114,21 +115,23 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
             try {
                 Connect a = new Connect();
                 Connection conn = a.getConnectDB();
-                String sql_doanhthu = "select top(12) CONCAT(MONTH(created_date),'-',YEAR(created_date)) as MonthYear, sum(soi.profit) as DoanhThu from sales.staffs ss\n" +
-                                    "left join sales.orders so on so.staff_id = ss.staff_id\n" +
-                                    "left join sales.order_items soi on so.order_id = soi.order_id\n" +
-                                    "where ss.staff_id = ? \n" +
-                                    "group by created_date\n" +
-                                    "order by created_date desc";
+                String sql_doanhthu = "select CONCAT(MONTH(created_date),'-',YEAR(created_date)) as MonthYear, DoanhThu from \n" +
+                                        "(\n" +
+                                        "select top(12) created_date , sum(soi.profit) as DoanhThu from sales.staffs ss\n" +
+                                        "left join sales.orders so on so.staff_id = ss.staff_id\n" +
+                                        "left join sales.order_items soi on so.order_id = soi.order_id\n" +
+                                        "where ss.staff_id = ?\n" +
+                                        "group by created_date\n" +
+                                        "order by created_date desc\n" +
+                                        ") kawasemi\n" +
+                                        "order by created_date asc";
                 PreparedStatement ps;
                 ps = conn.prepareStatement(sql_doanhthu);
                 ps.setString(1, Staff_ID);
                 ResultSet rs = ps.executeQuery();
-                System.out.println("dòng 125");
                 while (rs.next()) {
                     String MonthYear = rs.getString("MonthYear");
                     Double DoanhThu = rs.getDouble("DoanhThu");
-                     System.out.println("dòng 129");
                     map.put(MonthYear, DoanhThu);
                 }
 
@@ -137,9 +140,9 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
             }
         
     }
-     public JFreeChart createChart() {
+     public JFreeChart createChart(String x) {
         JFreeChart queryChart = ChartFactory.createLineChart(
-                "Doanh thu các tháng gần nhất",
+                "Doanh thu các tháng gần nhất của " + x ,
                 "Tháng", "Doanh thu",
                 createDataset(), PlotOrientation.VERTICAL, false, false, false);
         return queryChart;
@@ -155,8 +158,8 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
         }
         return dataset;
     }
-      public void initFrame() {
-        ChartPanel chartPanel = new ChartPanel(createChart());
+      public void initFrame(String x) {
+        ChartPanel chartPanel = new ChartPanel(createChart(x));
         chartPanel.setPreferredSize(new java.awt.Dimension(1300, 700));
         jcontent.removeAll();
         jcontent.add(chartPanel);
@@ -245,9 +248,10 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
         if(x >= 0) {
             String Staff_ID = tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 0)+ "";
             label_StaffName.setText(tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 5)+": "+tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 1)+ "");
+            hienThi = tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 5)+": "+tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 1)+ "";
             System.out.println("***: " + label_StaffName);
                     createMap(Staff_ID);
-                    initFrame();
+                    initFrame(hienThi);
         }    
     }//GEN-LAST:event_tbl_NVMouseClicked
 
