@@ -42,12 +42,16 @@ public class TK_Store_byTime extends javax.swing.JFrame {
             try {
                 Connect a = new Connect();
                 Connection conn = a.getConnectDB();
-                String sql_doanhthu = "select top(12) CONCAT(MONTH(created_date),'-',YEAR(created_date)) as MonthYear, sum(soi.profit) as DoanhThu from sales.stores ss\n" +
-                                    "left join sales.order_items soi on soi.store_id = ss.store_id\n" +
-                                    "left join sales.orders so on so.order_id = soi.order_id\n" +
-                                    "where ss.store_id = ? \n" +
-                                    "group by created_date\n" +
-                                    "order by created_date desc";
+                String sql_doanhthu = "select CONCAT(MONTH(created_date),'-',YEAR(created_date)) as MonthYear, DoanhThu from \n" +
+                                        "(\n" +
+                                        "select top(12) created_date , sum(soi.profit) as DoanhThu from sales.stores ss\n" +
+                                        "left join sales.order_items soi on soi.store_id = ss.store_id\n" +
+                                        "left join sales.orders so on so.order_id = soi.order_id\n" +
+                                        "where ss.store_id = ?\n" +
+                                        "group by created_date\n" +
+                                        "order by created_date desc\n" +
+                                        ") kawasemi\n" +
+                                        "order by created_date asc";
                 PreparedStatement ps;
                 ps = conn.prepareStatement(sql_doanhthu);
                 ps.setString(1, Login.Store_ID);
