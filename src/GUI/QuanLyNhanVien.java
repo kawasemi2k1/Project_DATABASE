@@ -13,8 +13,8 @@ import java.sql.PreparedStatement;
 import java.sql.ResultSet;
 import java.sql.ResultSetMetaData;
 import java.sql.Statement;
+import java.util.Random;
 import java.util.Vector;
-import javax.swing.JButton;
 import javax.swing.JComponent;
 import javax.swing.JOptionPane;
 import javax.swing.SwingUtilities;
@@ -113,13 +113,13 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             ResultSetMetaData metadata =rs.getMetaData();
             number = metadata.getColumnCount();
             
-            for(int i=1;i<=number;i++){
+            for(int i=1;i<=number-1;i++){
                 column.add(metadata.getColumnName(i));
             }
             tbn.setColumnIdentifiers(column);
             while(rs.next()){
                 row = new Vector();
-                for(int i=1;i<=number;i++){
+                for(int i=1;i<=number-1;i++){
                     if(i==5)//vị trí của column active
                     {
                         row.addElement(rs.getString(i).equals("1") ? "Hoạt động" : "Nghỉ");
@@ -150,7 +150,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                        txtStoreid.setText(jTable1.getValueAt(jTable1.getSelectedRow(),5)+ "");
                        cbManagerstate.setSelectedItem(jTable1.getModel().getValueAt(jTable1.getSelectedRow(),6).equals("Quản lý") ? "Quản lý" : "Nhân viên" +"");
                        cbGender.setSelectedItem(jTable1.getModel().getValueAt(jTable1.getSelectedRow(),7)+ "");
-                       txtpass.setText(jTable1.getValueAt(jTable1.getSelectedRow(),8)+ "");
+                       //txtpass.setText(jTable1.getValueAt(jTable1.getSelectedRow(),8)+ "");
                    } 
                 }
            });
@@ -171,7 +171,6 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         txtStaffID = new javax.swing.JTextField();
         txtPhone = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
-        txtpass = new javax.swing.JTextField();
         cbActive = new javax.swing.JComboBox<>();
         txtStoreid = new javax.swing.JTextField();
         cbManagerstate = new javax.swing.JComboBox<>();
@@ -208,8 +207,6 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         txtPhone.setBounds(490, 280, 200, 22);
         jPanel1.add(txtEmail);
         txtEmail.setBounds(490, 320, 200, 22);
-        jPanel1.add(txtpass);
-        txtpass.setBounds(900, 160, 220, 22);
 
         cbActive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -389,12 +386,17 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
     }//GEN-LAST:event_cbGenderActionPerformed
 
     private void btnThemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThemActionPerformed
+        
         try{
+            int randomCode;
+            Random rand = new Random();
+            randomCode = rand.nextInt(999999);
+            //sendEmail_QuenMK send = new sendEmail_QuenMK();
+            //send.sendmail(txtEmail.getText(), randomCode);
+            String matkhau = String.valueOf(randomCode);
             Connect a = new Connect();
             Connection conn = a.getConnectDB();
-            String Name = validate.ChuanHoaChuoi(txtName.getText()); 
-            if(Name.equals("") ||txtEmail.getText().equals("") ||txtPhone.getText().equals("")
-                     || txtpass.getText().equals("") ){
+            if(txtName.getText().equals("") ||txtEmail.getText().equals("") ||txtPhone.getText().equals("")){
                 JOptionPane.showMessageDialog(this, "Không được bỏ trống ");
             }else if( !validate.kiemTraTen(txtName.getText())){
                 JOptionPane.showMessageDialog(this, "Tên không được chứa chữ số");      
@@ -427,22 +429,26 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                    JOptionPane.showMessageDialog(this,"Email đã tồn tại");
                 }else{
                     
-                    PreparedStatement ps = conn.prepareStatement(" insert into sales.staffs( name, email, phone, active, store_id, manager_state,gender,password) values(?,?,?,?,?,?,?,?)");
+                    PreparedStatement ps = conn.prepareStatement(" insert into sales.staffs( name, email, phone, active, store_id, manager_state,gender, password) values(?,?,?,?,?,?,?,?)");
                     //ps.setString(1, txtStaffID.getText());
                     txtStaffID.setEnabled(false);
-                    ps.setString(1, Name);
+                    ps.setString(1, txtName.getText());
                     ps.setString(2, txtEmail.getText());
                     ps.setString(3, txtPhone.getText());
                     ps.setString(4, cbActive.getSelectedItem().toString().equals("Hoạt động") ? "1" : "0");
                     ps.setString(5, store+"");
                     ps.setString(6, cbManagerstate.getSelectedItem().toString().equals("Quản lý") ? "1" : "0");
                     ps.setString(7, cbGender.getSelectedItem().toString());
-                    ps.setString(8, txtpass.getText());
+                    ps.setString(8, matkhau);
                     int check = ps.executeUpdate();
                     if (check > 0  ) {
+                        //send.sendmail(txtEmail.getText(), randomCode);
                         JOptionPane.showMessageDialog(this, " Thêm thành công ");
+                        //send.sendmail(txtEmail.getText(), randomCode);
                         tbn.setRowCount(0);
                         loadData();
+                        sendEmail_QuenMK send = new sendEmail_QuenMK();
+                        send.sendmail(txtEmail.getText(), randomCode);
                     }
                 }   
             }
@@ -474,8 +480,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         try{
             Connect a = new Connect();
             Connection conn =a.getConnectDB();
-        if(txtName.getText().equals("") ||txtEmail.getText().equals("") ||txtPhone.getText().equals("")
-                     || txtpass.getText().equals("") ){
+        if(txtName.getText().equals("") ||txtEmail.getText().equals("") ||txtPhone.getText().equals("")){
                 JOptionPane.showMessageDialog(this, "Không được bỏ trống ");
             }else if( !validate.kiemTraTen(txtName.getText())){
                 JOptionPane.showMessageDialog(this, "Tên không được chứa chữ số");      
@@ -562,7 +567,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             }       
                     if(key ==0 && key1 ==0 && key2==0){
         
-            PreparedStatement comm =conn.prepareStatement(" Update sales.staffs set name=?,email=?,phone=?,active=?,store_id=?,manager_state=?,gender=?,password=? where staff_id=?");
+            PreparedStatement comm =conn.prepareStatement(" Update sales.staffs set name=?,email=?,phone=?,active=?,store_id=?,manager_state=?,gender=? where staff_id=?");
             //txtStaffID.setEnabled(true);
             comm.setString(9,txtStaffID.getText());
             comm.setString(1, txtName.getText());
@@ -572,7 +577,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             comm.setString(5, store+"");
             comm.setString(6, cbManagerstate.getSelectedItem().toString().equals("Quản lý") ? "1" : "0");
             comm.setString(7, cbGender.getSelectedItem().toString());
-            comm.setString(8, txtpass.getText());
+            //comm.setString(8, txtpass.getText());
             comm.executeUpdate();
             tbn.setRowCount(0);
             loadData();
@@ -589,6 +594,8 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         JComponent comp = (JComponent) evt.getSource();
         Window win = SwingUtilities.getWindowAncestor(comp);
         win.dispose();
+        ManagerMain main = new ManagerMain();
+        main.setVisible(true);
     }//GEN-LAST:event_btnThoatActionPerformed
    
     private void Btn_ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ResetActionPerformed
@@ -598,7 +605,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         txtEmail.setText("");
         txtPhone.setText("");
         txtStoreid.setText("");
-        txtpass.setText("");
+        //txtpass.setText("");
         loadData();
 // TODO add your handling code here:
     }//GEN-LAST:event_Btn_ResetActionPerformed
@@ -749,6 +756,5 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
     private javax.swing.JTextField txtStaffID;
     private javax.swing.JTextField txtStoreid;
     private javax.swing.JTextField txtTimkiem;
-    private javax.swing.JTextField txtpass;
     // End of variables declaration//GEN-END:variables
 }

@@ -80,7 +80,7 @@ public class Login extends javax.swing.JFrame {
 
         TKDaBiKhoa.setForeground(new java.awt.Color(204, 102, 255));
         jPanel1.add(TKDaBiKhoa);
-        TKDaBiKhoa.setBounds(1035, 226, 297, 32);
+        TKDaBiKhoa.setBounds(1030, 230, 297, 32);
 
         jLabel1.setText("Quên mật khẩu ? ");
         jLabel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
