@@ -21,37 +21,44 @@ public class PersonalPage extends javax.swing.JFrame {
         initComponents();
         loadData();
     }
-    
+
+
     private void loadData() {
         try {
             Connect a = new Connect();
             Connection con = a.getConnectDB();
-            PreparedStatement ps = con.prepareStatement("select staff_id, \n" +
-                "sales.staffs.name, \n" +
-                "sales.staffs.email, \n" +
-                "sales.staffs.phone, \n" +
-                "active, \n" +
-                "sales.stores.name, \n" +
-                "manager_state, \n" +
-                "gender " +
-                "from sales.staffs " +
-                "inner join sales.stores on sales.staffs.store_id = sales.stores.store_id\n" +
-                "where staff_id = ?");
+            PreparedStatement ps = con.prepareStatement("select staff_id, \n"
+                    + "sales.staffs.name, \n"
+                    + "sales.staffs.email, \n"
+                    + "sales.staffs.phone, \n"
+                    + "active, \n"
+                    + "sales.stores.name, \n"
+                    + "manager_state, \n"
+                    + "gender "
+                    + "from sales.staffs "
+                    + "inner join sales.stores on sales.staffs.store_id = sales.stores.store_id\n"
+                    + "where staff_id = ?");
             ps.setString(1, "1");
             ResultSet rs = ps.executeQuery();
-            
+
             rs.next();
             txtID.setText(rs.getString(1));
             txtName.setText(rs.getString(2));
             txtEmail.setText(rs.getString(3));
             txtPhone.setText(rs.getString(4));
-            if(rs.getString(5).equals("1")) txtStatus.setText("Đang đi làm");
-            else txtStatus.setText("Đã nghỉ làm");
+            if (rs.getString(5).equals("1")) {
+                txtStatus.setText("Đang đi làm");
+            } else {
+                txtStatus.setText("Đã nghỉ làm");
+            }
             txtStore.setText(rs.getString(6));
-            if(rs.getString(7).equals("1")) txtLevel.setText("Quản lý");
-            else txtLevel.setText("Nhân viên");
+            if (rs.getString(7).equals("1")) {
+                txtLevel.setText("Quản lý");
+            } else {
+                txtLevel.setText("Nhân viên");
+            }
             txtGender.setText(rs.getString(8));
-            
+
         } catch (Exception ex) {
             System.out.println(ex.toString());
         }
@@ -185,6 +192,11 @@ public class PersonalPage extends javax.swing.JFrame {
         jLabel11.setText("Email");
 
         jButton1.setText("Đổi mật khẩu");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
         javax.swing.GroupLayout jPanel2Layout = new javax.swing.GroupLayout(jPanel2);
         jPanel2.setLayout(jPanel2Layout);
@@ -222,9 +234,8 @@ public class PersonalPage extends javax.swing.JFrame {
         jPanel3Layout.setHorizontalGroup(
             jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jPanel3Layout.createSequentialGroup()
-                .addContainerGap(203, Short.MAX_VALUE)
-                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap())
+                .addGap(0, 215, Short.MAX_VALUE)
+                .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addContainerGap()
@@ -236,7 +247,7 @@ public class PersonalPage extends javax.swing.JFrame {
             .addGroup(jPanel3Layout.createSequentialGroup()
                 .addContainerGap()
                 .addComponent(jPanel2, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(88, Short.MAX_VALUE))
+                .addContainerGap(97, Short.MAX_VALUE))
             .addGroup(jPanel3Layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                 .addGroup(jPanel3Layout.createSequentialGroup()
                     .addContainerGap()
@@ -263,6 +274,13 @@ public class PersonalPage extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Reset rs = new Reset(txtEmail.getText());
+        rs.setVisible(true);
+        this.setVisible(false);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
     /**
      * @param args the command line arguments

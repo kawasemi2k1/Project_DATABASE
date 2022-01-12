@@ -5,6 +5,7 @@
  */
 package GUI;
 
+import Utils.ValidateData;
 import java.awt.Window;
 import java.sql.*;
 import java.util.Vector;
@@ -25,6 +26,7 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
 
     DefaultTableModel tbn = new DefaultTableModel();
     static int store = Integer.parseInt(Login.Store_ID);
+    ValidateData vd = new ValidateData();
 
     public QuanLySanPhamChuoiCuaHang() {
         initComponents();
@@ -602,9 +604,9 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
             String cat_id = null;
             String product_id = null;
 
-            brand_id = Lay_brand_id(txt_brand.getText());
-            cat_id = Lay_cat_id(txt_cat.getText());
-            product_id = Lay_product_id(txt_name.getText());
+            brand_id = Lay_brand_id(vd.ChuanHoaChuoi(txt_brand.getText()));
+            cat_id = Lay_cat_id(vd.ChuanHoaChuoi(txt_cat.getText()));
+            product_id = Lay_product_id(vd.ChuanHoaChuoi(txt_name.getText()));
 
             String brand_id_copy = brand_id;
             String cat_id_copy = cat_id;
@@ -620,28 +622,28 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
             if (brand_id.length() == 0) {
                 String sql_brand = "insert into production.brands(brand_name,country) Values(?,?)";
                 PreparedStatement ps_brand = conn.prepareStatement(sql_brand);
-                ps_brand.setString(1, txt_brand.getText());
-                ps_brand.setString(2, txt_country.getText());
+                ps_brand.setString(1, vd.ChuanHoaChuoi(txt_brand.getText()));
+                ps_brand.setString(2, vd.ChuanHoaChuoi(txt_country.getText()));
                 chk_brand = ps_brand.executeUpdate();
-                brand_id = Lay_brand_id(txt_brand.getText());
+                brand_id = Lay_brand_id(vd.ChuanHoaChuoi(txt_brand.getText()));
             }
 
             if (cat_id.length() == 0) {
                 String sql_cat = "insert into production.categories(category_name) Values(?)";
                 PreparedStatement ps_cat = conn.prepareStatement(sql_cat);
-                ps_cat.setString(1, txt_cat.getText());
+                ps_cat.setString(1, vd.ChuanHoaChuoi(txt_cat.getText()));
                 chk_cat = ps_cat.executeUpdate();
-                cat_id = Lay_cat_id(txt_cat.getText());
+                cat_id = Lay_cat_id(vd.ChuanHoaChuoi(txt_cat.getText()));
 
             }
 
             if (product_id.length() == 0) {
                 String sql_product = "insert into production.products(product_name,brand_id, category_id,price) Values(?,?,?,?)";
                 PreparedStatement ps_product = conn.prepareStatement(sql_product);
-                ps_product.setString(1, txt_name.getText());
+                ps_product.setString(1, vd.ChuanHoaChuoi(txt_name.getText()));
                 ps_product.setString(2, brand_id);
                 ps_product.setString(3, cat_id);
-                ps_product.setString(4, txt_price.getText());
+                ps_product.setString(4, vd.ChuanHoaChuoi(txt_price.getText()));
                 chk_product = ps_product.executeUpdate();
             } else {
                 System.out.println("Da co mat hang nay");
