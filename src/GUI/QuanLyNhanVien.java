@@ -396,7 +396,9 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             String matkhau = String.valueOf(randomCode);
             Connect a = new Connect();
             Connection conn = a.getConnectDB();
-            if(txtName.getText().equals("") ||txtEmail.getText().equals("") ||txtPhone.getText().equals("")){
+            String Name = validate.ChuanHoaChuoi(txtName.getText()); 
+            String Email = txtEmail.getText().trim();
+            if(Name.equals("") ||Email.equals("") ||txtPhone.getText().equals("")){
                 JOptionPane.showMessageDialog(this, "Không được bỏ trống ");
             }else if( !validate.kiemTraTen(txtName.getText())){
                 JOptionPane.showMessageDialog(this, "Tên không được chứa chữ số");      
@@ -413,7 +415,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                 String check_phone = " Select phone from sales.staffs where phone='"+txtPhone.getText()+"'";
                 Statement st1 = conn.createStatement();
                 ResultSet rs1 = st1.executeQuery(check_phone);
-                String check_mail = " Select email from sales.staffs where email='"+txtEmail.getText()+"'";
+                String check_mail = " Select email from sales.staffs where email='"+Email+"'";
                 Statement st2 = conn.createStatement();
                 ResultSet rs2 = st2.executeQuery(check_mail);
 //                if(rs.next()){
@@ -432,8 +434,8 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                     PreparedStatement ps = conn.prepareStatement(" insert into sales.staffs( name, email, phone, active, store_id, manager_state,gender, password) values(?,?,?,?,?,?,?,?)");
                     //ps.setString(1, txtStaffID.getText());
                     txtStaffID.setEnabled(false);
-                    ps.setString(1, txtName.getText());
-                    ps.setString(2, txtEmail.getText());
+                    ps.setString(1, Name);
+                    ps.setString(2, Email);
                     ps.setString(3, txtPhone.getText());
                     ps.setString(4, cbActive.getSelectedItem().toString().equals("Hoạt động") ? "1" : "0");
                     ps.setString(5, store+"");
@@ -448,7 +450,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                         tbn.setRowCount(0);
                         loadData();
                         sendEmail_QuenMK send = new sendEmail_QuenMK();
-                        send.sendmail(txtEmail.getText(), randomCode);
+                        send.sendmail(Email, randomCode);
                     }
                 }   
             }
@@ -480,11 +482,13 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         try{
             Connect a = new Connect();
             Connection conn =a.getConnectDB();
-        if(txtName.getText().equals("") ||txtEmail.getText().equals("") ||txtPhone.getText().equals("")){
+            String Name = validate.ChuanHoaChuoi(txtName.getText()); 
+            String Email = txtEmail.getText().trim();
+        if(Name.equals("") ||Email.equals("") ||txtPhone.getText().equals("")){
                 JOptionPane.showMessageDialog(this, "Không được bỏ trống ");
-            }else if( !validate.kiemTraTen(txtName.getText())){
+            }else if( !validate.kiemTraTen(Name)){
                 JOptionPane.showMessageDialog(this, "Tên không được chứa chữ số");      
-            }else if (!validate.kiemTraEmail(txtEmail.getText())) {
+            }else if (!validate.kiemTraEmail(Email)) {
             JOptionPane.showMessageDialog(this, "Không đúng định dạng email");      
             }else if (!validate.kiemTraSDT(txtPhone.getText()).equals("")) {
             JOptionPane.showMessageDialog(this, validate.kiemTraSDT(txtPhone.getText()));
@@ -537,7 +541,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             }       
             else {
                            //đã đổi key
-                String check_mail = " Select email from sales.staffs where email ='"+txtEmail.getText()+"'";
+                String check_mail = " Select email from sales.staffs where email ='"+Email+"'";
                 Statement st = conn.createStatement(
                 ResultSet.TYPE_SCROLL_INSENSITIVE,
                 ResultSet.CONCUR_READ_ONLY
@@ -570,8 +574,8 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             PreparedStatement comm =conn.prepareStatement(" Update sales.staffs set name=?,email=?,phone=?,active=?,store_id=?,manager_state=?,gender=? where staff_id=?");
             //txtStaffID.setEnabled(true);
             comm.setString(8,txtStaffID.getText());
-            comm.setString(1, txtName.getText());
-            comm.setString(2, txtEmail.getText());
+            comm.setString(1, Name);
+            comm.setString(2, Email);
             comm.setString(3, txtPhone.getText());
             comm.setString(4, cbActive.getSelectedItem().toString().equals("Hoạt động") ? "1" : "0");
             comm.setString(5, store+"");
