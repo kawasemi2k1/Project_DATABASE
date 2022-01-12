@@ -26,77 +26,6 @@ public class ThongKeBrands extends javax.swing.JPanel {
         initComponents();
         BoxTKBrand_Chay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Số lượng", "Doanh Thu" }));
         BoxTKBrand_Cham.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Số lượng", "Doanh Thu" }));
-        try{
-            Date tdate1 = datefrom.getDate();
-             Date tdate2 = dateto.getDate();
-             Date tdate = new Date();  
-             if (tdate1.after(tdate2)) {
-            JOptionPane.showMessageDialog(this, "Ngày không hợp lệ");
-            return;
-        } else if (tdate1.after(tdate)) {
-            JOptionPane.showMessageDialog(this, "Ngày không hợp lệ");
-            return;
-        }
-            Connect a = new Connect();
-            Connection conn =a.getConnectDB();
-            String sql_soluong = "SELECT TOP 5 With TIES pb.brand_id,pb.brand_name,pb.country,count(PPRO.product_id) as number_product,sum(quantity) as total from "
-                    + "sales.orders as SO inner join sales.order_items as ODI on SO.order_id = ODI.order_id " 
-                    + " inner join production.products as PPRO on ODI.product_id = PPRO.product_id " 
-                    + " inner join production.brands as pb on PPRO.brand_id = pb.brand_id " 
-                    + " where SO.created_date between (?) and (?) " 
-                    + " group by PB.brand_id,pb.brand_name,pb.country order by total DESC " ;
-            String sql_doanhthu = "SELECT TOP 5 With TIES pb.brand_id,pb.brand_name,pb.country,count(PPRO.product_id)as number_product,sum(PPRO.price*quantity) as total "
-                    + " from sales.orders as SO inner join sales.order_items as ODI on SO.order_id = ODI.order_id " 
-                    + " inner join production.products as PPRO on ODI.product_id = PPRO.product_id " 
-                    + " inner join production.brands as pb on PPRO.brand_id = pb.brand_id " 
-                    + " where SO.created_date between (?) and (?) " 
-                    + " group by PB.brand_id,pb.brand_name,pb.country order by total DESC ";
-            
-            PreparedStatement ps = conn.prepareStatement(sql_soluong);
-            PreparedStatement ps1 = conn.prepareStatement(sql_doanhthu);
-            SimpleDateFormat sdf = new SimpleDateFormat("yyyy-MM-dd");
-            String date1 = sdf.format(datefrom.getDate());
-            String date2 = sdf.format(dateto.getDate());
-            ps.setString(1, date1);
-            ps.setString(2, date2);
-            ps1.setString(1, date1);
-            ps1.setString(2, date2);
-            ResultSet rs = ps.executeQuery(); 
-            ResultSet rs1 = ps1.executeQuery(); 
-            if(BoxTKBrand_Chay.getSelectedItem().toString().equals("Số lượng")){
-                tbn.setRowCount(0);
-            String []colsName = {"Brand_ID", "Brand_Name","Country","Number_of_Product","Quantity"};
-            tbn.setColumnIdentifiers(colsName);
-                while(rs.next()){
-                    String value[] = new String[5];
-                    value[0]=rs.getString("brand_id");
-                    value[1]=rs.getString("brand_name");
-                    value[2]=rs.getString("country");
-                    value[3]=rs.getInt("number_product")+"";
-                    value[4]=rs.getInt("total")+"";
-                    tbn.addRow(value);
-                    jTable1.setModel(tbn);       
-                }  
-            }else if(BoxTKBrand_Chay.getSelectedItem().toString().equals("Doanh Thu")){
-                tbn.setRowCount(0);
-            String []colsName = {"Brand_ID", "Brand_Name","Country","Number_of_Product","TotalPrice"};
-            tbn.setColumnIdentifiers(colsName);
-                while(rs1.next()){
-                    String value[] = new String[5];
-                    value[0]=rs1.getString("brand_id");
-                    value[1]=rs1.getString("brand_name");
-                    value[2]=rs1.getString("country");
-                    value[3]=rs1.getInt("number_product")+"";
-                    value[4]=rs1.getInt("total")+"";
-                    tbn.addRow(value);
-                    jTable1.setModel(tbn);       
-                }  
-            }
-            
-        }catch(Exception ex){
-            System.out.println(ex.toString());
-        }
-        
     }
     
 
@@ -188,8 +117,6 @@ public class ThongKeBrands extends javax.swing.JPanel {
         datefrom.setDate(new java.util.Date(1610103193000L));
         add(datefrom);
         datefrom.setBounds(640, 130, 130, 50);
-
-        dateto.setDate(new java.util.Date(1610103193000L));
         add(dateto);
         dateto.setBounds(1120, 140, 140, 40);
 
@@ -229,7 +156,7 @@ public class ThongKeBrands extends javax.swing.JPanel {
                     + " inner join production.brands as pb on PPRO.brand_id = pb.brand_id " 
                     + " where SO.created_date between (?) and (?) " 
                     + " group by PB.brand_id,pb.brand_name,pb.country order by total DESC " ;
-            String sql_doanhthu = "SELECT TOP 5 With TIES pb.brand_id,pb.brand_name,pb.country,count(PPRO.product_id)as number_product,sum(PPRO.price*quantity) as total "
+            String sql_doanhthu = "SELECT TOP 5 With TIES pb.brand_id,pb.brand_name,pb.country,count(PPRO.product_id)as number_product,sum(ODI.profit*quantity) as total "
                     + " from sales.orders as SO inner join sales.order_items as ODI on SO.order_id = ODI.order_id " 
                     + " inner join production.products as PPRO on ODI.product_id = PPRO.product_id " 
                     + " inner join production.brands as pb on PPRO.brand_id = pb.brand_id " 
@@ -249,7 +176,7 @@ public class ThongKeBrands extends javax.swing.JPanel {
             ResultSet rs1 = ps1.executeQuery(); 
             if(BoxTKBrand_Chay.getSelectedItem().toString().equals("Số lượng")){
                 tbn.setRowCount(0);
-            String []colsName = {"Brand_ID", "Brand_Name","Country","Number_of_Product","Quantity"};
+            String []colsName = {"Mã thương hiệu", "Tên thương hiệu","Quốc gia","Số loại sản phẩm","Số lượng"};
             tbn.setColumnIdentifiers(colsName);
                 while(rs.next()){
                     String value[] = new String[5];
@@ -263,7 +190,7 @@ public class ThongKeBrands extends javax.swing.JPanel {
                 }  
             }else if(BoxTKBrand_Chay.getSelectedItem().toString().equals("Doanh Thu")){
                 tbn.setRowCount(0);
-            String []colsName = {"Brand_ID", "Brand_Name","Country","Number_of_Product","TotalPrice"};
+            String []colsName = {"Mã thương hiệu", "Tên thương hiệu","Quốc gia","Số loại sản phẩm","Doanh thu"};
             tbn.setColumnIdentifiers(colsName);
                 while(rs1.next()){
                     String value[] = new String[5];
@@ -307,7 +234,7 @@ public class ThongKeBrands extends javax.swing.JPanel {
                     + " where SO.created_date between (?) and (?) " 
                     + " group by PB.brand_id,pb.brand_name,pb.country order by total ASC " ;
             
-            String sql_doanhthu = "SELECT TOP 5 With TIES pb.brand_id,pb.brand_name,pb.country,count(PPRO.product_id)as number_product,sum(PPRO.price*quantity) as total "
+            String sql_doanhthu = "SELECT TOP 5 With TIES pb.brand_id,pb.brand_name,pb.country,count(PPRO.product_id)as number_product,sum(ODI.profit*quantity) as total "
                     + " from sales.orders as SO inner join sales.order_items as ODI on SO.order_id = ODI.order_id " 
                     + " inner join production.products as PPRO on ODI.product_id = PPRO.product_id " 
                     + " inner join production.brands as pb on PPRO.brand_id = pb.brand_id " 
@@ -328,7 +255,7 @@ public class ThongKeBrands extends javax.swing.JPanel {
             ResultSet rs1 = ps1.executeQuery(); 
             if(BoxTKBrand_Cham.getSelectedItem().toString().equals("Số lượng")){
                 tbn.setRowCount(0);
-            String []colsName = {"Brand_ID", "Brand_Name","Country","Number_of_Product","Quantity"};
+            String []colsName = {"Mã thương hiệu", "Tên thương hiệu","Quốc gia","Số loại sản phẩm","Số lượng"};
             tbn.setColumnIdentifiers(colsName);
                 while(rs.next()){
                     String value[] = new String[5];
@@ -342,7 +269,7 @@ public class ThongKeBrands extends javax.swing.JPanel {
                 }  
             }else if(BoxTKBrand_Cham.getSelectedItem().toString().equals("Doanh Thu")){
                 tbn.setRowCount(0);
-            String []colsName = {"Brand_ID", "Brand_Name","Country","Number_of_Product","TotalPrice"};
+            String []colsName = {"Mã thương hiệu", "Tên thương hiệu","Quốc gia","Số loại sản phẩm","Doanh thu"};
             tbn.setColumnIdentifiers(colsName);
                 while(rs1.next()){
                     String value[] = new String[5];

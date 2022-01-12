@@ -173,7 +173,7 @@ public class ThongKeProducts extends javax.swing.JPanel {
                     + " group by sales.order_items.product_id,production.products.product_name,production.products.price "
                     + " order by total ASC ";
             
-            String sql_doanhthu = "Select TOP 5 With TIES sales.order_items.product_id, sum(sales.order_items.quantity)*production.products.price as total "
+            String sql_doanhthu = "Select TOP 5 With TIES sales.order_items.product_id, sum(sales.order_items.quantity*sales.order_items.profit) as total "
                     + ",production.products.product_name,production.products.price from sales.orders inner join sales.order_items on "
                     + " sales.orders.order_id =sales.order_items.order_id "
                     + "inner join production.products on sales.order_items.product_id = production.products.product_id "
@@ -195,7 +195,7 @@ public class ThongKeProducts extends javax.swing.JPanel {
           
             if(BoxBancham.getSelectedItem().toString().equals("Số lượng")){
                 tbn.setRowCount(0);
-            String []colsName = {"Product_ID", "Product_Name","Price","Quantity"};
+            String []colsName = {"Mã sản phẩm", "Tên sản phẩm","Giá","Số lượng"};
             tbn.setColumnIdentifiers(colsName);
             while(rs.next()){
                     String value[] = new String[4];
@@ -208,7 +208,7 @@ public class ThongKeProducts extends javax.swing.JPanel {
             }     
             } else if(BoxBancham.getSelectedItem().toString().equals("Doanh Thu")){
                 tbn.setRowCount(0);
-                    String []colsName = {"Product_ID", "Product_Name","Price","TotalPrice"};
+                    String []colsName = {"Mã sản phẩm", "Tên sản phẩm","Giá","Doanh thu"};
             tbn.setColumnIdentifiers(colsName);
             while(rs1.next()){
                     String value[] = new String[4];
@@ -248,7 +248,7 @@ public class ThongKeProducts extends javax.swing.JPanel {
                     + " group by sales.order_items.product_id,production.products.product_name,production.products.price "
                     + " order by total DESC ";
             
-             String sql_doanhthu = "Select TOP 5 With TIES sales.order_items.product_id, sum(sales.order_items.quantity)*production.products.price as total "
+             String sql_doanhthu = "Select TOP 5 With TIES sales.order_items.product_id, sum(sales.order_items.quantity*sales.order_items.profit) as total "
                     + ",production.products.product_name,production.products.price from sales.orders inner join sales.order_items on "
                     + " sales.orders.order_id =sales.order_items.order_id "
                     + "inner join production.products on sales.order_items.product_id = production.products.product_id "
@@ -268,7 +268,7 @@ public class ThongKeProducts extends javax.swing.JPanel {
             ResultSet rs1 = ps1.executeQuery(); 
             if(BoxBanchay.getSelectedItem().toString().equals("Số lượng")){
                    tbn.setRowCount(0);
-            String []colsName = {"Product_ID", "Product_Name","Price","Quantity"};
+            String []colsName = {"Mã sản phẩm", "Tên sản phẩm","Giá","Số lượng"};
             tbn.setColumnIdentifiers(colsName);
             while(rs.next()){
                     String value[] = new String[4];
@@ -281,7 +281,7 @@ public class ThongKeProducts extends javax.swing.JPanel {
             }     
             } else if(BoxBanchay.getSelectedItem().toString().equals("Doanh Thu")){
                     tbn.setRowCount(0);
-                    String []colsName = {"Product_ID", "Product_Name","Price","TotalPrice"};
+                    String []colsName = {"Mã sản phẩm", "Tên sản phẩm","Giá","Doanh thu"};
             tbn.setColumnIdentifiers(colsName);
             while(rs1.next()){
                     String value1[] = new String[4];

@@ -46,7 +46,7 @@ public class ThongKe_Panel extends javax.swing.JPanel {
             }
         });
         jpnView.add(jButton1);
-        jButton1.setBounds(70, 50, 130, 25);
+        jButton1.setBounds(70, 50, 130, 23);
 
         jButton2.setText("TK KH");
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -55,7 +55,7 @@ public class ThongKe_Panel extends javax.swing.JPanel {
             }
         });
         jpnView.add(jButton2);
-        jButton2.setBounds(100, 100, 65, 25);
+        jButton2.setBounds(100, 100, 110, 23);
 
         jButton3.setText("TK Cat");
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +64,7 @@ public class ThongKe_Panel extends javax.swing.JPanel {
             }
         });
         jpnView.add(jButton3);
-        jButton3.setBounds(460, 80, 110, 25);
+        jButton3.setBounds(460, 80, 110, 23);
 
         jButton4.setText("TK Product");
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +73,7 @@ public class ThongKe_Panel extends javax.swing.JPanel {
             }
         });
         jpnView.add(jButton4);
-        jButton4.setBounds(470, 30, 140, 25);
+        jButton4.setBounds(470, 30, 140, 23);
 
         jButton5.setText("TK Staff by Time");
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +82,7 @@ public class ThongKe_Panel extends javax.swing.JPanel {
             }
         });
         jpnView.add(jButton5);
-        jButton5.setBounds(70, 150, 130, 25);
+        jButton5.setBounds(70, 150, 130, 23);
 
         jButton6.setText("TK Store by time");
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -91,25 +91,25 @@ public class ThongKe_Panel extends javax.swing.JPanel {
             }
         });
         jpnView.add(jButton6);
-        jButton6.setBounds(460, 150, 150, 25);
+        jButton6.setBounds(460, 150, 150, 23);
 
-        jButton7.setText("TK sắp hết hạn");
+        jButton7.setText("TK Brand");
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
         jpnView.add(jButton7);
-        jButton7.setBounds(130, 230, 150, 25);
+        jButton7.setBounds(100, 200, 75, 23);
 
-        jButton8.setText("TK Brand");
+        jButton8.setText("Guimail");
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
         jpnView.add(jButton8);
-        jButton8.setBounds(480, 250, 120, 25);
+        jButton8.setBounds(460, 200, 100, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -161,14 +161,13 @@ public class ThongKe_Panel extends javax.swing.JPanel {
 
     private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
         // TODO add your handling code here:
-        TK_Product_hethan tk = new TK_Product_hethan();
+        TK_Brand tk = new TK_Brand();
         tk.setVisible(true);
-        
     }//GEN-LAST:event_jButton7ActionPerformed
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        TK_Brand tk = new TK_Brand();
+        TK_Store tk = new TK_Store();
         tk.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 
