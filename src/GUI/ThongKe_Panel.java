@@ -33,6 +33,8 @@ public class ThongKe_Panel extends javax.swing.JPanel {
         jButton4 = new javax.swing.JButton();
         jButton5 = new javax.swing.JButton();
         jButton6 = new javax.swing.JButton();
+        jButton7 = new javax.swing.JButton();
+        jButton8 = new javax.swing.JButton();
 
         jpnView.setPreferredSize(new java.awt.Dimension(1500, 800));
         jpnView.setLayout(null);
@@ -91,6 +93,24 @@ public class ThongKe_Panel extends javax.swing.JPanel {
         jpnView.add(jButton6);
         jButton6.setBounds(460, 150, 150, 25);
 
+        jButton7.setText("TK sắp hết hạn");
+        jButton7.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton7ActionPerformed(evt);
+            }
+        });
+        jpnView.add(jButton7);
+        jButton7.setBounds(130, 230, 150, 25);
+
+        jButton8.setText("TK Brand");
+        jButton8.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton8ActionPerformed(evt);
+            }
+        });
+        jpnView.add(jButton8);
+        jButton8.setBounds(480, 250, 120, 25);
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
@@ -139,6 +159,19 @@ public class ThongKe_Panel extends javax.swing.JPanel {
         tk.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
 
+    private void jButton7ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton7ActionPerformed
+        // TODO add your handling code here:
+        TK_Product_hethan tk = new TK_Product_hethan();
+        tk.setVisible(true);
+        
+    }//GEN-LAST:event_jButton7ActionPerformed
+
+    private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
+        // TODO add your handling code here:
+        TK_Brand tk = new TK_Brand();
+        tk.setVisible(true);
+    }//GEN-LAST:event_jButton8ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;
@@ -147,6 +180,8 @@ public class ThongKe_Panel extends javax.swing.JPanel {
     private javax.swing.JButton jButton4;
     private javax.swing.JButton jButton5;
     private javax.swing.JButton jButton6;
+    private javax.swing.JButton jButton7;
+    private javax.swing.JButton jButton8;
     private javax.swing.JPanel jpnView;
     // End of variables declaration//GEN-END:variables
 }

@@ -194,7 +194,7 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
             }
         });
         add(txtproduct_id);
-        txtproduct_id.setBounds(190, 120, 90, 20);
+        txtproduct_id.setBounds(190, 120, 90, 22);
 
         txtproduct_name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,7 +202,7 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
             }
         });
         add(txtproduct_name);
-        txtproduct_name.setBounds(190, 170, 90, 20);
+        txtproduct_name.setBounds(190, 170, 90, 22);
 
         txtprice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,7 +210,7 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
             }
         });
         add(txtprice);
-        txtprice.setBounds(440, 120, 110, 20);
+        txtprice.setBounds(440, 120, 110, 22);
 
         txt_date.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,7 +218,7 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
             }
         });
         add(txt_date);
-        txt_date.setBounds(440, 170, 110, 20);
+        txt_date.setBounds(440, 170, 110, 22);
 
         txt_discount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,7 +226,7 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
             }
         });
         add(txt_discount);
-        txt_discount.setBounds(440, 210, 110, 20);
+        txt_discount.setBounds(440, 210, 110, 22);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel3.setText("Mã Sản Phẩm");
@@ -260,7 +260,7 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
             }
         });
         add(btn_suadiscout);
-        btn_suadiscout.setBounds(610, 120, 51, 23);
+        btn_suadiscout.setBounds(610, 120, 110, 25);
     }// </editor-fold>//GEN-END:initComponents
 
     
