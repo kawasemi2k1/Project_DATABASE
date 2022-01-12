@@ -53,7 +53,6 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
     Connection conn = null;
     ResultSet rs;
     String Store_ID = Login.Store_ID;
-    Map<String, Double> map = new LinkedHashMap<>();
     String hienThi;
 
     public ThongKe_Staff_byTimeNew() {
@@ -101,16 +100,20 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
             @Override
             public void valueChanged(ListSelectionEvent lse) {
                 if(tbl_NV.getSelectedRow() >= 0){
-                    String Staff_ID = tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 0)+ "";
-                    createMap(Staff_ID);
-                    initFrame(hienThi);
+                   String Staff_ID = tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 0)+ "";
+                    label_StaffName.setText(tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 5)+": "+tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 1)+ "");
+                    hienThi = tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 5)+": "+tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 1)+ "";
+                    System.out.println("1***: " + label_StaffName.toString());
+                    Map<String, Double> map = new LinkedHashMap<>();
+                    createMap(Staff_ID, map);
+                    initFrame(hienThi, map);
                       
                 }
             }
         });
     }
     
-    public void createMap(String Staff_ID) {
+    public void createMap(String Staff_ID, Map<String, Double> map) {
        
             try {
                 Connect a = new Connect();
@@ -136,20 +139,20 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
                 }
 
             } catch (Exception ex) {
-                System.out.println("Thong ke staff trong 12 tháng gần nhất "+ex.toString());
+                // System.out.println("Thong ke staff trong 12 tháng gần nhất "+ex.toString());
             }
         
     }
-     public JFreeChart createChart(String x) {
+     public JFreeChart createChart(String x, Map<String, Double> map) {
         JFreeChart queryChart = ChartFactory.createLineChart(
                 "Doanh thu các tháng gần nhất của " + x ,
                 "Tháng", "Doanh thu",
-                createDataset(), PlotOrientation.VERTICAL, false, false, false);
+                createDataset(map), PlotOrientation.VERTICAL, false, false, false);
         return queryChart;
     }
      
      
-    private CategoryDataset createDataset() {
+    private CategoryDataset createDataset(Map<String, Double> map) {
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         for (Map.Entry<String, Double> entry : map.entrySet()) {
             String key = entry.getKey();
@@ -158,8 +161,8 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
         }
         return dataset;
     }
-      public void initFrame(String x) {
-        ChartPanel chartPanel = new ChartPanel(createChart(x));
+      public void initFrame(String x, Map<String, Double> map) {
+        ChartPanel chartPanel = new ChartPanel(createChart(x, map));
         chartPanel.setPreferredSize(new java.awt.Dimension(1300, 700));
         jcontent.removeAll();
         jcontent.add(chartPanel);
@@ -178,11 +181,15 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
         jLabel1 = new javax.swing.JLabel();
         jcontent = new javax.swing.JTabbedPane();
         label_StaffName = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
+
+        setLayout(null);
 
         jPanel1.setBackground(new java.awt.Color(255, 204, 255));
         jPanel1.setLayout(null);
 
-        btnThoat.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
+        btnThoat.setBackground(new java.awt.Color(153, 0, 153));
+        btnThoat.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
         btnThoat.setText("Thoát");
         btnThoat.setContentAreaFilled(false);
         btnThoat.addActionListener(new java.awt.event.ActionListener() {
@@ -191,7 +198,7 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnThoat);
-        btnThoat.setBounds(0, 590, 290, 110);
+        btnThoat.setBounds(10, 600, 290, 110);
 
         tbl_NV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -218,22 +225,19 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
         jPanel1.add(jLabel1);
         jLabel1.setBounds(30, 90, 370, 70);
         jPanel1.add(jcontent);
-        jcontent.setBounds(260, 250, 940, 450);
+        jcontent.setBounds(310, 260, 940, 450);
 
         label_StaffName.setForeground(new java.awt.Color(204, 0, 204));
         jPanel1.add(label_StaffName);
         label_StaffName.setBounds(410, 210, 580, 16);
 
-        javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
-        this.setLayout(layout);
-        layout.setHorizontalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1220, Short.MAX_VALUE)
-        );
-        layout.setVerticalGroup(
-            layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 702, Short.MAX_VALUE)
-        );
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/background-đẹp-hoa-bươm-bướm.jpg"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(0, 0, 1330, 730);
+
+        add(jPanel1);
+        jPanel1.setBounds(0, 0, 1260, 730);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed
@@ -249,9 +253,10 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
             String Staff_ID = tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 0)+ "";
             label_StaffName.setText(tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 5)+": "+tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 1)+ "");
             hienThi = tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 5)+": "+tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 1)+ "";
-            System.out.println("***: " + label_StaffName);
-                    createMap(Staff_ID);
-                    initFrame(hienThi);
+            System.out.println("2***: " + label_StaffName.toString());
+            Map<String, Double> map = new LinkedHashMap<>();
+                    createMap(Staff_ID, map);
+                    initFrame(hienThi, map);
         }    
     }//GEN-LAST:event_tbl_NVMouseClicked
 
@@ -259,6 +264,7 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btnThoat;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jcontent;
