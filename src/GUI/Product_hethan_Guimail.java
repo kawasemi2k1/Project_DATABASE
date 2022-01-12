@@ -2,6 +2,7 @@ package GUI;
 
 
 
+import java.awt.Window;
 import javax.mail.PasswordAuthentication;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
@@ -23,6 +24,8 @@ import org.apache.commons.mail.DefaultAuthenticator;
 import org.apache.commons.mail.Email;
 import org.apache.commons.mail.SimpleEmail;
 import java.util.Vector;
+import javax.swing.JComponent;
+import javax.swing.SwingUtilities;
 import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
@@ -77,8 +80,8 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
             Vector row,column;
             column = new Vector();
             Statement st =conn.createStatement();
-            String sql_hetdate = "Select SG.product_id,PPRO.product_name ,PPRO.price, "
-                    + "SG.good_till,SG.discount from sales.goods as SG inner join production.products as PPRO "
+            String sql_hetdate = "Select SG.product_id as N'Mã nhân viên',PPRO.product_name as N'Tên sản phẩm' ,PPRO.price as N'Giá sản phẩm', "
+                    + "SG.good_till as N'Hạn sử dụng',SG.discount as N'Giảm giá (%)' from sales.goods as SG inner join production.products as PPRO "
                     + "on SG.product_id = PPRO.product_id where( DATEDIFF(day,getdate(),SG.good_till) between 0 and 30)";
             ResultSet rs =st.executeQuery(sql_hetdate);
             ResultSetMetaData metadata =rs.getMetaData();
@@ -140,6 +143,7 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
         jLabel7 = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
         btn_suadiscout = new javax.swing.JButton();
+        jButton1 = new javax.swing.JButton();
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bgtksp.png"))); // NOI18N
 
@@ -194,7 +198,7 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
             }
         });
         add(txtproduct_id);
-        txtproduct_id.setBounds(190, 120, 90, 20);
+        txtproduct_id.setBounds(190, 120, 90, 22);
 
         txtproduct_name.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -202,7 +206,7 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
             }
         });
         add(txtproduct_name);
-        txtproduct_name.setBounds(190, 170, 90, 20);
+        txtproduct_name.setBounds(190, 170, 90, 22);
 
         txtprice.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -210,7 +214,7 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
             }
         });
         add(txtprice);
-        txtprice.setBounds(440, 120, 110, 20);
+        txtprice.setBounds(440, 120, 110, 22);
 
         txt_date.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -218,7 +222,7 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
             }
         });
         add(txt_date);
-        txt_date.setBounds(440, 170, 110, 20);
+        txt_date.setBounds(440, 170, 110, 22);
 
         txt_discount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -226,7 +230,7 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
             }
         });
         add(txt_discount);
-        txt_discount.setBounds(440, 210, 110, 20);
+        txt_discount.setBounds(440, 210, 110, 22);
 
         jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         jLabel3.setText("Mã Sản Phẩm");
@@ -260,7 +264,16 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
             }
         });
         add(btn_suadiscout);
-        btn_suadiscout.setBounds(610, 120, 51, 23);
+        btn_suadiscout.setBounds(610, 120, 110, 25);
+
+        jButton1.setText("Thoát");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
+        add(jButton1);
+        jButton1.setBounds(740, 220, 63, 25);
     }// </editor-fold>//GEN-END:initComponents
 
     
@@ -321,11 +334,19 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
         
     }//GEN-LAST:event_btn_suadiscoutActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        JComponent comp = (JComponent) evt.getSource();
+        Window win = SwingUtilities.getWindowAncestor(comp);
+        win.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TKbancham;
     private javax.swing.JButton btn_suadiscout;
     private javax.swing.JButton btnsend;
+    private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;
     private javax.swing.JLabel jLabel4;

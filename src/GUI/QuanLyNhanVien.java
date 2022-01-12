@@ -569,7 +569,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         
             PreparedStatement comm =conn.prepareStatement(" Update sales.staffs set name=?,email=?,phone=?,active=?,store_id=?,manager_state=?,gender=? where staff_id=?");
             //txtStaffID.setEnabled(true);
-            comm.setString(9,txtStaffID.getText());
+            comm.setString(8,txtStaffID.getText());
             comm.setString(1, txtName.getText());
             comm.setString(2, txtEmail.getText());
             comm.setString(3, txtPhone.getText());
@@ -594,8 +594,6 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         JComponent comp = (JComponent) evt.getSource();
         Window win = SwingUtilities.getWindowAncestor(comp);
         win.dispose();
-        ManagerMain main = new ManagerMain();
-        main.setVisible(true);
     }//GEN-LAST:event_btnThoatActionPerformed
    
     private void Btn_ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ResetActionPerformed
