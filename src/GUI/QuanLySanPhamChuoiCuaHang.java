@@ -46,9 +46,7 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
             Statement st = conn.createStatement();
             String sql = "select production.products.product_id, product_name, production.products.price, brand_name, category_name, country from production.products\n"
                     + "inner join production.brands on production.products.brand_id = production.brands.brand_id\n"
-                    + "inner join production.categories on production.categories.category_id = production.products.category_id\n"
-                    + "inner join sales.goods on sales.goods.product_id = production.products.product_id\n"
-                    + "where store_id = " + store;
+                    + "inner join production.categories on production.categories.category_id = production.products.category_id\n";
             ResultSet rs = st.executeQuery(sql);
             ResultSetMetaData metadata = rs.getMetaData();
             number = metadata.getColumnCount();
@@ -651,13 +649,14 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
             
             if (chk_cat > 0 && chk_brand > 0 && chk_product > 0) {
                 JOptionPane.showMessageDialog(this, "Them Thanh cong");
+                reset();
                 tbn.setRowCount(0);
                 loadData();
             }
         } catch (Exception ex) {
             System.out.println("O btn them " + ex.toString());
         }
-        reset();
+        
     }//GEN-LAST:event_btn_themActionPerformed
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
@@ -751,7 +750,7 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
                 tbn.setRowCount(0);
                 loadData();
             }
-
+            reset();
             JOptionPane.showMessageDialog(this, "Sua thanh cong");
             tbn.setRowCount(0);
             loadData();
@@ -759,7 +758,7 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
         } catch (Exception ex) {
             System.out.println("O btn sua " + ex.toString());
         }
-        reset();
+        
     }//GEN-LAST:event_btn_suaActionPerformed
 
     private void btn_xoaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_xoaActionPerformed
@@ -796,11 +795,12 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
                     tbn.setRowCount(0);
                     loadData();
                 }
+                reset();
             }
         } catch (Exception ex) {
             System.out.println("Loi o xoa: " + ex.toString());
         }
-        reset();
+        
     }//GEN-LAST:event_btn_xoaActionPerformed
 
     private void btn_resetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_resetActionPerformed
@@ -885,6 +885,62 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
 
     private void btn_searchActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_searchActionPerformed
         // TODO add your handling code here:
+        try {
+            Connect a = new Connect();
+            Connection con = a.getConnectDB();
+            String sql = "select product_id, product_name, price, brand_name, category_name, country from production.products\n"
+                    + "inner join production.brands on production.products.brand_id = production.brands.brand_id\n"
+                    + "inner join production.categories on production.categories.category_id = production.products.category_id where ";
+            PreparedStatement ps = null;
+            int number;
+            Vector row, column;
+            column = new Vector();
+            ResultSet rs = null;
+            String str1 = null;
+
+            if (jComboBoxSearch.getSelectedItem().toString().equals("ID")) {
+                ps = con.prepareStatement(sql + "product_id = ?");
+                ps.setString(1, txt_search.getText());
+                rs = ps.executeQuery();
+            } else if (jComboBoxSearch.getSelectedItem().toString().equals("Name")) {
+                ps = con.prepareStatement(sql + "product_name = ?");
+                ps.setString(1, txt_search.getText());
+                rs = ps.executeQuery();
+            } else if (jComboBoxSearch.getSelectedItem().toString().equals("Brand")) {
+                ps = con.prepareStatement(sql + "brand_name = ?");
+                ps.setString(1, txt_search.getText());
+                rs = ps.executeQuery();
+            } else if (jComboBoxSearch.getSelectedItem().toString().equals("Category")) {
+                ps = con.prepareStatement(sql + "category_name = ?");
+                ps.setString(1, txt_search.getText());
+                rs = ps.executeQuery();
+            } else if (jComboBoxSearch.getSelectedItem().toString().equals("Country")) {
+                ps = con.prepareStatement(sql + "country like ?");
+                ps.setString(1, txt_search.getText());
+                rs = ps.executeQuery();
+            }
+
+            tbn.setRowCount(0);
+            ResultSetMetaData metadata = rs.getMetaData();
+            number = metadata.getColumnCount();
+
+            for (int i = 1; i <= number; i++) {
+                column.add(metadata.getColumnName(i));
+            }
+            tbn.setColumnIdentifiers(column);
+
+            while (rs.next()) {
+                row = new Vector();
+                for (int i = 1; i <= number; i++) {
+                    row.addElement(rs.getString(i));
+                }
+                tbn.addRow(row);
+                tbl_sp.setModel(tbn);
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Loi o tim kiem " + ex.toString());
+        }
     }//GEN-LAST:event_btn_searchActionPerformed
 
 

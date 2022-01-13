@@ -36,7 +36,7 @@ public class TK_Staff_byTime extends javax.swing.JFrame {
         
         ThongKe_Staff_byTimeNew frm = new ThongKe_Staff_byTimeNew();
         jcontent.removeAll();
-        jcontent.add(frm, "Quản lý nhân viên");
+        jcontent.add(frm, "");
     }
 
     

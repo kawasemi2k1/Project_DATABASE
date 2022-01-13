@@ -460,6 +460,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                 int check = ps.executeUpdate();
                 if(check > 0) {
                     JOptionPane.showMessageDialog(this, "Xóa thành công.");
+                    Reset();
                     tbn.setRowCount(0);
                     loadData();
                 } else {
@@ -543,6 +544,12 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         txtAddress.setText("");
         txtPhone.setText("");
         txtEmail.setText("");
+        txtSearch.setText("");
+        jButton1.setEnabled(true);
+        jButton2.setEnabled(true);
+        jButton3.setEnabled(true);
+        jButton4.setEnabled(true);
+        jButton5.setEnabled(true);
         loadData();
         jDateChooser1.setDate(new Date());
     }
