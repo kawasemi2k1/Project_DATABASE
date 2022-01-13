@@ -138,7 +138,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
              //nap du lieu tu jtable len textfield
                public void valueChanged (ListSelectionEvent e){
                    if(jTable1.getSelectedRow()>= 0){
-                        txtStaffID.setText(jTable1.getValueAt(jTable1.getSelectedRow(),0)+ "");
+                       txtStaffID.setText(jTable1.getValueAt(jTable1.getSelectedRow(),0)+ "");
                        old = Integer.parseInt(txtStaffID.getText());
                        //txtStaffID.setEnabled(true);
                        txtName.setText(jTable1.getValueAt(jTable1.getSelectedRow(),1)+ "");
@@ -291,6 +291,11 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         jPanel1.add(jScrollPane1);
@@ -367,10 +372,12 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             PreparedStatement comm =conn.prepareStatement(" Delete  from sales.staffs where staff_id=?");
             comm.setString(1,jTable1.getValueAt(jTable1.getSelectedRow(), 0).toString() );
             if(JOptionPane.showConfirmDialog(this, "Delete this Staff ?","Confirm",JOptionPane.YES_NO_OPTION) 
-                    == JOptionPane.YES_NO_OPTION){
+                    == JOptionPane.YES_NO_OPTION)
+            {
                 comm.executeUpdate();
                 tbn.setRowCount(0);
-                loadData();   
+                loadData(); 
+                Reset();
             } 
         }catch(Exception ex){
             System.out.println(ex.toString());
@@ -446,6 +453,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                     if (check > 0  ) {
                         //send.sendmail(txtEmail.getText(), randomCode);
                         JOptionPane.showMessageDialog(this, " Thêm thành công ");
+                        Reset();
                         //send.sendmail(txtEmail.getText(), randomCode);
                         tbn.setRowCount(0);
                         loadData();
@@ -569,7 +577,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                 }
                 
             }       
-                    if(key ==0 && key1 ==0 && key2==0){
+            if(key ==0 && key1 ==0 && key2==0){
         
             PreparedStatement comm =conn.prepareStatement(" Update sales.staffs set name=?,email=?,phone=?,active=?,store_id=?,manager_state=?,gender=? where staff_id=?");
             //txtStaffID.setEnabled(true);
@@ -586,7 +594,8 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             tbn.setRowCount(0);
             loadData();
             JOptionPane.showMessageDialog(this, "Sửa thành công ");
-                }
+            Reset();
+            }
         }  
         }catch(Exception ex){
             System.out.println(ex.toString());
@@ -599,16 +608,25 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         Window win = SwingUtilities.getWindowAncestor(comp);
         win.dispose();
     }//GEN-LAST:event_btnThoatActionPerformed
-   
-    private void Btn_ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ResetActionPerformed
+   public void Reset(){
         tbn.setRowCount(0);
         txtStaffID.setText("");
         txtName.setText("");
         txtEmail.setText("");
         txtPhone.setText("");
         txtStoreid.setText("");
+        txtTimkiem.setText("");
+        Btn_Reset.setEnabled(true);
+        btnSearch.setEnabled(true);
+        btnSua.setEnabled(true);
+        btnThem.setEnabled(true);
+        btnThoat.setEnabled(true);
+        btnXoa.setEnabled(true);
         //txtpass.setText("");
         loadData();
+   }
+    private void Btn_ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ResetActionPerformed
+        Reset();
 // TODO add your handling code here:
     }//GEN-LAST:event_Btn_ResetActionPerformed
 
@@ -735,6 +753,11 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         // TODO add your handling code here:
         
     }//GEN-LAST:event_txtStoreidActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        btnThem.setEnabled(false);
+    }//GEN-LAST:event_jTable1MouseClicked
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

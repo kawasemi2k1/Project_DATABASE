@@ -50,15 +50,15 @@ public class Reset extends javax.swing.JFrame {
 
         jLabel1.setText("Pass");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(60, 40, 22, 16);
+        jLabel1.setBounds(60, 40, 50, 16);
         jPanel1.add(txtResetPass);
-        txtResetPass.setBounds(140, 40, 130, 22);
+        txtResetPass.setBounds(170, 40, 130, 22);
 
         jLabel2.setText("Pass xác nhận");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(60, 110, 72, 16);
         jPanel1.add(txtVerResetPass);
-        txtVerResetPass.setBounds(140, 110, 130, 22);
+        txtVerResetPass.setBounds(170, 110, 130, 22);
 
         jButton1.setText("Xác nhận");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -73,11 +73,11 @@ public class Reset extends javax.swing.JFrame {
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 483, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 326, Short.MAX_VALUE)
         );
 
         pack();

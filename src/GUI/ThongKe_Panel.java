@@ -167,7 +167,7 @@ public class ThongKe_Panel extends javax.swing.JPanel {
 
     private void jButton8ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton8ActionPerformed
         // TODO add your handling code here:
-        TK_Store tk = new TK_Store();
+        TK_Product_hethan tk = new TK_Product_hethan();
         tk.setVisible(true);
     }//GEN-LAST:event_jButton8ActionPerformed
 

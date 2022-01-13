@@ -67,7 +67,7 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(920, 600, 270, 70);
+        jButton1.setBounds(930, 600, 270, 70);
         jPanel1.add(txt_email);
         txt_email.setBounds(940, 330, 250, 40);
         jPanel1.add(txt_password);
@@ -76,7 +76,7 @@ public class Login extends javax.swing.JFrame {
         label_saiTkMK.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         label_saiTkMK.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(label_saiTkMK);
-        label_saiTkMK.setBounds(1035, 276, 318, 28);
+        label_saiTkMK.setBounds(940, 510, 250, 28);
 
         TKDaBiKhoa.setForeground(new java.awt.Color(204, 102, 255));
         jPanel1.add(TKDaBiKhoa);
@@ -94,20 +94,17 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(1090, 510, 110, 30);
+        jLabel1.setBounds(1070, 550, 110, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1516, Short.MAX_VALUE)
-                .addGap(24, 24, 24))
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1552, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 825, Short.MAX_VALUE)
         );
 
         pack();
