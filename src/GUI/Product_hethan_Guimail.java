@@ -37,7 +37,7 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
     public Product_hethan_Guimail() {
         initComponents();
         loadData();
-         
+         txt_discount.setEnabled(false);
     }
      public void sendmail(String mail) {
         try {
@@ -132,10 +132,6 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
         jTable1 = new javax.swing.JTable();
         btnsend = new javax.swing.JButton();
         jLabel5 = new javax.swing.JLabel();
-        txtproduct_id = new javax.swing.JTextField();
-        txtproduct_name = new javax.swing.JTextField();
-        txtprice = new javax.swing.JTextField();
-        txt_date = new javax.swing.JTextField();
         txt_discount = new javax.swing.JTextField();
         jLabel3 = new javax.swing.JLabel();
         jLabel4 = new javax.swing.JLabel();
@@ -144,6 +140,10 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
         jLabel8 = new javax.swing.JLabel();
         btn_suadiscout = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
+        txtproduct_id = new javax.swing.JLabel();
+        txtproduct_name = new javax.swing.JLabel();
+        txtprice = new javax.swing.JLabel();
+        txt_date = new javax.swing.JLabel();
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bgtksp.png"))); // NOI18N
 
@@ -172,6 +172,11 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
                 "Title 1", "Title 2", "Title 3", "Title 4"
             }
         ));
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
@@ -191,38 +196,6 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
         jLabel5.setText("Gửi Email");
         add(jLabel5);
         jLabel5.setBounds(610, 160, 100, 30);
-
-        txtproduct_id.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtproduct_idActionPerformed(evt);
-            }
-        });
-        add(txtproduct_id);
-        txtproduct_id.setBounds(190, 120, 90, 22);
-
-        txtproduct_name.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtproduct_nameActionPerformed(evt);
-            }
-        });
-        add(txtproduct_name);
-        txtproduct_name.setBounds(190, 170, 90, 22);
-
-        txtprice.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtpriceActionPerformed(evt);
-            }
-        });
-        add(txtprice);
-        txtprice.setBounds(440, 120, 110, 22);
-
-        txt_date.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txt_dateActionPerformed(evt);
-            }
-        });
-        add(txt_date);
-        txt_date.setBounds(440, 170, 110, 22);
 
         txt_discount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -274,6 +247,14 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
         });
         add(jButton1);
         jButton1.setBounds(740, 220, 63, 25);
+        add(txtproduct_id);
+        txtproduct_id.setBounds(190, 110, 100, 30);
+        add(txtproduct_name);
+        txtproduct_name.setBounds(190, 160, 100, 30);
+        add(txtprice);
+        txtprice.setBounds(440, 116, 110, 20);
+        add(txt_date);
+        txt_date.setBounds(440, 166, 100, 20);
     }// </editor-fold>//GEN-END:initComponents
 
     
@@ -298,22 +279,6 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
     private void txt_discountActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_discountActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_txt_discountActionPerformed
-
-    private void txtpriceActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtpriceActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtpriceActionPerformed
-
-    private void txt_dateActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_dateActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txt_dateActionPerformed
-
-    private void txtproduct_idActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtproduct_idActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtproduct_idActionPerformed
-
-    private void txtproduct_nameActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtproduct_nameActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtproduct_nameActionPerformed
 
     private void btn_suadiscoutActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suadiscoutActionPerformed
         // TODO add your handling code here:
@@ -341,6 +306,11 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
         win.dispose();
     }//GEN-LAST:event_jButton1ActionPerformed
 
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        txt_discount.setEnabled(true);
+    }//GEN-LAST:event_jTable1MouseClicked
+
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JLabel TKbancham;
@@ -359,10 +329,10 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
     private java.awt.Menu menu1;
     private java.awt.Menu menu2;
     private java.awt.MenuBar menuBar1;
-    private javax.swing.JTextField txt_date;
+    private javax.swing.JLabel txt_date;
     private javax.swing.JTextField txt_discount;
-    private javax.swing.JTextField txtprice;
-    private javax.swing.JTextField txtproduct_id;
-    private javax.swing.JTextField txtproduct_name;
+    private javax.swing.JLabel txtprice;
+    private javax.swing.JLabel txtproduct_id;
+    private javax.swing.JLabel txtproduct_name;
     // End of variables declaration//GEN-END:variables
 }

@@ -32,6 +32,8 @@ public class ThongKe_Customer extends javax.swing.JPanel {
         int xsize = (int) tk.getScreenSize().getWidth();
         int ysize = (int) tk.getScreenSize().getHeight();
         this.setSize(xsize, ysize);
+        date1.setDate(new Date());
+        date2.setDate(new Date());
     }
 
     public void createMap() {

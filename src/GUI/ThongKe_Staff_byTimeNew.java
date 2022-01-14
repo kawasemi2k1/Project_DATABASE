@@ -101,9 +101,7 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
             public void valueChanged(ListSelectionEvent lse) {
                 if(tbl_NV.getSelectedRow() >= 0){
                    String Staff_ID = tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 0)+ "";
-                    label_StaffName.setText(tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 5)+": "+tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 1)+ "");
                     hienThi = tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 5)+": "+tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 1)+ "";
-                    System.out.println("1***: " + label_StaffName.toString());
                     Map<String, Double> map = new LinkedHashMap<>();
                     createMap(Staff_ID, map);
                     initFrame(hienThi, map);
@@ -163,7 +161,7 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
     }
       public void initFrame(String x, Map<String, Double> map) {
         ChartPanel chartPanel = new ChartPanel(createChart(x, map));
-        chartPanel.setPreferredSize(new java.awt.Dimension(1300, 700));
+        chartPanel.setPreferredSize(new java.awt.Dimension(900, 500));
         jcontent.removeAll();
         jcontent.add(chartPanel);
         jcontent.setVisible(true);
@@ -180,7 +178,6 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
         tbl_NV = new javax.swing.JTable();
         jLabel1 = new javax.swing.JLabel();
         jcontent = new javax.swing.JTabbedPane();
-        label_StaffName = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
 
         setLayout(null);
@@ -227,10 +224,6 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
         jPanel1.add(jcontent);
         jcontent.setBounds(310, 260, 940, 450);
 
-        label_StaffName.setForeground(new java.awt.Color(204, 0, 204));
-        jPanel1.add(label_StaffName);
-        label_StaffName.setBounds(410, 210, 580, 16);
-
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/background-đẹp-hoa-bươm-bướm.jpg"))); // NOI18N
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2);
@@ -251,9 +244,7 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
         int x = tbl_NV.getSelectedRow();
         if(x >= 0) {
             String Staff_ID = tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 0)+ "";
-            label_StaffName.setText(tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 5)+": "+tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 1)+ "");
             hienThi = tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 5)+": "+tbl_NV.getValueAt(tbl_NV.getSelectedRow(), 1)+ "";
-            System.out.println("2***: " + label_StaffName.toString());
             Map<String, Double> map = new LinkedHashMap<>();
                     createMap(Staff_ID, map);
                     initFrame(hienThi, map);
@@ -268,7 +259,6 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
     private javax.swing.JPanel jPanel1;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTabbedPane jcontent;
-    private javax.swing.JLabel label_StaffName;
     private javax.swing.JTable tbl_NV;
     // End of variables declaration//GEN-END:variables
 }

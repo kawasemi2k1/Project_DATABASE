@@ -49,6 +49,8 @@ public class ThongKe_Cat extends javax.swing.JPanel {
         this.setSize(xsize, ysize);
         createMap();
         initFrame();
+//        date1.setDate(new Date());
+//        date2.setDate(new Date());
     }
 
     public void createMap() {

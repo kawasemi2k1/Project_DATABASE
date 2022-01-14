@@ -33,6 +33,9 @@ public class ThongKe_Staff extends javax.swing.JPanel {
         int xsize = (int) tk.getScreenSize().getWidth();
         int ysize = (int) tk.getScreenSize().getHeight();
         this.setSize(xsize, ysize);
+        date1.setDate(new Date());
+        date2.setDate(new Date());
+       
 //        createMap();
 //        initFrame();
     }
@@ -149,12 +152,8 @@ public class ThongKe_Staff extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
 
         jPanel1.setLayout(null);
-
-        date1.setDate(new java.util.Date(1578102937000L));
         jPanel1.add(date1);
         date1.setBounds(610, 140, 170, 50);
-
-        date2.setDate(new java.util.Date(1641693337000L));
         jPanel1.add(date2);
         date2.setBounds(1100, 130, 180, 60);
 
