@@ -9,6 +9,7 @@ import java.math.BigInteger;
 import java.security.MessageDigest;
 import java.security.NoSuchAlgorithmException;
 import java.util.regex.Pattern;
+import javax.swing.text.TabStop;
 
 /**
  *
@@ -93,23 +94,57 @@ public class ValidateData {
         
     }
     
+//    public String DangTienTe (String number){
+//        // Đây là hàm định dạng tiền tệ. Ví dụ: 123456789.25 -> 123,456,789.25
+//        int x = number.length();
+//        StringBuilder sb = new StringBuilder(number);
+//        if(number.contains(".")){
+//            while (x > 6) {
+//                sb.insert(x - 6, ",");
+//                x = x - 3;
+//            }
+//        
+//        } else {
+//            while (x > 3) {
+//                sb.insert(x - 3, ",");
+//                x = x - 3;
+//            }
+//        }
+//        //System.out.println("Dạng tiền tệ: " + sb);
+//        return sb.toString();
+//    }
+//    
     public String DangTienTe (String number){
-        // Đây là hàm định dạng tiền tệ. Ví dụ: 123456789.25 -> 123,456,789.25
+        // Đây là hàm định dạng tiền tệ. Ví dụ: 
+        // 123456 -> 123,456
+        // 123456. -> 123,456.
+        // 123456.1 -> 123,456.1
+        // 123456789.25 -> 123,456,789.25
+        number = number.trim();
         int x = number.length();
         StringBuilder sb = new StringBuilder(number);
-        if(number.contains(".")){
-            while (x > 6) {
-                sb.insert(x - 6, ",");
-                x = x - 3;
-            }
         
-        } else {
-            while (x > 3) {
+        if (Pattern.matches("[0-9]+", number)) {
+           while (x > 3) {
                 sb.insert(x - 3, ",");
                 x = x - 3;
             }
-        }
-        System.out.println("Dạng tiền tệ: " + sb);
+       } else if (Pattern.matches("[0-9]+(\\.)", number)) {
+            while (x > 4) {
+                sb.insert(x - 4, ",");
+                x = x - 3;
+            }
+        } else if(Pattern.matches("[0-9]+(\\.[0-9])", number)){
+            while (x > 5) {
+                sb.insert(x - 5, ",");
+                x = x - 3;
+            }
+        } else if (Pattern.matches("[0-9]+(\\.[0-9][0-9])", number)){
+           while (x > 6) {
+                sb.insert(x - 6, ",");
+                x = x - 3;
+            }
+       }        //System.out.println("Dạng tiền tệ: " + sb);
         return sb.toString();
     }
     
@@ -123,5 +158,35 @@ public class ValidateData {
         String msg = s;
         boolean containsNumber = pattern.matcher(msg).matches();
         return containsNumber;
-    }     
+    }
+    
+    public boolean CheckNonNegInt(String x){
+        // True nếu là số nguyên không âm
+        x = x.trim();
+        if (Pattern.matches("[0-9]+", x)) return true;
+        else return false;
+    }
+    
+    public int checkDiscount(String x){
+        // return 0: đúng định dạng discount
+        //return 1: đúng số thực nhưng <0 hoặc > 100
+        // return 2: ko phải số thực
+        x = x.trim();
+        double y;
+        if (Pattern.matches("[0-9]+(\\.[0-9]+)", x) || Pattern.matches("[0-9]+", x)) {
+            y = Double.parseDouble(x);
+            if(0<=y && y <=100) return 0;
+            else return 1;
+        }
+        else return 2;
+    }
+    
+    public boolean IntOrReal(String x){
+        // hàm này trả về TRue nếu chuỗi truyền vào đúng dạng số thực or số nguyên (chỉ chứa số từ 0-9 và 1 dấu .) , Ví dụ: 123 ; 12.00
+        // trả về false nếu chứa ký tự khác ngoài 0-9 và dấu chấm . (sai định dạng số nguyên or số thực) ví dụ: a123 ; 1.2.2, số âm cũng sai.
+        x = x.replace(",", "");
+        if (Pattern.matches("[0-9]+(\\.[0-9]+)", x) || Pattern.matches("[0-9]+", x)) {
+               return true;
+            } else return false;
+    }
 }
