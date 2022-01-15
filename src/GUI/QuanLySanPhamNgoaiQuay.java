@@ -23,6 +23,7 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
     final DefaultTableModel tb = new DefaultTableModel(header,0);
     Date date = new Date();
     Connect cn = new Connect();
+    ValidateData vd = new ValidateData();
     Connection conn = null;
     ResultSet rs;
     String Store_ID = Login.Store_ID;
@@ -36,11 +37,10 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
   
     public void loadBang(){
         try {
-            label_TenCuaHang.setText(GetStoreName(Store_ID)); 
             conn = cn.getConnectDB();
             int number;
             Vector row;
-            String sql = "select product_name, created_at, good_till, S.price, discount, quantity  from vCurrentProduct S\n" +
+            String sql = "select product_name as N'Tên sản phẩm', created_at as N'Ngày sản xuất', good_till as N'Hạn sử dụng', S.price as N'Giá', discount as N'Giảm giá (%)', quantity as N'Số lượng' from vCurrentProduct S\n" +
                         " inner join production.products P on S.product_id = P.product_id\n" +
                         " where store_id = " + Store_ID;
             Statement st = conn.createStatement();
@@ -51,7 +51,11 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
              while (rs.next()) {
                 row = new Vector();
                 for (int i = 1; i <= number; i++) {
-                    row.addElement(rs.getString(i));
+                    if(i == 4 || i == 6){
+                        row.addElement(vd.DangTienTe(rs.getString(i)));
+                    } else {
+                        row.addElement(rs.getString(i));
+                    }
                 }
                 tb.addRow(row);
                 tbl_sanPhamBan.setModel(tb);
@@ -117,6 +121,7 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
         txt_gia = new javax.swing.JTextField();
         txt_giamGia = new javax.swing.JTextField();
         txt_soLuong = new javax.swing.JTextField();
+        label_thongbaoGiamGia = new javax.swing.JLabel();
         btn_them = new javax.swing.JButton();
         btn_xoa = new javax.swing.JButton();
         btn_sua = new javax.swing.JButton();
@@ -129,7 +134,6 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
         tbl_sanPhamBan = new javax.swing.JTable();
         dc_ngaySX = new com.toedter.calendar.JDateChooser();
         dc_hanSD = new com.toedter.calendar.JDateChooser();
-        label_TenCuaHang = new javax.swing.JLabel();
         jLabel8 = new javax.swing.JLabel();
 
         setPreferredSize(new java.awt.Dimension(1920, 1020));
@@ -141,13 +145,35 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
             }
         });
         add(txt_TenSP);
-        txt_TenSP.setBounds(510, 170, 186, 22);
+        txt_TenSP.setBounds(510, 160, 186, 22);
+
+        txt_gia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_giaKeyReleased(evt);
+            }
+        });
         add(txt_gia);
-        txt_gia.setBounds(510, 300, 233, 22);
+        txt_gia.setBounds(510, 280, 233, 30);
+
+        txt_giamGia.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_giamGiaKeyReleased(evt);
+            }
+        });
         add(txt_giamGia);
-        txt_giamGia.setBounds(510, 340, 233, 22);
+        txt_giamGia.setBounds(510, 322, 233, 30);
+
+        txt_soLuong.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_soLuongKeyReleased(evt);
+            }
+        });
         add(txt_soLuong);
-        txt_soLuong.setBounds(510, 380, 233, 22);
+        txt_soLuong.setBounds(510, 390, 233, 30);
+
+        label_thongbaoGiamGia.setForeground(new java.awt.Color(255, 0, 51));
+        add(label_thongbaoGiamGia);
+        label_thongbaoGiamGia.setBounds(510, 360, 350, 20);
 
         btn_them.setContentAreaFilled(false);
         btn_them.addActionListener(new java.awt.event.ActionListener() {
@@ -242,20 +268,16 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
 
         dc_ngaySX.setDate(new java.util.Date(1578102937000L));
         add(dc_ngaySX);
-        dc_ngaySX.setBounds(510, 210, 190, 22);
+        dc_ngaySX.setBounds(510, 200, 190, 22);
 
         dc_hanSD.setDate(new java.util.Date(1641261337000L));
         add(dc_hanSD);
-        dc_hanSD.setBounds(510, 260, 186, 22);
-
-        label_TenCuaHang.setBackground(new java.awt.Color(204, 255, 51));
-        add(label_TenCuaHang);
-        label_TenCuaHang.setBounds(90, 10, 167, 33);
+        dc_hanSD.setBounds(510, 250, 186, 22);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Frame Quản lý sản phảm bày bán.png"))); // NOI18N
         jLabel8.setText("jLabel8");
         add(jLabel8);
-        jLabel8.setBounds(0, 0, 1540, 810);
+        jLabel8.setBounds(10, 0, 1540, 810);
     }// </editor-fold>//GEN-END:initComponents
     public String GetProduct_id(String product_name) {
         String product_id = "";
@@ -327,10 +349,15 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
         System.out.println(store_name);
         return store_name;
     }
-    
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
         // TODO add your handling code here:
+        String gia = txt_gia.getText().replace(",", "");
+        String soluong = txt_soLuong.getText().replace(",", "");
         conn = cn.getConnectDB();
+        
+        System.out.println("*** date: "+ date);
+        System.out.println("*** HSD:  " + dc_hanSD.getDate());
+
         try {
               if(txt_TenSP.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Thiếu tên sản phẩm");
@@ -344,21 +371,33 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
             } else if (dc_hanSD.getDate().compareTo(dc_ngaySX.getDate())< 0) {
                 JOptionPane.showMessageDialog(this, "Ngày sản xuất không thể sau hạn sử dụng");
                 return;
-            }
+            } else if (!vd.CheckNonNegInt(soluong)) {
+                  JOptionPane.showMessageDialog(this, "Số lượng phải là 1 số nguyên");
+                  return;
+            } else if(!vd.IntOrReal(gia)){
+                  JOptionPane.showMessageDialog(this, "Nhập lại giá.");
+            } 
+//            else if(date.compareTo(dc_hanSD.getDate()) <= 0){
+//                  JOptionPane.showMessageDialog(this, "Đã hết hạn sử dụng");
+//                  return;
+//            }
             else {
                     Connect a = new Connect();
                     Connection con = a.getConnectDB();
                     System.out.println(dc_hanSD.getDate().compareTo(dc_ngaySX.getDate()));
                     if(txt_giamGia.getText().equals("")) txt_giamGia.setText("0");
-                    
+                    if(vd.checkDiscount(txt_giamGia.getText()) != 0) {
+                        JOptionPane.showMessageDialog(this, "Nhập lại giảm giá");
+                        return;
+                    }
                     PreparedStatement ps = con.prepareStatement("insert into vCurrentProduct values (?, ?, ?, ?, ?, ?, ?)");
                     ps.setString(1, GetProduct_id(txt_TenSP.getText()));
                     ps.setObject(2, dc_ngaySX.getDate());
                     ps.setObject(3, dc_hanSD.getDate());
                     ps.setString(4, Store_ID);
-                    ps.setString(5, txt_gia.getText());
+                    ps.setString(5, gia);
                     ps.setString(6, txt_giamGia.getText());
-                    ps.setString(7, txt_soLuong.getText());
+                    ps.setString(7, soluong);
 
                     int check = ps.executeUpdate();
                     System.out.println("check: "+check);
@@ -423,6 +462,8 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
         // TODO add your handling code here:
         conn = cn.getConnectDB();
+        String gia = txt_gia.getText().replace(",", "");
+        String soluong = txt_soLuong.getText().replace(",", "");
         try {
             if (txt_gia.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Thiếu giá");
@@ -430,6 +471,11 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
             } else if (txt_soLuong.getText().equals("")) {
                 JOptionPane.showMessageDialog(this, "Thiếu số lượng");
                 return;
+            }else if (!vd.CheckNonNegInt(soluong)) {
+                  JOptionPane.showMessageDialog(this, "Số lượng phải là 1 số nguyên");
+                  return;
+            } else if(!vd.IntOrReal(gia)){
+                  JOptionPane.showMessageDialog(this, "Nhập lại giá.");
             }
             else {
                 if(txt_giamGia.getText().equals("")) txt_giamGia.setText("0");
@@ -438,9 +484,9 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
                 PreparedStatement ps = con.prepareStatement(
                         "Update vCurrentProduct set price =  ? , discount = ?, quantity =  ? "
                         + "  where product_id =  ?  and created_at = ? and good_till = ? and store_id =  ?  ");
-                ps.setString(1, txt_gia.getText());
+                ps.setString(1, gia);
                 ps.setString(2, txt_giamGia.getText());
-                ps.setString(3, txt_soLuong.getText());
+                ps.setString(3, soluong);
                 ps.setString(4, GetProduct_id(txt_TenSP.getText()));
                 ps.setObject(5, dc_ngaySX.getDate());
                 ps.setObject(6, dc_hanSD.getDate());
@@ -520,7 +566,7 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
         try {
             Connect a = new Connect();
             Connection con = a.getConnectDB();
-            String sql = "select product_name, created_at, good_till, S.price, discount, quantity  from vCurrentProduct S\n" +
+            String sql = "select product_name as N'Tên sản phẩm', created_at as N'Ngày sản xuất', good_till as N'Hạn sử dụng', S.price as N'Giá', discount as N'Giảm giá (%)', quantity as N'Số lượng' from vCurrentProduct S\n" +
                         " inner join production.products P on S.product_id = P.product_id \n" +
                         "where store_id =  " + Store_ID + " and ";
             PreparedStatement ps = null;
@@ -564,7 +610,11 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
             while(rs.next()){
                 row = new Vector();
                 for(int i = 1; i <= number; i++){
-                    row.addElement(rs.getString(i));
+                    if(i == 4 || i == 6){
+                        row.addElement(vd.DangTienTe(rs.getString(i)));
+                    } else {
+                        row.addElement(rs.getString(i));
+                    }
                 }
                 tb.addRow(row);
                 tbl_sanPhamBan.setModel(tb);
@@ -580,7 +630,7 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
         try {
             Connect a = new Connect();
             Connection con = a.getConnectDB();
-            String sql = "select product_name, created_at, good_till, S.price, discount, quantity  from vCurrentProduct S\n" +
+            String sql = "select product_name as N'Tên sản phẩm', created_at as N'Ngày sản xuất', good_till as N'Hạn sử dụng', S.price as N'Giá', discount as N'Giảm giá (%)', quantity as N'Số lượng' from vCurrentProduct S\n" +
                         "inner join production.products P on S.product_id = P.product_id\n" +
                         "where store_id =  " + Store_ID + " and ";
             PreparedStatement ps = null;
@@ -620,7 +670,11 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
             while(rs.next()){
                 row = new Vector();
                 for(int i = 1; i <= number; i++){
-                    row.addElement(rs.getString(i));
+                    if(i == 4 || i == 6){
+                        row.addElement(vd.DangTienTe(rs.getString(i)));
+                    } else {
+                        row.addElement(rs.getString(i));
+                    }
                 }
                 tb.addRow(row);
                 tbl_sanPhamBan.setModel(tb);
@@ -630,6 +684,31 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
             System.out.println("Loi o tim kiem " + ex.toString());
         }
     }//GEN-LAST:event_btn_searchActionPerformed
+
+    private void txt_giaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_giaKeyReleased
+        // TODO add your handling code here:
+        txt_gia.setText(vd.DangTienTe(txt_gia.getText().replace(",", "")));
+    }//GEN-LAST:event_txt_giaKeyReleased
+
+    private void txt_soLuongKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_soLuongKeyReleased
+        // TODO add your handling code here:
+         txt_soLuong.setText(vd.DangTienTe(txt_soLuong.getText().replace(",", "")));
+    }//GEN-LAST:event_txt_soLuongKeyReleased
+
+    private void txt_giamGiaKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_giamGiaKeyReleased
+        // TODO add your handling code here:
+        label_thongbaoGiamGia.setText("");
+        if(txt_giamGia.getText().equals("")) {
+            label_thongbaoGiamGia.setText("");
+        } else {
+            if(vd.checkDiscount(txt_giamGia.getText()) != 0){
+            label_thongbaoGiamGia.setText("Giảm giá là số thuộc 0 đến 100");
+        }
+        }
+        
+        
+                
+    }//GEN-LAST:event_txt_giamGiaKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
@@ -644,7 +723,7 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
     private javax.swing.JComboBox<String> jComboBoxSearch;
     private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JLabel label_TenCuaHang;
+    private javax.swing.JLabel label_thongbaoGiamGia;
     private javax.swing.JTable tbl_sanPhamBan;
     private javax.swing.JTextField txt_TenSP;
     private javax.swing.JTextField txt_gia;

@@ -35,7 +35,8 @@ public class ThongKeProducts extends javax.swing.JPanel {
         initComponents();
         BoxBanchay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Số lượng", "Doanh Thu" }));
         BoxBancham.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Số lượng", "Doanh Thu" }));
-        
+        datefrom.setDate(new Date());
+        dateto.setDate(new Date());
     }
      
   

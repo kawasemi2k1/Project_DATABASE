@@ -26,6 +26,8 @@ public class ThongKeBrands extends javax.swing.JPanel {
         initComponents();
         BoxTKBrand_Chay.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Số lượng", "Doanh Thu" }));
         BoxTKBrand_Cham.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Số lượng", "Doanh Thu" }));
+        datefrom.setDate(new Date());
+        dateto.setDate(new Date());
     }
     
 
@@ -113,8 +115,6 @@ public class ThongKeBrands extends javax.swing.JPanel {
         });
         add(BoxTKBrand_Cham);
         BoxTKBrand_Cham.setBounds(950, 270, 120, 50);
-
-        datefrom.setDate(new java.util.Date(1610103193000L));
         add(datefrom);
         datefrom.setBounds(640, 130, 130, 50);
         add(dateto);

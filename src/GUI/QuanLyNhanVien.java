@@ -47,12 +47,9 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         //loadComobox1();
        // loadComobox2();
         txtStaffID.setEnabled(false);
-        //txtStoreid.setText(store+"");
-        txtStoreid.setText(store+"");
-        txtStoreid.setEnabled(false);
         BoxSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Phone", "Email" }));
         cbActive.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Hoạt động", "Nghỉ"}));
-        cbManagerstate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Quản lý", "Nhân viên"}));
+        cbManagerstate.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nhân viên", "Quản lý"}));
         cbGender.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Nam", "Nữ"}));
         
         
@@ -105,25 +102,25 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             Connect a = new Connect();
             Connection conn = a.getConnectDB();
             int number;
-            Vector row,column;
+            Vector row, column;
             column = new Vector();
             Statement st =conn.createStatement();
-            String query = " Select * from sales.staffs where store_id='"+store+"'";
+            String query = "Select staff_id, name, email, phone, active, manager_state, gender from sales.staffs where store_id='"+store+"'";
             ResultSet rs=st.executeQuery(query);
-            ResultSetMetaData metadata =rs.getMetaData();
-            number = metadata.getColumnCount();
-            
-            for(int i=1;i<=number-1;i++){
-                column.add(metadata.getColumnName(i));
+            //ResultSetMetaData metadata =rs.getMetaData();
+            number = jTable1.getColumnCount();
+            for(int i = 0; i < jTable1.getColumnCount(); i++){
+                column.add(jTable1.getColumnName(i));
             }
             tbn.setColumnIdentifiers(column);
+            //tbn.setRowCount(0);
             while(rs.next()){
                 row = new Vector();
-                for(int i=1;i<=number-1;i++){
+                for(int i = 1; i <= number; i++){
                     if(i==5)//vị trí của column active
                     {
                         row.addElement(rs.getString(i).equals("1") ? "Hoạt động" : "Nghỉ");
-                    }else if(i == 7){
+                    }else if(i == 6){
                         row.addElement(rs.getString(i).equals("1") ? "Quản lý" : "Nhân viên");
                     }else {
                     row.addElement(rs.getString(i));
@@ -133,9 +130,14 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                 tbn.addRow(row);
                 jTable1.setModel(tbn);  
             } 
-           
-            jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
-             //nap du lieu tu jtable len textfield
+        st.close();
+        rs.close();
+        conn.close();  
+        } catch (Exception ex) {
+            System.out.println(ex.toString());
+        }
+        jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
+            @Override
                public void valueChanged (ListSelectionEvent e){
                    if(jTable1.getSelectedRow()>= 0){
                        txtStaffID.setText(jTable1.getValueAt(jTable1.getSelectedRow(),0)+ "");
@@ -147,17 +149,12 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                        txtPhone.setText(jTable1.getValueAt(jTable1.getSelectedRow(),3)+ "");
                        old2 = txtPhone.getText();
                        cbActive.setSelectedItem(jTable1.getModel().getValueAt(jTable1.getSelectedRow(),4).equals("Hoạt động") ? "Hoạt động" : "Nghỉ" + "");
-                       txtStoreid.setText(jTable1.getValueAt(jTable1.getSelectedRow(),5)+ "");
-                       cbManagerstate.setSelectedItem(jTable1.getModel().getValueAt(jTable1.getSelectedRow(),6).equals("Quản lý") ? "Quản lý" : "Nhân viên" +"");
-                       cbGender.setSelectedItem(jTable1.getModel().getValueAt(jTable1.getSelectedRow(),7)+ "");
+                       cbManagerstate.setSelectedItem(jTable1.getModel().getValueAt(jTable1.getSelectedRow(),5).equals("Quản lý") ? "Quản lý" : "Nhân viên" +"");
+                       cbGender.setSelectedItem(jTable1.getModel().getValueAt(jTable1.getSelectedRow(),6)+ "");
                        //txtpass.setText(jTable1.getValueAt(jTable1.getSelectedRow(),8)+ "");
                    } 
                 }
            });
-           
-        } catch (Exception ex) {
-            System.out.println(ex.toString());
-        }
     }
     
     
@@ -172,7 +169,6 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         txtPhone = new javax.swing.JTextField();
         txtEmail = new javax.swing.JTextField();
         cbActive = new javax.swing.JComboBox<>();
-        txtStoreid = new javax.swing.JTextField();
         cbManagerstate = new javax.swing.JComboBox<>();
         txtTimkiem = new javax.swing.JTextField();
         btnThem = new javax.swing.JButton();
@@ -216,22 +212,9 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         jPanel1.add(cbActive);
         cbActive.setBounds(900, 200, 220, 24);
 
-        txtStoreid.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtStoreidActionPerformed(evt);
-            }
-        });
-        jPanel1.add(txtStoreid);
-        txtStoreid.setBounds(130, 20, 123, 22);
-
         jPanel1.add(cbManagerstate);
         cbManagerstate.setBounds(900, 240, 220, 24);
 
-        txtTimkiem.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                txtTimkiemActionPerformed(evt);
-            }
-        });
         txtTimkiem.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTimkiemKeyReleased(evt);
@@ -282,13 +265,13 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null},
-                {null, null, null, null}
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null},
+                {null, null, null, null, null, null, null}
             },
             new String [] {
-                "Title 1", "Title 2", "Title 3", "Title 4"
+                "Mã nhân viên", "Họ và tên", "Email", "Số điện thoại", "Trạng Thái", "Chức vụ", "Giới tính"
             }
         ));
         jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
@@ -462,6 +445,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                     }
                 }   
             }
+            conn.close();
 //            PreparedStatement ps =conn.prepareStatement("insert into tblStaff values(?,?,?,?,?,?,?,?,?)");
 //            ps.setString(1,txtStaffID.getText());
 //            ps.setString(2,txtName.getText());
@@ -614,16 +598,16 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         txtName.setText("");
         txtEmail.setText("");
         txtPhone.setText("");
-        txtStoreid.setText("");
         txtTimkiem.setText("");
+        
         Btn_Reset.setEnabled(true);
         btnSearch.setEnabled(true);
         btnSua.setEnabled(true);
         btnThem.setEnabled(true);
         btnThoat.setEnabled(true);
         btnXoa.setEnabled(true);
-        //txtpass.setText("");
         loadData();
+        
    }
     private void Btn_ResetActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_Btn_ResetActionPerformed
         Reset();
@@ -659,21 +643,19 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             }
             
             tbn.setRowCount(0);
-            ResultSetMetaData metadata = rs.getMetaData();
-            number = metadata.getColumnCount();
             
-            for(int i = 1; i <= number; i++){
-                column.add(metadata.getColumnName(i));
+            for(int i = 0; i < jTable1.getColumnCount(); i++){
+                column.add(jTable1.getColumnName(i));
             }
             tbn.setColumnIdentifiers(column);
             
             while(rs.next()){
                 row = new Vector();
-                for(int i = 1; i <= number; i++){
+                for(int i = 1; i <= jTable1.getColumnCount(); i++){
                     if(i==5)//vị trí của column active
                     {
                         row.addElement(rs.getString(i).equals("1") ? "Hoạt động" : "Nghỉ");
-                    }else if(i == 7){
+                    }else if(i == 6){
                         row.addElement(rs.getString(i).equals("1") ? "Quản lý" : "Nhân viên");
                     }else {
                     row.addElement(rs.getString(i));
@@ -745,15 +727,6 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
 // TODO add your handling code here:
     }//GEN-LAST:event_btnSearchActionPerformed
 
-    private void txtTimkiemActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtTimkiemActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_txtTimkiemActionPerformed
-
-    private void txtStoreidActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txtStoreidActionPerformed
-        // TODO add your handling code here:
-        
-    }//GEN-LAST:event_txtStoreidActionPerformed
-
     private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
         // TODO add your handling code here:
         btnThem.setEnabled(false);
@@ -779,7 +752,6 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
     private javax.swing.JTextField txtName;
     private javax.swing.JTextField txtPhone;
     private javax.swing.JTextField txtStaffID;
-    private javax.swing.JTextField txtStoreid;
     private javax.swing.JTextField txtTimkiem;
     // End of variables declaration//GEN-END:variables
 }

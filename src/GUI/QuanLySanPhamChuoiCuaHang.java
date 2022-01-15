@@ -27,7 +27,7 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
     DefaultTableModel tbn = new DefaultTableModel();
     static int store = Integer.parseInt(Login.Store_ID);
     ValidateData vd = new ValidateData();
-
+    
     public QuanLySanPhamChuoiCuaHang() {
         initComponents();
         loadData();
@@ -44,7 +44,7 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
             Vector row, column;
             column = new Vector();
             Statement st = conn.createStatement();
-            String sql = "select production.products.product_id, product_name, production.products.price, brand_name, category_name, country from production.products\n"
+            String sql = "select production.products.product_id as N'Mã sản phẩm', product_name as N'Tên sản phẩm', production.products.price as N'Giá nhập', brand_name as N'Hãng', category_name as N'Loại hàng', country as N'Xuất xứ' from production.products\n"
                     + "inner join production.brands on production.products.brand_id = production.brands.brand_id\n"
                     + "inner join production.categories on production.categories.category_id = production.products.category_id\n";
             ResultSet rs = st.executeQuery(sql);
@@ -59,7 +59,12 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
             while (rs.next()) {
                 row = new Vector();
                 for (int i = 1; i <= number; i++) {
-                    row.addElement(rs.getString(i));
+                    if(i == 3){
+                        row.addElement(vd.DangTienTe(rs.getString(i)));
+                    } else {
+                        row.addElement(rs.getString(i));
+                    }
+                        
                 }
                 tbn.addRow(row);
                 tbl_sp.setModel(tbn);
@@ -476,6 +481,12 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
 
         add(jPanel2);
         jPanel2.setBounds(350, 510, 1140, 260);
+
+        txt_price.addKeyListener(new java.awt.event.KeyAdapter() {
+            public void keyReleased(java.awt.event.KeyEvent evt) {
+                txt_priceKeyReleased(evt);
+            }
+        });
         add(txt_price);
         txt_price.setBounds(500, 370, 300, 30);
         add(txt_brand);
@@ -522,7 +533,6 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
         add(txt_country);
         txt_country.setBounds(500, 330, 300, 30);
 
-        btn_thoat.setActionCommand("");
         btn_thoat.setContentAreaFilled(false);
         btn_thoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -577,7 +587,8 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
     }//GEN-LAST:event_txt_catActionPerformed
 
     private void btn_themActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_themActionPerformed
-
+        String price = txt_price.getText().replace(",", "");
+        
         if (txt_name.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Name không được trống");
             return;
@@ -592,6 +603,9 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
             return;
         } else if (txt_country.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Country không được trống");
+            return;
+        }if(!vd.IntOrReal(price)){
+            JOptionPane.showMessageDialog(this, "Hãy nhập đúng giá. VD: 1234 ; 1,234; 1234.00, 1,234.00");
             return;
         }
         try {
@@ -636,12 +650,12 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
             }
 
             if (product_id.length() == 0) {
-                String sql_product = "insert into production.products(product_name,brand_id, category_id,price) Values(?,?,?,?)";
+                String sql_product = "insert into production.products(product_name, brand_id, category_id, price) Values(?,?,?,?)";
                 PreparedStatement ps_product = conn.prepareStatement(sql_product);
                 ps_product.setString(1, vd.ChuanHoaChuoi(txt_name.getText()));
                 ps_product.setString(2, brand_id);
                 ps_product.setString(3, cat_id);
-                ps_product.setString(4, vd.ChuanHoaChuoi(txt_price.getText()));
+                ps_product.setString(4, price);
                 chk_product = ps_product.executeUpdate();
             } else {
                 System.out.println("Da co mat hang nay");
@@ -661,6 +675,7 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
 
     private void btn_suaActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_suaActionPerformed
         // TODO add your handling code here:
+        String price = txt_price.getText().replace(",", "");
         if (txt_name.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Name không được trống");
             return;
@@ -675,6 +690,9 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
             return;
         } else if (txt_country.getText().equals("")) {
             JOptionPane.showMessageDialog(this, "Country không được trống");
+            return;
+        }if(!vd.IntOrReal(price)){
+            JOptionPane.showMessageDialog(this, "Hãy nhập đúng giá. VD: 1234 ; 1,234; 1234.00, 1,234.00");
             return;
         }
 
@@ -724,7 +742,7 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
             comm.setString(1, txt_name.getText());
             comm.setString(3, cat_id);
             comm.setString(2, brand_id);
-            comm.setString(4, txt_price.getText());
+            comm.setString(4, price);
             comm.setString(5, txt_id.getText());
             comm.executeUpdate();
 
@@ -824,7 +842,7 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
         try {
             Connect a = new Connect();
             Connection con = a.getConnectDB();
-            String sql = "select product_id, product_name, price, brand_name, category_name, country from production.products\n"
+            String sql = "select production.products.product_id as N'Mã sản phẩm', product_name as N'Tên sản phẩm', production.products.price as N'Giá nhập', brand_name as N'Hãng', category_name as N'Loại hàng', country as N'Xuất xứ' from production.products\n"
                     + "inner join production.brands on production.products.brand_id = production.brands.brand_id\n"
                     + "inner join production.categories on production.categories.category_id = production.products.category_id where ";
             PreparedStatement ps = null;
@@ -872,7 +890,12 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
             while (rs.next()) {
                 row = new Vector();
                 for (int i = 1; i <= number; i++) {
-                    row.addElement(rs.getString(i));
+                    if(i == 3){
+                         row.addElement(vd.DangTienTe(rs.getString(i)));
+                    } else {
+                         row.addElement(rs.getString(i));
+                    }
+                   
                 }
                 tbn.addRow(row);
                 tbl_sp.setModel(tbn);
@@ -888,7 +911,7 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
         try {
             Connect a = new Connect();
             Connection con = a.getConnectDB();
-            String sql = "select product_id, product_name, price, brand_name, category_name, country from production.products\n"
+            String sql = "select production.products.product_id as N'Mã sản phẩm', product_name as N'Tên sản phẩm', production.products.price as N'Giá nhập', brand_name as N'Hãng', category_name as N'Loại hàng', country as N'Xuất xứ' from production.products\n"
                     + "inner join production.brands on production.products.brand_id = production.brands.brand_id\n"
                     + "inner join production.categories on production.categories.category_id = production.products.category_id where ";
             PreparedStatement ps = null;
@@ -932,7 +955,11 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
             while (rs.next()) {
                 row = new Vector();
                 for (int i = 1; i <= number; i++) {
-                    row.addElement(rs.getString(i));
+                    if(i == 3){
+                         row.addElement(vd.DangTienTe(rs.getString(i)));
+                    } else {
+                         row.addElement(rs.getString(i));
+                    }
                 }
                 tbn.addRow(row);
                 tbl_sp.setModel(tbn);
@@ -942,6 +969,11 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
             System.out.println("Loi o tim kiem " + ex.toString());
         }
     }//GEN-LAST:event_btn_searchActionPerformed
+
+    private void txt_priceKeyReleased(java.awt.event.KeyEvent evt) {//GEN-FIRST:event_txt_priceKeyReleased
+        // TODO add your handling code here:
+        txt_price.setText(vd.DangTienTe(txt_price.getText().replace(",", "")));
+    }//GEN-LAST:event_txt_priceKeyReleased
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

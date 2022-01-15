@@ -1067,6 +1067,7 @@ public class BanHang extends javax.swing.JPanel {
             }
             
             String mess = JOptionPane.showInputDialog(this, "Tiền khách đưa:");
+            
             if(!isDouble(mess)) {
                 JOptionPane.showMessageDialog(this, "Không phải số, vui lòng bấm Thanh toán lại.");
                 return;
@@ -1076,7 +1077,7 @@ public class BanHang extends javax.swing.JPanel {
             } else {
                 double change = Double.parseDouble(mess) - Double.parseDouble(vd.ReverseDangTienTe(txtTotalBillPrice.getText()));
                 String strChange = String.valueOf(change);
-                JOptionPane.showMessageDialog(this, "Tiền thừa: " + strChange + "\nThanh toán thành công.");
+                JOptionPane.showMessageDialog(this, "Tiền thừa: " + vd.DangTienTe(strChange) + "\nThanh toán thành công.");
             }
 
             try {
