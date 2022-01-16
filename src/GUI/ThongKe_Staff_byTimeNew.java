@@ -87,6 +87,14 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
                 tbl_NV.setModel(tb);
             }
              
+            tbl_NV.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tbl_NV.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tbl_NV.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tbl_NV.getColumnModel().getColumn(3).setPreferredWidth(100);
+            tbl_NV.getColumnModel().getColumn(4).setPreferredWidth(20);
+            
+            tbl_NV.setRowHeight(30);
+             
             st.close();
             rs.close();
             conn.close();
@@ -197,6 +205,7 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
         jPanel1.add(btnThoat);
         btnThoat.setBounds(0, 690, 360, 120);
 
+        tbl_NV.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tbl_NV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -216,11 +225,13 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tbl_NV);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(550, 120, 560, 160);
+        jScrollPane1.setBounds(530, 160, 820, 160);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(153, 0, 153));
         jLabel1.setText("Hãy click vào từng người để xem doanh thu những tháng gần đây");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(470, 40, 370, 70);
+        jLabel1.setBounds(510, 80, 690, 70);
         jPanel1.add(jcontent);
         jcontent.setBounds(440, 350, 1080, 430);
 

@@ -410,7 +410,7 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
                         return;
                     }
                     PreparedStatement ps = con.prepareStatement("insert into vCurrentProduct values (?, ?, ?, ?, ?, ?, ?)");
-                    ps.setString(1, GetProduct_id(txt_TenSP.getText()));
+                    ps.setString(1, GetProduct_id(vd.ChuanHoaChuoi(txt_TenSP.getText())));
                     ps.setObject(2, dc_ngaySX.getDate());
                     ps.setObject(3, dc_hanSD.getDate());
                     ps.setString(4, Store_ID);

@@ -464,7 +464,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                         tbn.setRowCount(0);
                         loadData();
                         sendEmail_QuenMK send = new sendEmail_QuenMK();
-                        send.sendmail(Email, randomCode);
+                        send.sendmail(Email, randomCode, "Mật khẩu của bạn");
                     }
                 }   
             }

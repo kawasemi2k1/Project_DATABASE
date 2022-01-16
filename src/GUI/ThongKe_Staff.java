@@ -152,10 +152,14 @@ public class ThongKe_Staff extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
 
         jPanel1.setLayout(null);
+
+        date1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(date1);
         date1.setBounds(610, 140, 170, 50);
+
+        date2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(date2);
-        date2.setBounds(1100, 130, 180, 60);
+        date2.setBounds(1100, 130, 180, 50);
 
         jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {

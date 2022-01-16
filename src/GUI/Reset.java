@@ -61,12 +61,11 @@ public class Reset extends javax.swing.JFrame {
         jPanel1.add(jButton1);
         jButton1.setBounds(220, 280, 100, 40);
         jPanel1.add(txtResetPass);
-        txtResetPass.setBounds(280, 150, 140, 30);
+        txtResetPass.setBounds(260, 140, 170, 30);
         jPanel1.add(txtVerResetPass);
-        txtVerResetPass.setBounds(280, 200, 140, 30);
+        txtVerResetPass.setBounds(260, 200, 170, 30);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/xac nhận mật khẩu (1).png"))); // NOI18N
-        jLabel3.setText("jLabel3");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/xac nhận mật khẩu (2).png"))); // NOI18N
         jPanel1.add(jLabel3);
         jLabel3.setBounds(0, 0, 540, 390);
 

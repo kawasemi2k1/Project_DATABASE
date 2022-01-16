@@ -44,9 +44,9 @@ public class SendCode extends javax.swing.JFrame {
 
         jPanel1.setLayout(null);
         jPanel1.add(txtEmail);
-        txtEmail.setBounds(200, 140, 160, 22);
+        txtEmail.setBounds(200, 132, 255, 33);
         jPanel1.add(txtVer);
-        txtVer.setBounds(200, 210, 160, 22);
+        txtVer.setBounds(200, 210, 170, 33);
 
         jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -66,8 +66,7 @@ public class SendCode extends javax.swing.JFrame {
         jPanel1.add(btn_ver);
         btn_ver.setBounds(220, 290, 100, 40);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lấy lại mật khẩu (1).png"))); // NOI18N
-        jLabel3.setText("jLabel3");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lấy lại mật khẩu (2).png"))); // NOI18N
         jPanel1.add(jLabel3);
         jLabel3.setBounds(0, 0, 550, 410);
 
@@ -91,7 +90,7 @@ public class SendCode extends javax.swing.JFrame {
             Random rand = new Random();
             randomCode = rand.nextInt(999999);
             sendEmail_QuenMK send = new sendEmail_QuenMK();
-            send.sendmail(txtEmail.getText(), randomCode);
+            send.sendmail(txtEmail.getText(), randomCode, "Mã xác nhận");
             JOptionPane.showMessageDialog(null, "code has been send to the email");
             txtVer.setEnabled(true);
         btn_ver.setEnabled(true);

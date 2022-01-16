@@ -272,10 +272,12 @@ public class ThongKe_Cat extends javax.swing.JPanel {
         jButton3.setBounds(0, 690, 370, 110);
 
         date1.setDate(new java.util.Date(1578102937000L));
+        date1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         add(date1);
         date1.setBounds(620, 130, 180, 50);
 
         date2.setDate(new java.util.Date(1641722768000L));
+        date2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         add(date2);
         date2.setBounds(1110, 130, 160, 50);
 

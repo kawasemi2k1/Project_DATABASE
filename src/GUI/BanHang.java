@@ -789,6 +789,7 @@ public class BanHang extends javax.swing.JPanel {
         jTableBill.setModel(tbnBill);
         txtBillID.setText("");
         txtCustomer.setText("");
+        txtProduct.setText("");
         txtCustomerName.setText("");
         txtQuantity.setText("");
         txtSearchCustomer.setText("");
