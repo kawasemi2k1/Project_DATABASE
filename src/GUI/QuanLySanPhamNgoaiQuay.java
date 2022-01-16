@@ -354,8 +354,8 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
         String gia = txt_gia.getText().replace(",", "");
         String soluong = txt_soLuong.getText().replace(",", "");
         conn = cn.getConnectDB();
-        
-        System.out.println("*** date: "+ date);
+        Date b = new Date();
+        System.out.println("*** date: "+ b);
         System.out.println("*** HSD:  " + dc_hanSD.getDate());
 
         try {
@@ -377,10 +377,10 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
             } else if(!vd.IntOrReal(gia)){
                   JOptionPane.showMessageDialog(this, "Nhập lại giá.");
             } 
-//            else if(date.compareTo(dc_hanSD.getDate()) <= 0){
-//                  JOptionPane.showMessageDialog(this, "Đã hết hạn sử dụng");
-//                  return;
-//            }
+            else if(dc_hanSD.getDate().before(b)){
+                  JOptionPane.showMessageDialog(this, "Đã hết hạn sử dụng");
+                  return;
+            }
             else {
                     Connect a = new Connect();
                     Connection con = a.getConnectDB();

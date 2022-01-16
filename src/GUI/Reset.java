@@ -4,9 +4,13 @@
  */
 package GUI;
 
+import Utils.ValidateData;
+import java.awt.Window;
 import java.sql.Connection;
 import java.sql.PreparedStatement;
+import javax.swing.JComponent;
 import javax.swing.JOptionPane;
+import javax.swing.SwingUtilities;
 
 /**
  *
@@ -18,7 +22,8 @@ public class Reset extends javax.swing.JFrame {
      * Creates new form Reset
      */
     public String user;
-
+    ValidateData validate = new ValidateData();
+    
     public Reset() {
         initComponents();
     }
@@ -39,10 +44,10 @@ public class Reset extends javax.swing.JFrame {
 
         jPanel1 = new javax.swing.JPanel();
         jLabel1 = new javax.swing.JLabel();
-        txtResetPass = new javax.swing.JTextField();
         jLabel2 = new javax.swing.JLabel();
-        txtVerResetPass = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
+        txtResetPass = new javax.swing.JPasswordField();
+        txtVerResetPass = new javax.swing.JPasswordField();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -51,14 +56,10 @@ public class Reset extends javax.swing.JFrame {
         jLabel1.setText("Pass");
         jPanel1.add(jLabel1);
         jLabel1.setBounds(60, 40, 50, 16);
-        jPanel1.add(txtResetPass);
-        txtResetPass.setBounds(170, 40, 130, 22);
 
         jLabel2.setText("Pass xác nhận");
         jPanel1.add(jLabel2);
         jLabel2.setBounds(60, 110, 72, 16);
-        jPanel1.add(txtVerResetPass);
-        txtVerResetPass.setBounds(170, 110, 130, 22);
 
         jButton1.setText("Xác nhận");
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -68,6 +69,10 @@ public class Reset extends javax.swing.JFrame {
         });
         jPanel1.add(jButton1);
         jButton1.setBounds(160, 180, 81, 25);
+        jPanel1.add(txtResetPass);
+        txtResetPass.setBounds(170, 32, 140, 30);
+        jPanel1.add(txtVerResetPass);
+        txtVerResetPass.setBounds(170, 102, 140, 30);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
@@ -94,7 +99,7 @@ public class Reset extends javax.swing.JFrame {
                     PreparedStatement ps = con.prepareStatement(
                             "Update sales.staffs set password =  ? "
                             + "  where email =  ?");
-                    ps.setString(1, txtResetPass.getText());
+                    ps.setString(1, validate.md5(txtResetPass.getText()));
                     ps.setString(2, user);
                     ps.executeUpdate();
                     JOptionPane.showMessageDialog(null, "Reset Successfully");
@@ -102,7 +107,13 @@ public class Reset extends javax.swing.JFrame {
                     System.out.println(e.toString());
                     JOptionPane.showMessageDialog(null, "Không thành công");
                 }
-
+            JComponent comp = (JComponent) evt.getSource();
+            Window win = SwingUtilities.getWindowAncestor(comp);
+            win.dispose();
+            
+            Login login = new Login();
+            login.setVisible(true);
+            this.dispose();
             } catch (Exception ex) {
                 JOptionPane.showMessageDialog(null, ex);
             }
@@ -151,7 +162,7 @@ public class Reset extends javax.swing.JFrame {
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
-    private javax.swing.JTextField txtResetPass;
-    private javax.swing.JTextField txtVerResetPass;
+    private javax.swing.JPasswordField txtResetPass;
+    private javax.swing.JPasswordField txtVerResetPass;
     // End of variables declaration//GEN-END:variables
 }
