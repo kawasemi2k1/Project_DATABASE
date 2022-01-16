@@ -102,7 +102,7 @@ public class SendCode extends javax.swing.JFrame {
 
     private void btn_verActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btn_verActionPerformed
         // TODO add your handling code here:
-        if (Integer.valueOf(txtVer.getText()) == randomCode) {
+        if (Integer.valueOf(txtVer.getText()) == randomCode) { 
             Reset rs = new Reset(txtEmail.getText());
             rs.setVisible(true);
             this.setVisible(false);

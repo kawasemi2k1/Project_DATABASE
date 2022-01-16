@@ -44,16 +44,13 @@ public class TK_Store_byTime extends javax.swing.JFrame {
             try {
                 Connect a = new Connect();
                 Connection conn = a.getConnectDB();
-                String sql_doanhthu = "select CONCAT(MONTH(created_date),'-',YEAR(created_date)) as MonthYear, DoanhThu from \n" +
-                                        "(\n" +
-                                        "select top(12) created_date , sum(soi.profit) as DoanhThu from sales.stores ss\n" +
-                                        "left join sales.order_items soi on soi.store_id = ss.store_id\n" +
-                                        "left join sales.orders so on so.order_id = soi.order_id\n" +
-                                        "where ss.store_id = ?\n" +
-                                        "group by created_date\n" +
-                                        "order by created_date desc\n" +
-                                        ") kawasemi\n" +
-                                        "order by created_date asc";
+                String sql_doanhthu = "select MonthYear, sum(DoanhThu) as DoanhThu from (\n" +
+                                    "	select convert(datetime,CONCAT(datepart(mm, created_date),'-','01-',YEAR(created_date)),102) as MonthYear , soi.profit as DoanhThu \n" +
+                                    "	from sales.order_items soi\n" +
+                                    "	left join sales.orders so on so.order_id = soi.order_id\n" +
+                                    "	where store_id = ?) as Abc\n" +
+                                    "	group by MonthYear\n" +
+                                    "	order by MonthYear";
                 PreparedStatement ps;
                 ps = conn.prepareStatement(sql_doanhthu);
                 ps.setString(1, Login.Store_ID);
@@ -77,10 +74,12 @@ public class TK_Store_byTime extends javax.swing.JFrame {
         return queryChart;
     }
      
-      public String catChuoi(String ma){
+    public String cat7kytu(String ma){
         String cat = "";
         String arr[] = ma.split(" ");
-        return cat = arr[0];
+        String a[] = arr[0].split("-");
+        cat = a[1].concat("-").concat(a[0]);
+        return cat;
     }
      
     private CategoryDataset createDataset() {
@@ -88,7 +87,7 @@ public class TK_Store_byTime extends javax.swing.JFrame {
         for (Map.Entry<String, Double> entry : map.entrySet()) {
             String key = entry.getKey();
             Double value = entry.getValue();
-            dataset.addValue(value, "", key);
+            dataset.addValue(value, "", cat7kytu(key));
         }
         return dataset;
     }

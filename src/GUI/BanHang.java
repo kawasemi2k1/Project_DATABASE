@@ -388,7 +388,7 @@ public class BanHang extends javax.swing.JPanel {
         txtCustomer.setEditable(false);
         txtCustomer.setBackground(new java.awt.Color(204, 204, 204));
         jPanel2.add(txtCustomer);
-        txtCustomer.setBounds(140, 100, 200, 22);
+        txtCustomer.setBounds(140, 100, 200, 30);
 
         add(jPanel2);
         jPanel2.setBounds(30, 130, 720, 270);
@@ -455,7 +455,7 @@ public class BanHang extends javax.swing.JPanel {
         jPanel3.add(jLabel7);
         jLabel7.setBounds(10, 50, 110, 16);
         jPanel3.add(txtBillID);
-        txtBillID.setBounds(140, 50, 231, 22);
+        txtBillID.setBounds(140, 42, 231, 30);
 
         jButton10.setText("Tìm đơn");
         jButton10.addActionListener(new java.awt.event.ActionListener() {
@@ -464,12 +464,12 @@ public class BanHang extends javax.swing.JPanel {
             }
         });
         jPanel3.add(jButton10);
-        jButton10.setBounds(390, 50, 77, 25);
+        jButton10.setBounds(390, 45, 77, 30);
 
         txtCustomerName.setEditable(false);
         txtCustomerName.setBackground(new java.awt.Color(204, 204, 204));
         jPanel3.add(txtCustomerName);
-        txtCustomerName.setBounds(140, 130, 157, 22);
+        txtCustomerName.setBounds(140, 130, 157, 30);
 
         jLabel8.setText("Tên khách hàng");
         jPanel3.add(jLabel8);
@@ -510,7 +510,7 @@ public class BanHang extends javax.swing.JPanel {
         txtStaff.setEditable(false);
         txtStaff.setBackground(new java.awt.Color(204, 204, 204));
         jPanel3.add(txtStaff);
-        txtStaff.setBounds(140, 90, 160, 22);
+        txtStaff.setBounds(140, 90, 160, 30);
 
         jButton13.setText("Đơn mới");
         jButton13.addActionListener(new java.awt.event.ActionListener() {
@@ -584,9 +584,9 @@ public class BanHang extends javax.swing.JPanel {
         jLabel5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
         jLabel5.setText("Số lượng");
         jPanel4.add(jLabel5);
-        jLabel5.setBounds(12, 114, 90, 20);
+        jLabel5.setBounds(10, 120, 90, 20);
         jPanel4.add(txtQuantity);
-        txtQuantity.setBounds(130, 110, 117, 22);
+        txtQuantity.setBounds(130, 112, 117, 30);
 
         jButton5.setBackground(new java.awt.Color(51, 0, 204));
         jButton5.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -609,7 +609,7 @@ public class BanHang extends javax.swing.JPanel {
         txtProduct.setEditable(false);
         txtProduct.setBackground(new java.awt.Color(204, 204, 204));
         jPanel4.add(txtProduct);
-        txtProduct.setBounds(130, 80, 340, 22);
+        txtProduct.setBounds(130, 80, 340, 30);
 
         add(jPanel4);
         jPanel4.setBounds(30, 420, 720, 260);
@@ -788,6 +788,7 @@ public class BanHang extends javax.swing.JPanel {
         jTableProduct.setModel(tbnProduct);
         jTableBill.setModel(tbnBill);
         txtBillID.setText("");
+        txtCustomer.setText("");
         txtCustomerName.setText("");
         txtQuantity.setText("");
         txtSearchCustomer.setText("");

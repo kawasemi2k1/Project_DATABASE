@@ -29,13 +29,12 @@ public class Main_NhanVien extends javax.swing.JFrame {
         
         
         setTitle("Quản Lý Bán Hàng");
-        ChuyenManHinhController controller = new ChuyenManHinhController(jpnView);
+        ChuyenManHinhControllerNV controller = new ChuyenManHinhControllerNV(jpnView);
         controller.setView(jpnTrangChu,jlbTrangChu);
         List<DanhMucBean> listItem = new ArrayList<>();
         listItem.add(new DanhMucBean("TrangChu",jpnTrangChu,jlbTrangChu));
         listItem.add(new DanhMucBean("QuanLy",jpnQuanLy,jlbQuanLy));
-        //listItem.add(new DanhMucBean("BanHang",jpnBanHang,jlbBanHang));
-        listItem.add(new DanhMucBean("ThongKe",jpnThongKe,jlbThongKe));
+
         
         controller.setEvent(listItem);
     }
@@ -52,8 +51,6 @@ public class Main_NhanVien extends javax.swing.JFrame {
         jcontent = new javax.swing.JPanel();
         jpnRoot = new javax.swing.JPanel();
         jButton1 = new javax.swing.JButton();
-        jpnThongKe = new javax.swing.JPanel();
-        jlbThongKe = new javax.swing.JLabel();
         jpnQuanLy = new javax.swing.JPanel();
         jlbQuanLy = new javax.swing.JLabel();
         jButton2 = new javax.swing.JButton();
@@ -66,31 +63,19 @@ public class Main_NhanVien extends javax.swing.JFrame {
 
         jpnRoot.setBackground(new java.awt.Color(102, 102, 102));
 
+        jButton1.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        jButton1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/round_logout_black_24dp.png"))); // NOI18N
         jButton1.setText("Đăng xuất");
+        jButton1.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                jButton1ActionPerformed(evt);
+            }
+        });
 
-        jpnThongKe.setBackground(new java.awt.Color(255, 153, 153));
+        jpnQuanLy.setBackground(new java.awt.Color(255, 102, 102));
 
-        jlbThongKe.setText("Thống kê");
-
-        javax.swing.GroupLayout jpnThongKeLayout = new javax.swing.GroupLayout(jpnThongKe);
-        jpnThongKe.setLayout(jpnThongKeLayout);
-        jpnThongKeLayout.setHorizontalGroup(
-            jpnThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnThongKeLayout.createSequentialGroup()
-                .addGap(81, 81, 81)
-                .addComponent(jlbThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, 81, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
-        );
-        jpnThongKeLayout.setVerticalGroup(
-            jpnThongKeLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnThongKeLayout.createSequentialGroup()
-                .addGap(23, 23, 23)
-                .addComponent(jlbThongKe)
-                .addContainerGap(61, Short.MAX_VALUE))
-        );
-
-        jpnQuanLy.setBackground(new java.awt.Color(255, 153, 153));
-
+        jlbQuanLy.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        jlbQuanLy.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/quanlifram_24dp.png"))); // NOI18N
         jlbQuanLy.setText("Quản lý");
 
         javax.swing.GroupLayout jpnQuanLyLayout = new javax.swing.GroupLayout(jpnQuanLy);
@@ -98,19 +83,18 @@ public class Main_NhanVien extends javax.swing.JFrame {
         jpnQuanLyLayout.setHorizontalGroup(
             jpnQuanLyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(jpnQuanLyLayout.createSequentialGroup()
-                .addGap(94, 94, 94)
-                .addComponent(jlbQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(94, Short.MAX_VALUE))
+                .addGap(76, 76, 76)
+                .addComponent(jlbQuanLy, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                .addContainerGap())
         );
         jpnQuanLyLayout.setVerticalGroup(
             jpnQuanLyLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnQuanLyLayout.createSequentialGroup()
-                .addGap(35, 35, 35)
-                .addComponent(jlbQuanLy)
-                .addContainerGap(49, Short.MAX_VALUE))
+            .addComponent(jlbQuanLy, javax.swing.GroupLayout.DEFAULT_SIZE, 132, Short.MAX_VALUE)
         );
 
         jButton2.setBackground(new java.awt.Color(255, 102, 102));
+        jButton2.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        jButton2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/round_local_grocery_store_black_24dp_1.png"))); // NOI18N
         jButton2.setText("Bán hàng");
         jButton2.setBorderPainted(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -121,27 +105,28 @@ public class Main_NhanVien extends javax.swing.JFrame {
 
         jpnTrangChu.setBackground(new java.awt.Color(255, 102, 102));
 
+        jlbTrangChu.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        jlbTrangChu.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/trangchu_24dp.png"))); // NOI18N
         jlbTrangChu.setText("Trang chủ");
 
         javax.swing.GroupLayout jpnTrangChuLayout = new javax.swing.GroupLayout(jpnTrangChu);
         jpnTrangChu.setLayout(jpnTrangChuLayout);
         jpnTrangChuLayout.setHorizontalGroup(
             jpnTrangChuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnTrangChuLayout.createSequentialGroup()
-                .addGap(114, 114, 114)
-                .addComponent(jlbTrangChu, javax.swing.GroupLayout.PREFERRED_SIZE, 77, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addContainerGap(123, Short.MAX_VALUE))
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnTrangChuLayout.createSequentialGroup()
+                .addGap(0, 0, Short.MAX_VALUE)
+                .addComponent(jlbTrangChu, javax.swing.GroupLayout.PREFERRED_SIZE, 272, javax.swing.GroupLayout.PREFERRED_SIZE))
         );
         jpnTrangChuLayout.setVerticalGroup(
             jpnTrangChuLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnTrangChuLayout.createSequentialGroup()
-                .addContainerGap(53, Short.MAX_VALUE)
-                .addComponent(jlbTrangChu)
-                .addGap(50, 50, 50))
+            .addGroup(jpnTrangChuLayout.createSequentialGroup()
+                .addContainerGap()
+                .addComponent(jlbTrangChu, javax.swing.GroupLayout.DEFAULT_SIZE, 122, Short.MAX_VALUE))
         );
 
-        jButton3.setBackground(new java.awt.Color(255, 153, 153));
-        jButton3.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jButton3.setBackground(new java.awt.Color(255, 102, 102));
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
+        jButton3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/personalin4_24dp.png"))); // NOI18N
         jButton3.setText("Trang cá nhân");
         jButton3.setBorderPainted(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -161,7 +146,6 @@ public class Main_NhanVien extends javax.swing.JFrame {
                     .addComponent(jpnTrangChu, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jButton1, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                    .addComponent(jpnThongKe, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                     .addComponent(jpnQuanLy, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                 .addContainerGap(25, Short.MAX_VALUE))
         );
@@ -170,17 +154,15 @@ public class Main_NhanVien extends javax.swing.JFrame {
             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, jpnRootLayout.createSequentialGroup()
                 .addGap(28, 28, 28)
                 .addComponent(jpnTrangChu, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 36, Short.MAX_VALUE)
-                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 100, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 28, Short.MAX_VALUE)
+                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 129, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(28, 28, 28)
                 .addComponent(jpnQuanLy, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
-                .addComponent(jpnThongKe, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(35, 35, 35)
-                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 72, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(18, 18, 18)
+                .addGap(31, 31, 31)
+                .addComponent(jButton3, javax.swing.GroupLayout.PREFERRED_SIZE, 126, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(42, 42, 42)
                 .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(42, 42, 42))
+                .addGap(28, 28, 28))
         );
 
         javax.swing.GroupLayout jpnViewLayout = new javax.swing.GroupLayout(jpnView);
@@ -239,6 +221,13 @@ public class Main_NhanVien extends javax.swing.JFrame {
         a.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        Login login = new Login();
+        login.setVisible(true);
+        this.dispose();
+    }//GEN-LAST:event_jButton1ActionPerformed
+
     /**
      * @param args the command line arguments
      */
@@ -281,11 +270,9 @@ public class Main_NhanVien extends javax.swing.JFrame {
     private javax.swing.JButton jButton3;
     private javax.swing.JPanel jcontent;
     private javax.swing.JLabel jlbQuanLy;
-    private javax.swing.JLabel jlbThongKe;
     private javax.swing.JLabel jlbTrangChu;
     private javax.swing.JPanel jpnQuanLy;
     private javax.swing.JPanel jpnRoot;
-    private javax.swing.JPanel jpnThongKe;
     private javax.swing.JPanel jpnTrangChu;
     private javax.swing.JPanel jpnView;
     // End of variables declaration//GEN-END:variables

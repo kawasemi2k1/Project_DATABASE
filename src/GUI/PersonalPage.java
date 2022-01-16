@@ -108,7 +108,7 @@ public class PersonalPage extends javax.swing.JFrame {
         getContentPane().add(txtLevel);
         txtLevel.setBounds(180, 300, 140, 22);
         getContentPane().add(txtEmail);
-        txtEmail.setBounds(430, 130, 150, 24);
+        txtEmail.setBounds(420, 140, 160, 24);
 
         jButton1.setText("Đổi mật khẩu");
         jButton1.addActionListener(new java.awt.event.ActionListener() {

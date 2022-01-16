@@ -7,6 +7,7 @@ package GUI;
 
 import Utils.ValidateData;
 import java.awt.Color;
+import java.awt.Font;
 import java.awt.Window;
 import javax.swing.JComponent;
 import javax.swing.SwingUtilities;
@@ -64,7 +65,20 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                 tbn.addRow(row);
                 jTable1.setModel(tbn);
             }
+
+            //jTable1.setFont(new Font("Serif", Font.BOLD, 20));
+            // set the column width for each column table.getColumnModel().getColumn(0).setPreferredWidth(5);
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(20);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
+            jTable1.getColumnModel().getColumn(4).setPreferredWidth(20);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(100);
             
+            jTable1.setRowHeight(30);
+            
+
+
             jTable1.getSelectionModel().addListSelectionListener(new ListSelectionListener(){
                 @Override
                 public void valueChanged(ListSelectionEvent e) {
@@ -194,6 +208,7 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
 
         setLayout(null);
 
+        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
 
@@ -210,18 +225,31 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
                 return canEdit [columnIndex];
             }
         });
+        jTable1.addMouseListener(new java.awt.event.MouseAdapter() {
+            public void mouseClicked(java.awt.event.MouseEvent evt) {
+                jTable1MouseClicked(evt);
+            }
+        });
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
         jScrollPane1.setBounds(350, 510, 1140, 270);
+
+        txtName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add(txtName);
-        txtName.setBounds(490, 180, 213, 22);
+        txtName.setBounds(490, 170, 350, 40);
+
+        txtAddress.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add(txtAddress);
-        txtAddress.setBounds(490, 290, 213, 22);
+        txtAddress.setBounds(490, 272, 350, 40);
+
+        txtPhone.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add(txtPhone);
-        txtPhone.setBounds(490, 330, 213, 22);
+        txtPhone.setBounds(490, 320, 350, 40);
+
+        txtEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add(txtEmail);
-        txtEmail.setBounds(490, 380, 213, 22);
+        txtEmail.setBounds(490, 362, 350, 40);
 
         jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -249,8 +277,10 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         });
         add(jButton3);
         jButton3.setBounds(930, 300, 200, 100);
+
+        jDateChooser1.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add(jDateChooser1);
-        jDateChooser1.setBounds(490, 230, 213, 22);
+        jDateChooser1.setBounds(490, 220, 350, 40);
 
         jButton4.setBackground(new java.awt.Color(51, 0, 255));
         jButton4.setFont(new java.awt.Font("Segoe UI", 1, 14)); // NOI18N
@@ -265,22 +295,25 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
         add(jButton4);
         jButton4.setBounds(950, 430, 100, 60);
 
+        txtSearch.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtSearch.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtSearchKeyReleased(evt);
             }
         });
         add(txtSearch);
-        txtSearch.setBounds(490, 440, 410, 50);
+        txtSearch.setBounds(490, 440, 410, 43);
 
+        jComboBoxSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jComboBoxSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Tên", "Ngày Sinh", "Địa Chỉ", "SĐT", "Email", " " }));
         add(jComboBoxSearch);
         jComboBoxSearch.setBounds(350, 440, 110, 40);
 
         txtID.setEditable(false);
         txtID.setBackground(new java.awt.Color(204, 204, 204));
+        txtID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add(txtID);
-        txtID.setBounds(490, 140, 213, 22);
+        txtID.setBounds(490, 122, 350, 40);
 
         jButton5.setContentAreaFilled(false);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -626,6 +659,11 @@ public class QuanLyKhachHang extends javax.swing.JPanel {
 //        ManagerMain main = new ManagerMain();
 //        main.setVisible(true);
     }//GEN-LAST:event_jButton6ActionPerformed
+
+    private void jTable1MouseClicked(java.awt.event.MouseEvent evt) {//GEN-FIRST:event_jTable1MouseClicked
+        // TODO add your handling code here:
+        jButton1.setEnabled(false);
+    }//GEN-LAST:event_jTable1MouseClicked
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton jButton1;

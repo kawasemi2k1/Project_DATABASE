@@ -12,12 +12,12 @@ import javax.swing.SwingUtilities;
  *
  * @author MyPC
  */
-public class QuanLy_Panel extends javax.swing.JPanel {
+public class NhanVienQuanLy_Panel extends javax.swing.JPanel {
 
     /**
      * Creates new form QuanLy_Panel
      */
-    public QuanLy_Panel() {
+    public NhanVienQuanLy_Panel() {
         initComponents();
     }
 
@@ -32,22 +32,11 @@ public class QuanLy_Panel extends javax.swing.JPanel {
 
         jpnView = new javax.swing.JPanel();
         jPanel1 = new javax.swing.JPanel();
-        jButton1 = new javax.swing.JButton();
         jButton2 = new javax.swing.JButton();
         jButton3 = new javax.swing.JButton();
-        jButton4 = new javax.swing.JButton();
         jLabel2 = new javax.swing.JLabel();
 
         jPanel1.setLayout(null);
-
-        jButton1.setContentAreaFilled(false);
-        jButton1.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton1ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton1);
-        jButton1.setBounds(290, 240, 250, 130);
 
         jButton2.setContentAreaFilled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -56,8 +45,9 @@ public class QuanLy_Panel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(300, 420, 240, 120);
+        jButton2.setBounds(240, 320, 260, 120);
 
+        jButton3.setFont(new java.awt.Font("Segoe UI", 1, 30)); // NOI18N
         jButton3.setContentAreaFilled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -65,32 +55,22 @@ public class QuanLy_Panel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(690, 240, 240, 130);
+        jButton3.setBounds(610, 310, 220, 130);
 
-        jButton4.setContentAreaFilled(false);
-        jButton4.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton4ActionPerformed(evt);
-            }
-        });
-        jPanel1.add(jButton4);
-        jButton4.setBounds(690, 420, 240, 130);
-
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/QLi bản mới nhất.png"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Frame quản lí(NV ) .png"))); // NOI18N
+        jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(0, 0, 1220, 860);
+        jLabel2.setBounds(0, 10, 1020, 800);
 
         javax.swing.GroupLayout jpnViewLayout = new javax.swing.GroupLayout(jpnView);
         jpnView.setLayout(jpnViewLayout);
         jpnViewLayout.setHorizontalGroup(
             jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1229, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1034, Short.MAX_VALUE)
         );
         jpnViewLayout.setVerticalGroup(
             jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(jpnViewLayout.createSequentialGroup()
-                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 849, Short.MAX_VALUE)
-                .addContainerGap())
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 814, Short.MAX_VALUE)
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -117,24 +97,10 @@ public class QuanLy_Panel extends javax.swing.JPanel {
         ql.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        QL_SPChuoiCuaHang ql = new QL_SPChuoiCuaHang();
-        ql.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        QL_NhanVien ql = new QL_NhanVien();
-        ql.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton jButton1;
     private javax.swing.JButton jButton2;
     private javax.swing.JButton jButton3;
-    private javax.swing.JButton jButton4;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JPanel jpnView;

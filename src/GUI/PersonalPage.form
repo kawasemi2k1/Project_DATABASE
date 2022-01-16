@@ -93,7 +93,7 @@
     <Component class="javax.swing.JLabel" name="txtEmail">
       <Constraints>
         <Constraint layoutClass="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout" value="org.netbeans.modules.form.compat2.layouts.DesignAbsoluteLayout$AbsoluteConstraintsDescription">
-          <AbsoluteConstraints x="430" y="130" width="150" height="24"/>
+          <AbsoluteConstraints x="420" y="140" width="160" height="24"/>
         </Constraint>
       </Constraints>
     </Component>

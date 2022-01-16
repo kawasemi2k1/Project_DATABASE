@@ -69,6 +69,15 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
                 tbn.addRow(row);
                 tbl_sp.setModel(tbn);
             }
+            
+            tbl_sp.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tbl_sp.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tbl_sp.getColumnModel().getColumn(2).setPreferredWidth(50);
+            tbl_sp.getColumnModel().getColumn(3).setPreferredWidth(30);
+            tbl_sp.getColumnModel().getColumn(4).setPreferredWidth(30);
+            tbl_sp.getColumnModel().getColumn(5).setPreferredWidth(30);
+            
+            tbl_sp.setRowHeight(30);
 
             tbl_sp.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
                 @Override
@@ -455,6 +464,7 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
         jPanel2.setMinimumSize(new java.awt.Dimension(5, 5));
         jPanel2.setPreferredSize(new java.awt.Dimension(1920, 1030));
 
+        tbl_sp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tbl_sp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -482,19 +492,26 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
         add(jPanel2);
         jPanel2.setBounds(350, 510, 1140, 260);
 
+        txt_price.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_price.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_priceKeyReleased(evt);
             }
         });
         add(txt_price);
-        txt_price.setBounds(500, 370, 300, 30);
+        txt_price.setBounds(500, 360, 300, 40);
+
+        txt_brand.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add(txt_brand);
-        txt_brand.setBounds(500, 290, 300, 30);
+        txt_brand.setBounds(500, 280, 300, 40);
+
+        txt_id.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add(txt_id);
-        txt_id.setBounds(500, 160, 300, 30);
+        txt_id.setBounds(500, 150, 300, 40);
+
+        txt_name.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add(txt_name);
-        txt_name.setBounds(500, 200, 300, 30);
+        txt_name.setBounds(500, 200, 300, 40);
 
         btn_them.setContentAreaFilled(false);
         btn_them.addActionListener(new java.awt.event.ActionListener() {
@@ -523,15 +540,18 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
         add(btn_xoa);
         btn_xoa.setBounds(920, 290, 210, 100);
 
+        txt_cat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_cat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_catActionPerformed(evt);
             }
         });
         add(txt_cat);
-        txt_cat.setBounds(500, 250, 300, 30);
+        txt_cat.setBounds(500, 240, 300, 40);
+
+        txt_country.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add(txt_country);
-        txt_country.setBounds(500, 330, 300, 30);
+        txt_country.setBounds(500, 320, 300, 40);
 
         btn_thoat.setContentAreaFilled(false);
         btn_thoat.addActionListener(new java.awt.event.ActionListener() {
@@ -551,10 +571,12 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
         add(btn_reset);
         btn_reset.setBounds(1183, 290, 210, 110);
 
+        jComboBoxSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jComboBoxSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Name", "Brand", "Category", "Country" }));
         add(jComboBoxSearch);
         jComboBoxSearch.setBounds(350, 430, 100, 50);
 
+        txt_search.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_search.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_searchKeyReleased(evt);

@@ -3,7 +3,7 @@
 // size: 1536va814
 package GUI; 
 
-
+ 
 import Utils.ValidateData;
 import java.awt.Cursor;
 import java.awt.Toolkit;
@@ -38,8 +38,8 @@ public class Login extends javax.swing.JFrame {
         int ysize = (int) tk.getScreenSize().getHeight();
         System.out.println(xsize + "va" + ysize);
         this.setSize(xsize, ysize);
-//        AutoDelete ad = new AutoDelete();
-//        ad.AutoDeleteOrder();
+        AutoDelete ad = new AutoDelete();
+        ad.AutoDeleteOrder();
     }
 
     /**
@@ -66,15 +66,16 @@ public class Login extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(51, 255, 51));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jButton1.setText("Đăng nhập");
-        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(930, 600, 270, 70);
+        jButton1.setBounds(920, 600, 270, 70);
+
+        txt_email.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(txt_email);
         txt_email.setBounds(940, 340, 250, 40);
 
