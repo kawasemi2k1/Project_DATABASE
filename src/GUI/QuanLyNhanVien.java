@@ -431,7 +431,8 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                     ps.setString(5, store+"");
                     ps.setString(6, cbManagerstate.getSelectedItem().toString().equals("Quản lý") ? "1" : "0");
                     ps.setString(7, cbGender.getSelectedItem().toString());
-                    ps.setString(8, matkhau);
+                    ps.setString(8, validate.md5(matkhau) );
+                    System.out.println("MK: "+ validate.md5(matkhau) );
                     int check = ps.executeUpdate();
                     if (check > 0  ) {
                         //send.sendmail(txtEmail.getText(), randomCode);

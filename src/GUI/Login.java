@@ -3,6 +3,7 @@
 // size: 1536va814
 package GUI;
 
+import Utils.ValidateData;
 import java.awt.Cursor;
 import java.awt.Toolkit;
 import java.sql.Connection;
@@ -25,6 +26,7 @@ public class Login extends javax.swing.JFrame {
      */
     public static String Staff_ID;
     public static String  Store_ID;
+    ValidateData vd = new ValidateData();
     public Login() {
         this.setResizable(false); // not resizeble now
         this.setVisible(true);
@@ -70,6 +72,12 @@ public class Login extends javax.swing.JFrame {
         jButton1.setBounds(930, 600, 270, 70);
         jPanel1.add(txt_email);
         txt_email.setBounds(940, 330, 250, 40);
+
+        txt_password.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                txt_passwordActionPerformed(evt);
+            }
+        });
         jPanel1.add(txt_password);
         txt_password.setBounds(940, 440, 250, 41);
 
@@ -258,7 +266,7 @@ public class Login extends javax.swing.JFrame {
             String sql = "Select * from sales.staffs where email = ? and password = ?";
             PreparedStatement pst = conn.prepareCall(sql);
             pst.setString(1, txt_email.getText());
-            pst.setString(2, txt_password.getText());
+            pst.setString(2, vd.md5(txt_password.getText()));
             ResultSet rs = pst.executeQuery();
             if(rs.next()) {
                 Store_ID = GetStoreIDFromEmail(txt_email.getText());
@@ -306,6 +314,11 @@ public class Login extends javax.swing.JFrame {
         this.setVisible(false);
         sc.setVisible(true);
     }//GEN-LAST:event_jLabel1MousePressed
+
+    private void txt_passwordActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_txt_passwordActionPerformed
+        // TODO add your handling code here:
+        jButton1ActionPerformed(evt);
+    }//GEN-LAST:event_txt_passwordActionPerformed
 
     /**
      * @param args the command line arguments
