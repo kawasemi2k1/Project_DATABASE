@@ -1,7 +1,4 @@
-/*
- * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
- * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
- */
+
 package GUI;
 
 /**
@@ -35,91 +32,101 @@ public class ThongKe_Panel extends javax.swing.JPanel {
         jButton6 = new javax.swing.JButton();
         jButton7 = new javax.swing.JButton();
         jButton8 = new javax.swing.JButton();
+        jLabel1 = new javax.swing.JLabel();
 
         jpnView.setPreferredSize(new java.awt.Dimension(1500, 800));
         jpnView.setLayout(null);
 
-        jButton1.setText("TK full Staff");
+        jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jpnView.add(jButton1);
-        jButton1.setBounds(70, 50, 130, 23);
+        jButton1.setBounds(730, 380, 200, 140);
 
-        jButton2.setText("TK KH");
+        jButton2.setContentAreaFilled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton2ActionPerformed(evt);
             }
         });
         jpnView.add(jButton2);
-        jButton2.setBounds(100, 100, 110, 23);
+        jButton2.setBounds(730, 160, 210, 130);
 
-        jButton3.setText("TK Cat");
+        jButton3.setContentAreaFilled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton3ActionPerformed(evt);
             }
         });
         jpnView.add(jButton3);
-        jButton3.setBounds(460, 80, 110, 23);
+        jButton3.setBounds(460, 160, 200, 130);
 
-        jButton4.setText("TK Product");
+        jButton4.setContentAreaFilled(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton4ActionPerformed(evt);
             }
         });
         jpnView.add(jButton4);
-        jButton4.setBounds(470, 30, 140, 23);
+        jButton4.setBounds(190, 380, 200, 140);
 
-        jButton5.setText("TK Staff by Time");
+        jButton5.setContentAreaFilled(false);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton5ActionPerformed(evt);
             }
         });
         jpnView.add(jButton5);
-        jButton5.setBounds(70, 150, 130, 23);
+        jButton5.setBounds(460, 380, 210, 140);
 
-        jButton6.setText("TK Store by time");
+        jButton6.setContentAreaFilled(false);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton6ActionPerformed(evt);
             }
         });
         jpnView.add(jButton6);
-        jButton6.setBounds(460, 150, 150, 23);
+        jButton6.setBounds(460, 600, 210, 140);
 
-        jButton7.setText("TK Brand");
+        jButton7.setContentAreaFilled(false);
         jButton7.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton7ActionPerformed(evt);
             }
         });
         jpnView.add(jButton7);
-        jButton7.setBounds(100, 200, 75, 23);
+        jButton7.setBounds(190, 160, 200, 130);
 
-        jButton8.setText("Guimail");
+        jButton8.setContentAreaFilled(false);
         jButton8.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton8ActionPerformed(evt);
             }
         });
         jpnView.add(jButton8);
-        jButton8.setBounds(460, 200, 100, 30);
+        jButton8.setBounds(190, 600, 210, 140);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Thống kê (bản chính).png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        jpnView.add(jLabel1);
+        jLabel1.setBounds(0, 0, 1090, 820);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, 828, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jpnView, javax.swing.GroupLayout.PREFERRED_SIZE, 1086, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, 581, Short.MAX_VALUE)
+            .addGroup(layout.createSequentialGroup()
+                .addComponent(jpnView, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 8, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 
@@ -181,6 +188,7 @@ public class ThongKe_Panel extends javax.swing.JPanel {
     private javax.swing.JButton jButton6;
     private javax.swing.JButton jButton7;
     private javax.swing.JButton jButton8;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JPanel jpnView;
     // End of variables declaration//GEN-END:variables
 }

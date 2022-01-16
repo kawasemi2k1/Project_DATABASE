@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package GUI; 
 
 import Utils.ValidateData;
 import java.awt.Window;
@@ -706,8 +706,8 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
             //String brand_name_copy;
             //String cat_name_copy;
 
-            brand_id = Lay_brand_id(txt_brand.getText());
-            cat_id = Lay_cat_id(txt_cat.getText());
+            brand_id = Lay_brand_id(vd.ChuanHoaChuoi(txt_brand.getText()));
+            cat_id = Lay_cat_id(vd.ChuanHoaChuoi(txt_cat.getText()));
             product_id = txt_id.getText();
 
             String brand_id_copy = Lay_brand_id_Tu_Product_Id(product_id);
@@ -724,26 +724,26 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
             if (brand_id.length() == 0) {
                 String sql_brand = "insert into production.brands(brand_name,country) Values(?,?)";
                 PreparedStatement ps_brand = conn.prepareStatement(sql_brand);
-                ps_brand.setString(1, txt_brand.getText());
-                ps_brand.setString(2, txt_country.getText());
+                ps_brand.setString(1, vd.ChuanHoaChuoi(txt_brand.getText()));
+                ps_brand.setString(2, vd.ChuanHoaChuoi(txt_country.getText()));
                 chk_brand = ps_brand.executeUpdate();
-                brand_id = Lay_brand_id(txt_brand.getText());
+                brand_id = Lay_brand_id(vd.ChuanHoaChuoi(txt_brand.getText()));
             }
 
             if (cat_id.length() == 0) {
                 String sql_cat = "insert into production.categories(category_name) Values(?)";
                 PreparedStatement ps_cat = conn.prepareStatement(sql_cat);
-                ps_cat.setString(1, txt_cat.getText());
+                ps_cat.setString(1, vd.ChuanHoaChuoi(txt_cat.getText()));
                 chk_cat = ps_cat.executeUpdate();
-                cat_id = Lay_cat_id(txt_cat.getText());
+                cat_id = Lay_cat_id(vd.ChuanHoaChuoi(txt_cat.getText()));
             }
 
             PreparedStatement comm = conn.prepareStatement("Update production.products set product_name = ?, brand_id = ?, category_id = ?, price = ? where product_id = ?");
-            comm.setString(1, txt_name.getText());
+            comm.setString(1, vd.ChuanHoaChuoi(txt_name.getText()));
             comm.setString(3, cat_id);
             comm.setString(2, brand_id);
             comm.setString(4, price);
-            comm.setString(5, txt_id.getText());
+            comm.setString(5, vd.ChuanHoaChuoi(txt_id.getText()));
             comm.executeUpdate();
 
             //brand_id = Lay_brand_id(brand_name_copy);
@@ -854,26 +854,27 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
 
             if (jComboBoxSearch.getSelectedItem().toString().equals("ID")) {
                 ps = con.prepareStatement(sql + "product_id like ?");
-                str1 = "%" + txt_search.getText() + "%";
+                str1 = "%" + vd.ChuanHoaChuoi(txt_search.getText()) + "%";
                 ps.setString(1, str1);
                 rs = ps.executeQuery();
             } else if (jComboBoxSearch.getSelectedItem().toString().equals("Name")) {
                 ps = con.prepareStatement(sql + "product_name like ?");
-                str1 = "%" + txt_search.getText() + "%";
+                str1 = "%" + vd.ChuanHoaChuoi(txt_search.getText()) + "%";
                 ps.setString(1, str1);
                 rs = ps.executeQuery();
             } else if (jComboBoxSearch.getSelectedItem().toString().equals("Brand")) {
                 ps = con.prepareStatement(sql + "brand_name like ?");
-                str1 = "%" + txt_search.getText() + "%";
+                str1 = "%" + vd.ChuanHoaChuoi(txt_search.getText()) + "%";
                 ps.setString(1, str1);
                 rs = ps.executeQuery();
             } else if (jComboBoxSearch.getSelectedItem().toString().equals("Category")) {
                 ps = con.prepareStatement(sql + "category_name like ?");
-                ps.setString(1, txt_search.getText());
+                str1 = "%" + vd.ChuanHoaChuoi(txt_search.getText()) + "%";
+                ps.setString(1, str1);
                 rs = ps.executeQuery();
             } else if (jComboBoxSearch.getSelectedItem().toString().equals("Country")) {
                 ps = con.prepareStatement(sql + "country like ?");
-                str1 = "%" + txt_search.getText() + "%";
+                str1 = "%" + vd.ChuanHoaChuoi(txt_search.getText()) + "%";
                 ps.setString(1, str1);
                 rs = ps.executeQuery();
             }
@@ -923,23 +924,23 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
 
             if (jComboBoxSearch.getSelectedItem().toString().equals("ID")) {
                 ps = con.prepareStatement(sql + "product_id = ?");
-                ps.setString(1, txt_search.getText());
+                ps.setString(1, vd.ChuanHoaChuoi(txt_search.getText()));
                 rs = ps.executeQuery();
             } else if (jComboBoxSearch.getSelectedItem().toString().equals("Name")) {
                 ps = con.prepareStatement(sql + "product_name = ?");
-                ps.setString(1, txt_search.getText());
+                ps.setString(1, vd.ChuanHoaChuoi(txt_search.getText()));
                 rs = ps.executeQuery();
             } else if (jComboBoxSearch.getSelectedItem().toString().equals("Brand")) {
                 ps = con.prepareStatement(sql + "brand_name = ?");
-                ps.setString(1, txt_search.getText());
+                ps.setString(1, vd.ChuanHoaChuoi(txt_search.getText()));
                 rs = ps.executeQuery();
             } else if (jComboBoxSearch.getSelectedItem().toString().equals("Category")) {
                 ps = con.prepareStatement(sql + "category_name = ?");
-                ps.setString(1, txt_search.getText());
+                ps.setString(1, vd.ChuanHoaChuoi(txt_search.getText()));
                 rs = ps.executeQuery();
             } else if (jComboBoxSearch.getSelectedItem().toString().equals("Country")) {
                 ps = con.prepareStatement(sql + "country like ?");
-                ps.setString(1, txt_search.getText());
+                ps.setString(1, vd.ChuanHoaChuoi(txt_search.getText()));
                 rs = ps.executeQuery();
             }
 

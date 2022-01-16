@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JFrame.java to edit this template
  */
-package GUI;
+package GUI; 
 
 import java.util.Random;
 import javax.swing.JOptionPane;
@@ -34,56 +34,52 @@ public class SendCode extends javax.swing.JFrame {
     private void initComponents() {
 
         jPanel1 = new javax.swing.JPanel();
-        jLabel1 = new javax.swing.JLabel();
         txtEmail = new javax.swing.JTextField();
-        jLabel2 = new javax.swing.JLabel();
         txtVer = new javax.swing.JTextField();
         jButton1 = new javax.swing.JButton();
         btn_ver = new javax.swing.JButton();
+        jLabel3 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jPanel1.setLayout(null);
-
-        jLabel1.setText("jLabel1");
-        jPanel1.add(jLabel1);
-        jLabel1.setBounds(140, 70, 38, 16);
         jPanel1.add(txtEmail);
-        txtEmail.setBounds(200, 70, 160, 22);
-
-        jLabel2.setText("jLabel2");
-        jPanel1.add(jLabel2);
-        jLabel2.setBounds(140, 150, 38, 16);
+        txtEmail.setBounds(200, 140, 160, 22);
         jPanel1.add(txtVer);
-        txtVer.setBounds(200, 150, 160, 22);
+        txtVer.setBounds(200, 210, 160, 22);
 
-        jButton1.setText("Send Email");
+        jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(220, 110, 110, 25);
+        jButton1.setBounds(220, 170, 80, 30);
 
-        btn_ver.setText("Ver");
+        btn_ver.setContentAreaFilled(false);
         btn_ver.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_verActionPerformed(evt);
             }
         });
         jPanel1.add(btn_ver);
-        btn_ver.setBounds(190, 210, 130, 25);
+        btn_ver.setBounds(220, 290, 100, 40);
+
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/lấy lại mật khẩu (1).png"))); // NOI18N
+        jLabel3.setText("jLabel3");
+        jPanel1.add(jLabel3);
+        jLabel3.setBounds(0, 0, 550, 410);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 523, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 540, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 343, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.Alignment.TRAILING, javax.swing.GroupLayout.DEFAULT_SIZE, 405, Short.MAX_VALUE)
         );
 
         pack();
@@ -154,8 +150,7 @@ public class SendCode extends javax.swing.JFrame {
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton btn_ver;
     private javax.swing.JButton jButton1;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
+    private javax.swing.JLabel jLabel3;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JTextField txtEmail;
     private javax.swing.JTextField txtVer;

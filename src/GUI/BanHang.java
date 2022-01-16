@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package GUI; 
 
 import Utils.ValidateData;
 import java.awt.Window;
@@ -770,8 +770,14 @@ public class BanHang extends javax.swing.JPanel {
         JComponent comp = (JComponent) evt.getSource();
         Window win = SwingUtilities.getWindowAncestor(comp);
         win.dispose();
-//        Main_QuanLy main = new Main_QuanLy();
-//        main.setVisible(true);        
+        if (Login.manager_state == 1){
+            Main_QuanLy main = new Main_QuanLy();
+            main.setVisible(true); 
+        } else {
+            Main_NhanVien main = new Main_NhanVien();
+            main.setVisible(true); 
+        }
+               
     }//GEN-LAST:event_jButton1ActionPerformed
 
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed

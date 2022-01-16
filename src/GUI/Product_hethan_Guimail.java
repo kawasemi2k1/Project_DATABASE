@@ -1,7 +1,7 @@
 package GUI;
 
 
-
+ 
 import java.awt.Window;
 import javax.mail.PasswordAuthentication;
 import java.sql.Connection;
@@ -127,23 +127,17 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
         menuBar1 = new java.awt.MenuBar();
         menu1 = new java.awt.Menu();
         menu2 = new java.awt.Menu();
-        TKbancham = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
         jTable1 = new javax.swing.JTable();
         btnsend = new javax.swing.JButton();
-        jLabel5 = new javax.swing.JLabel();
         txt_discount = new javax.swing.JTextField();
-        jLabel3 = new javax.swing.JLabel();
-        jLabel4 = new javax.swing.JLabel();
-        jLabel6 = new javax.swing.JLabel();
-        jLabel7 = new javax.swing.JLabel();
-        jLabel8 = new javax.swing.JLabel();
         btn_suadiscout = new javax.swing.JButton();
         jButton1 = new javax.swing.JButton();
         txtproduct_id = new javax.swing.JLabel();
         txtproduct_name = new javax.swing.JLabel();
         txtprice = new javax.swing.JLabel();
         txt_date = new javax.swing.JLabel();
+        jLabel1 = new javax.swing.JLabel();
 
         jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/bgtksp.png"))); // NOI18N
 
@@ -154,12 +148,6 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
         menuBar1.add(menu2);
 
         setLayout(null);
-
-        TKbancham.setFont(new java.awt.Font("Sitka Text", 1, 36)); // NOI18N
-        TKbancham.setForeground(new java.awt.Color(0, 0, 153));
-        TKbancham.setText("THỐNG KÊ MẶT HÀNG SẮP HẾT HẠN");
-        add(TKbancham);
-        TKbancham.setBounds(130, 20, 670, 100);
 
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -180,22 +168,17 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(70, 300, 760, 402);
+        jScrollPane1.setBounds(450, 462, 1080, 350);
 
         btnsend.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        btnsend.setText("Send");
+        btnsend.setContentAreaFilled(false);
         btnsend.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btnsendActionPerformed(evt);
             }
         });
         add(btnsend);
-        btnsend.setBounds(740, 160, 73, 25);
-
-        jLabel5.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel5.setText("Gửi Email");
-        add(jLabel5);
-        jLabel5.setBounds(610, 160, 100, 30);
+        btnsend.setBounds(1100, 350, 150, 70);
 
         txt_discount.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -203,58 +186,38 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
             }
         });
         add(txt_discount);
-        txt_discount.setBounds(440, 210, 110, 22);
+        txt_discount.setBounds(600, 362, 180, 30);
 
-        jLabel3.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel3.setText("Mã Sản Phẩm");
-        add(jLabel3);
-        jLabel3.setBounds(80, 120, 90, 17);
-
-        jLabel4.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel4.setText("Tên Sản Phẩm");
-        add(jLabel4);
-        jLabel4.setBounds(84, 170, 90, 17);
-
-        jLabel6.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel6.setText("Giá");
-        add(jLabel6);
-        jLabel6.setBounds(330, 120, 30, 17);
-
-        jLabel7.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel7.setText("Hạn sử dụng");
-        add(jLabel7);
-        jLabel7.setBounds(330, 170, 80, 17);
-
-        jLabel8.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
-        jLabel8.setText("Khuyến mãi");
-        add(jLabel8);
-        jLabel8.setBounds(330, 210, 80, 17);
-
-        btn_suadiscout.setText("Sửa");
+        btn_suadiscout.setContentAreaFilled(false);
         btn_suadiscout.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 btn_suadiscoutActionPerformed(evt);
             }
         });
         add(btn_suadiscout);
-        btn_suadiscout.setBounds(610, 120, 110, 25);
+        btn_suadiscout.setBounds(810, 350, 150, 70);
 
-        jButton1.setText("Thoát");
+        jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         add(jButton1);
-        jButton1.setBounds(740, 220, 63, 25);
+        jButton1.setBounds(0, 680, 370, 130);
         add(txtproduct_id);
-        txtproduct_id.setBounds(190, 110, 100, 30);
+        txtproduct_id.setBounds(610, 170, 170, 30);
         add(txtproduct_name);
-        txtproduct_name.setBounds(190, 160, 100, 30);
+        txtproduct_name.setBounds(1070, 150, 170, 30);
         add(txtprice);
-        txtprice.setBounds(440, 116, 110, 20);
+        txtprice.setBounds(600, 260, 180, 30);
         add(txt_date);
-        txt_date.setBounds(440, 166, 100, 20);
+        txt_date.setBounds(1070, 250, 170, 30);
+
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/thống kê sp sắp hết hạn.png"))); // NOI18N
+        jLabel1.setText("jLabel1");
+        add(jLabel1);
+        jLabel1.setBounds(0, 0, 1540, 820);
     }// </editor-fold>//GEN-END:initComponents
 
     
@@ -313,17 +276,11 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JLabel TKbancham;
     private javax.swing.JButton btn_suadiscout;
     private javax.swing.JButton btnsend;
     private javax.swing.JButton jButton1;
+    private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
-    private javax.swing.JLabel jLabel3;
-    private javax.swing.JLabel jLabel4;
-    private javax.swing.JLabel jLabel5;
-    private javax.swing.JLabel jLabel6;
-    private javax.swing.JLabel jLabel7;
-    private javax.swing.JLabel jLabel8;
     private javax.swing.JScrollPane jScrollPane1;
     private javax.swing.JTable jTable1;
     private java.awt.Menu menu1;

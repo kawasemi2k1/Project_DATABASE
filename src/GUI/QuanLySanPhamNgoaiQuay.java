@@ -1,4 +1,4 @@
-package GUI;
+package GUI; 
 import Utils.ValidateData;
 import java.awt.Color;
 import java.awt.Window;
