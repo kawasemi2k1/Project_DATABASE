@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package GUI; 
 import java.sql.*;
 
 public class Connect {
@@ -12,7 +12,7 @@ public class Connect {
         try{
             String uRL = "jdbc:sqlserver://localhost:1433;databaseName=CSDL_Project";
             String user = "sa";
-            String pass = "123";
+            String pass = "123"; 
             Class.forName("com.microsoft.sqlserver.jdbc.SQLServerDriver");
             cnn = DriverManager.getConnection(uRL, user, pass);
             System.out.println(cnn);

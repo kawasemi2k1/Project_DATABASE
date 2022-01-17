@@ -1,4 +1,4 @@
-package GUI;
+package GUI; 
 import Utils.ValidateData;
 import java.awt.Color;
 import java.awt.Window;
@@ -60,6 +60,15 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
                 tb.addRow(row);
                 tbl_sanPhamBan.setModel(tb);
             }
+             
+            tbl_sanPhamBan.getColumnModel().getColumn(0).setPreferredWidth(100);
+            tbl_sanPhamBan.getColumnModel().getColumn(1).setPreferredWidth(50);
+            tbl_sanPhamBan.getColumnModel().getColumn(2).setPreferredWidth(50);
+            tbl_sanPhamBan.getColumnModel().getColumn(3).setPreferredWidth(50);
+            tbl_sanPhamBan.getColumnModel().getColumn(4).setPreferredWidth(50);
+            tbl_sanPhamBan.getColumnModel().getColumn(5).setPreferredWidth(50);
+            
+            tbl_sanPhamBan.setRowHeight(30);
              
             st.close();
             rs.close();
@@ -139,41 +148,46 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
         setPreferredSize(new java.awt.Dimension(1920, 1020));
         setLayout(null);
 
+        txt_TenSP.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_TenSP.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyTyped(java.awt.event.KeyEvent evt) {
                 txt_TenSPKeyTyped(evt);
             }
         });
         add(txt_TenSP);
-        txt_TenSP.setBounds(510, 160, 186, 22);
+        txt_TenSP.setBounds(510, 150, 330, 40);
 
+        txt_gia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_gia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_giaKeyReleased(evt);
             }
         });
         add(txt_gia);
-        txt_gia.setBounds(510, 280, 233, 30);
+        txt_gia.setBounds(510, 280, 233, 40);
 
+        txt_giamGia.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_giamGia.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_giamGiaKeyReleased(evt);
             }
         });
         add(txt_giamGia);
-        txt_giamGia.setBounds(510, 322, 233, 30);
+        txt_giamGia.setBounds(510, 320, 233, 40);
 
+        txt_soLuong.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_soLuong.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_soLuongKeyReleased(evt);
             }
         });
         add(txt_soLuong);
-        txt_soLuong.setBounds(510, 390, 233, 30);
+        txt_soLuong.setBounds(510, 360, 233, 40);
 
+        label_thongbaoGiamGia.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         label_thongbaoGiamGia.setForeground(new java.awt.Color(255, 0, 51));
         add(label_thongbaoGiamGia);
-        label_thongbaoGiamGia.setBounds(510, 360, 350, 20);
+        label_thongbaoGiamGia.setBounds(740, 330, 180, 20);
 
         btn_them.setContentAreaFilled(false);
         btn_them.addActionListener(new java.awt.event.ActionListener() {
@@ -233,18 +247,21 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
         add(btn_search);
         btn_search.setBounds(800, 440, 100, 40);
 
+        txt_search.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_search.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_searchKeyReleased(evt);
             }
         });
         add(txt_search);
-        txt_search.setBounds(500, 440, 290, 40);
+        txt_search.setBounds(500, 440, 280, 44);
 
+        jComboBoxSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jComboBoxSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Tên sản phẩm", "Giảm Giá", "Ngày sản xuất", "Hạn sử dụng" }));
         add(jComboBoxSearch);
-        jComboBoxSearch.setBounds(360, 440, 110, 40);
+        jComboBoxSearch.setBounds(360, 440, 130, 40);
 
+        tbl_sanPhamBan.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tbl_sanPhamBan.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -267,12 +284,14 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
         jScrollPane1.setBounds(350, 510, 1140, 260);
 
         dc_ngaySX.setDate(new java.util.Date(1578102937000L));
+        dc_ngaySX.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add(dc_ngaySX);
-        dc_ngaySX.setBounds(510, 200, 190, 22);
+        dc_ngaySX.setBounds(510, 190, 220, 40);
 
         dc_hanSD.setDate(new java.util.Date(1641261337000L));
+        dc_hanSD.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add(dc_hanSD);
-        dc_hanSD.setBounds(510, 250, 186, 22);
+        dc_hanSD.setBounds(510, 232, 220, 40);
 
         jLabel8.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Frame Quản lý sản phảm bày bán.png"))); // NOI18N
         jLabel8.setText("jLabel8");
@@ -391,7 +410,7 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
                         return;
                     }
                     PreparedStatement ps = con.prepareStatement("insert into vCurrentProduct values (?, ?, ?, ?, ?, ?, ?)");
-                    ps.setString(1, GetProduct_id(txt_TenSP.getText()));
+                    ps.setString(1, GetProduct_id(vd.ChuanHoaChuoi(txt_TenSP.getText())));
                     ps.setObject(2, dc_ngaySX.getDate());
                     ps.setObject(3, dc_hanSD.getDate());
                     ps.setString(4, Store_ID);
@@ -702,7 +721,7 @@ public class QuanLySanPhamNgoaiQuay extends javax.swing.JPanel {
             label_thongbaoGiamGia.setText("");
         } else {
             if(vd.checkDiscount(txt_giamGia.getText()) != 0){
-            label_thongbaoGiamGia.setText("Giảm giá là số thuộc 0 đến 100");
+            label_thongbaoGiamGia.setText("Giảm giá thuộc 0 đến 100");
         }
         }
         

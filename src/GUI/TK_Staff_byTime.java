@@ -1,5 +1,5 @@
 
-package GUI;
+package GUI; 
 
 import java.awt.Toolkit;
 import java.sql.Connection;

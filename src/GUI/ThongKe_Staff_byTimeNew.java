@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package GUI;
 
 
@@ -91,6 +87,14 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
                 tbl_NV.setModel(tb);
             }
              
+            tbl_NV.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tbl_NV.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tbl_NV.getColumnModel().getColumn(2).setPreferredWidth(100);
+            tbl_NV.getColumnModel().getColumn(3).setPreferredWidth(100);
+            tbl_NV.getColumnModel().getColumn(4).setPreferredWidth(20);
+            
+            tbl_NV.setRowHeight(30);
+             
             st.close();
             rs.close();
             conn.close();
@@ -116,16 +120,13 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
             try {
                 Connect a = new Connect();
                 Connection conn = a.getConnectDB();
-                String sql_doanhthu = "select CONCAT(MONTH(created_date),'-',YEAR(created_date)) as MonthYear, DoanhThu from \n" +
-                                        "(\n" +
-                                        "select top(12) created_date , sum(soi.profit) as DoanhThu from sales.staffs ss\n" +
-                                        "left join sales.orders so on so.staff_id = ss.staff_id\n" +
-                                        "left join sales.order_items soi on so.order_id = soi.order_id\n" +
-                                        "where ss.staff_id = ?\n" +
-                                        "group by created_date\n" +
-                                        "order by created_date desc\n" +
-                                        ") kawasemi\n" +
-                                        "order by created_date asc";
+                String sql_doanhthu = "select top (12) MonthYear, sum(DoanhThu) as DoanhThu from (\n" +
+                                    "	select convert(datetime,CONCAT(datepart(mm, created_date),'-','01-',YEAR(created_date)),102) as MonthYear , soi.profit as DoanhThu from sales.staffs ss\n" +
+                                    "	left join sales.orders so on so.staff_id = ss.staff_id\n" +
+                                    "	left join sales.order_items soi on so.order_id = soi.order_id\n" +
+                                    "	where ss.staff_id = ?) as Abc\n" +
+                                    "	group by MonthYear\n" +
+                                    "	order by MonthYear desc";
                 PreparedStatement ps;
                 ps = conn.prepareStatement(sql_doanhthu);
                 ps.setString(1, Staff_ID);
@@ -149,13 +150,21 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
         return queryChart;
     }
      
-     
+       public String cat7kytu(String ma){
+        String cat = "";
+        String arr[] = ma.split(" ");
+        String a[] = arr[0].split("-");
+        cat = a[1].concat("-").concat(a[0]);
+        //System.out.println("***: "+ cat);
+        return cat;
+    }
+       
     private CategoryDataset createDataset(Map<String, Double> map) {
         final DefaultCategoryDataset dataset = new DefaultCategoryDataset();
         for (Map.Entry<String, Double> entry : map.entrySet()) {
             String key = entry.getKey();
             Double value = entry.getValue();
-            dataset.addValue(value, "", key);
+            dataset.addValue(value, "", cat7kytu(key));
         }
         return dataset;
     }
@@ -187,7 +196,6 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
 
         btnThoat.setBackground(new java.awt.Color(153, 0, 153));
         btnThoat.setFont(new java.awt.Font("Times New Roman", 1, 48)); // NOI18N
-        btnThoat.setText("Thoát");
         btnThoat.setContentAreaFilled(false);
         btnThoat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -195,8 +203,9 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnThoat);
-        btnThoat.setBounds(10, 600, 290, 110);
+        btnThoat.setBounds(0, 690, 360, 120);
 
+        tbl_NV.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tbl_NV.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null},
@@ -216,21 +225,23 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
         jScrollPane1.setViewportView(tbl_NV);
 
         jPanel1.add(jScrollPane1);
-        jScrollPane1.setBounds(470, 30, 560, 160);
+        jScrollPane1.setBounds(530, 160, 820, 160);
 
+        jLabel1.setFont(new java.awt.Font("Segoe UI", 1, 21)); // NOI18N
+        jLabel1.setForeground(new java.awt.Color(153, 0, 153));
         jLabel1.setText("Hãy click vào từng người để xem doanh thu những tháng gần đây");
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(30, 90, 370, 70);
+        jLabel1.setBounds(510, 80, 690, 70);
         jPanel1.add(jcontent);
-        jcontent.setBounds(310, 260, 940, 450);
+        jcontent.setBounds(440, 350, 1080, 430);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/background-đẹp-hoa-bươm-bướm.jpg"))); // NOI18N
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/thống kê time nhân viên .png"))); // NOI18N
         jLabel2.setText("jLabel2");
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(0, 0, 1330, 730);
+        jLabel2.setBounds(0, 0, 1540, 820);
 
         add(jPanel1);
-        jPanel1.setBounds(0, 0, 1260, 730);
+        jPanel1.setBounds(0, 0, 1550, 820);
     }// </editor-fold>//GEN-END:initComponents
 
     private void btnThoatActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_btnThoatActionPerformed

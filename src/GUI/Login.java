@@ -1,8 +1,9 @@
 // user: tranducmanh@gmail
 // pass: manh135792468
 // size: 1536va814
-package GUI;
+package GUI; 
 
+ 
 import Utils.ValidateData;
 import java.awt.Cursor;
 import java.awt.Toolkit;
@@ -26,6 +27,7 @@ public class Login extends javax.swing.JFrame {
      */
     public static String Staff_ID;
     public static String  Store_ID;
+    public static int manager_state;
     ValidateData vd = new ValidateData();
     public Login() {
         this.setResizable(false); // not resizeble now
@@ -36,6 +38,8 @@ public class Login extends javax.swing.JFrame {
         int ysize = (int) tk.getScreenSize().getHeight();
         System.out.println(xsize + "va" + ysize);
         this.setSize(xsize, ysize);
+        AutoDelete ad = new AutoDelete();
+        ad.AutoDeleteOrder();
     }
 
     /**
@@ -54,6 +58,7 @@ public class Login extends javax.swing.JFrame {
         label_saiTkMK = new javax.swing.JLabel();
         TKDaBiKhoa = new javax.swing.JLabel();
         jLabel1 = new javax.swing.JLabel();
+        jLabel2 = new javax.swing.JLabel();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
@@ -61,17 +66,18 @@ public class Login extends javax.swing.JFrame {
 
         jButton1.setBackground(new java.awt.Color(51, 255, 51));
         jButton1.setFont(new java.awt.Font("Segoe UI", 1, 36)); // NOI18N
-        jButton1.setText("Đăng nhập");
-        jButton1.setBorderPainted(false);
+        jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 jButton1ActionPerformed(evt);
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(930, 600, 270, 70);
+        jButton1.setBounds(920, 600, 270, 70);
+
+        txt_email.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(txt_email);
-        txt_email.setBounds(940, 330, 250, 40);
+        txt_email.setBounds(940, 340, 250, 40);
 
         txt_password.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
@@ -79,18 +85,17 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jPanel1.add(txt_password);
-        txt_password.setBounds(940, 440, 250, 41);
+        txt_password.setBounds(940, 450, 250, 41);
 
         label_saiTkMK.setFont(new java.awt.Font("Arial", 1, 14)); // NOI18N
         label_saiTkMK.setForeground(new java.awt.Color(255, 0, 0));
         jPanel1.add(label_saiTkMK);
-        label_saiTkMK.setBounds(940, 510, 250, 28);
+        label_saiTkMK.setBounds(890, 550, 250, 28);
 
         TKDaBiKhoa.setForeground(new java.awt.Color(204, 102, 255));
         jPanel1.add(TKDaBiKhoa);
         TKDaBiKhoa.setBounds(1030, 230, 297, 32);
 
-        jLabel1.setText("Quên mật khẩu ? ");
         jLabel1.addMouseMotionListener(new java.awt.event.MouseMotionAdapter() {
             public void mouseMoved(java.awt.event.MouseEvent evt) {
                 jLabel1MouseMoved(evt);
@@ -102,13 +107,20 @@ public class Login extends javax.swing.JFrame {
             }
         });
         jPanel1.add(jLabel1);
-        jLabel1.setBounds(1070, 550, 110, 30);
+        jLabel1.setBounds(1040, 500, 150, 30);
+
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/app Bán HÀNG.png"))); // NOI18N
+        jLabel2.setText("jLabel2");
+        jPanel1.add(jLabel2);
+        jLabel2.setBounds(0, 0, 1540, 830);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1552, Short.MAX_VALUE)
+            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1529, Short.MAX_VALUE)
+                .addContainerGap())
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
@@ -260,7 +272,6 @@ public class Login extends javax.swing.JFrame {
         Connect cn = new Connect();
         Connection conn = null;
         int active = 0;
-        int manager_state = 0;
         try {
             conn = cn.getConnectDB();
             String sql = "Select * from sales.staffs where email = ? and password = ?";
@@ -359,6 +370,7 @@ public class Login extends javax.swing.JFrame {
     private javax.swing.JLabel TKDaBiKhoa;
     private javax.swing.JButton jButton1;
     private javax.swing.JLabel jLabel1;
+    private javax.swing.JLabel jLabel2;
     private javax.swing.JPanel jPanel1;
     private javax.swing.JLabel label_saiTkMK;
     private javax.swing.JTextField txt_email;

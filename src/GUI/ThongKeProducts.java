@@ -1,4 +1,4 @@
-package GUI;
+package GUI; 
 
 
 
@@ -115,7 +115,7 @@ public class ThongKeProducts extends javax.swing.JPanel {
             }
         });
         add(BoxBanchay);
-        BoxBanchay.setBounds(490, 280, 90, 40);
+        BoxBanchay.setBounds(480, 270, 120, 50);
 
         BoxBancham.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         BoxBancham.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
@@ -125,13 +125,15 @@ public class ThongKeProducts extends javax.swing.JPanel {
             }
         });
         add(BoxBancham);
-        BoxBancham.setBounds(960, 270, 90, 50);
+        BoxBancham.setBounds(960, 270, 120, 50);
 
         datefrom.setDate(new java.util.Date(1610103917000L));
+        datefrom.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         add(datefrom);
-        datefrom.setBounds(640, 140, 150, 40);
+        datefrom.setBounds(640, 140, 170, 50);
 
         dateto.setDate(new java.util.Date(1641261337000L));
+        dateto.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         add(dateto);
         dateto.setBounds(1150, 140, 160, 40);
 

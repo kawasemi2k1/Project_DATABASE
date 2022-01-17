@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package GUI;
 
 //import static com.sun.org.apache.xalan.internal.xsltc.compiler.util.Type.Int;
@@ -72,19 +68,21 @@ public class ThongKe_Cat extends javax.swing.JPanel {
         try {
             Connect a = new Connect();
             Connection conn = a.getConnectDB();
-            String sql_doanhthu = "select pc.category_name as Ten, sum(so.profit) as Tien from production.categories pc\n"
-                    + "left join production.products pp on pc.category_id = pp.category_id\n"
-                    + "left join sales.order_items so on so.product_id = pp.product_id\n"
-                    + "left join sales.orders sod on sod.order_id = so.order_id\n"
-                    + "where so.store_id = (?) and (sod.created_date between  (?) and (?) OR pp.product_id not in (select product_id from sales.order_items))\n"
-                    + "group by pc.category_name";
+            String sql_doanhthu = "select top(9) pc.category_name as Ten, sum(so.profit) as Tien from production.categories pc\n" +
+                                "left join production.products pp on pc.category_id = pp.category_id\n" +
+                                "left join sales.order_items so on so.product_id = pp.product_id\n" +
+                                "left join sales.orders sod on sod.order_id = so.order_id\n" +
+                                "where so.order_id not in (select order_id from sales.orders where store_id = ?) or (so.store_id = ? and sod.created_date between  ? and ?)\n" +
+                                "group by pc.category_name\n" +
+                                "order by Tien desc";
             PreparedStatement ps;
             ps = conn.prepareStatement(sql_doanhthu);
             java.sql.Date jdate1 = new java.sql.Date(tdate1.getTime());
             java.sql.Date jdate2 = new java.sql.Date(tdate2.getTime());
             ps.setInt(1, store);
-            ps.setDate(2, jdate1);
-            ps.setDate(3, jdate2);
+            ps.setInt(2, store);
+            ps.setDate(3, jdate1);
+            ps.setDate(4, jdate2);
             ResultSet rs = ps.executeQuery();
             while (rs.next()) {
                 System.out.println("1");
@@ -153,19 +151,21 @@ public class ThongKe_Cat extends javax.swing.JPanel {
         try {
             Connect a = new Connect();
             Connection conn = a.getConnectDB();
-            String sql_doanhthu = "select pc.category_name as Ten, count(so.profit) as So from production.categories pc\n"
-                    + "left join production.products pp on pc.category_id = pp.category_id\n"
-                    + "left join sales.order_items so on so.product_id = pp.product_id\n"
-                    + "left join sales.orders sod on sod.order_id = so.order_id\n"
-                    + "where so.store_id = (?) and (sod.created_date between  (?) and (?) OR pp.product_id not in (select product_id from sales.order_items))\n"
-                    + "group by pc.category_name";
+            String sql_doanhthu = "select top(9) pc.category_name as Ten, count(so.profit) as So from production.categories pc\n" +
+                            "left join production.products pp on pc.category_id = pp.category_id\n" +
+                            "left join sales.order_items so on so.product_id = pp.product_id\n" +
+                            "left join sales.orders sod on sod.order_id = so.order_id\n" +
+                            "where so.order_id not in (select order_id from sales.orders where store_id = ?) or (so.store_id = ? and sod.created_date between  ? and ?)\n" +
+                            "group by pc.category_name\n" +
+                            "order by so desc";
             PreparedStatement ps;
             ps = conn.prepareStatement(sql_doanhthu);
             java.sql.Date jdate1 = new java.sql.Date(tdate1.getTime());
             java.sql.Date jdate2 = new java.sql.Date(tdate2.getTime());
             ps.setInt(1, store);
-            ps.setDate(2, jdate1);
-            ps.setDate(3, jdate2);
+            ps.setInt(2, store);
+            ps.setDate(3, jdate1);
+            ps.setDate(4, jdate2);
             ResultSet rs = ps.executeQuery();
             ResultSetMetaData metadata = rs.getMetaData();
             Integer number = metadata.getColumnCount();
@@ -241,7 +241,7 @@ public class ThongKe_Cat extends javax.swing.JPanel {
 
         setLayout(null);
         add(jcontent);
-        jcontent.setBounds(400, 360, 1140, 450);
+        jcontent.setBounds(400, 340, 1140, 450);
 
         jButton1.setContentAreaFilled(false);
         jButton1.setCursor(new java.awt.Cursor(java.awt.Cursor.DEFAULT_CURSOR));
@@ -272,10 +272,12 @@ public class ThongKe_Cat extends javax.swing.JPanel {
         jButton3.setBounds(0, 690, 370, 110);
 
         date1.setDate(new java.util.Date(1578102937000L));
+        date1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         add(date1);
         date1.setBounds(620, 130, 180, 50);
 
         date2.setDate(new java.util.Date(1641722768000L));
+        date2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         add(date2);
         date2.setBounds(1110, 130, 160, 50);
 

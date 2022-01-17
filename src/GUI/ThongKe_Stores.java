@@ -1,8 +1,4 @@
-/*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+
 package GUI;
 
 import com.toedter.calendar.JDateChooser;
@@ -74,8 +70,11 @@ public class ThongKe_Stores extends javax.swing.JPanel {
         jButton1.setBounds(610, 248, 150, 70);
 
         date1.setDate(new java.util.Date(1578101857000L));
+        date1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(date1);
         date1.setBounds(640, 136, 190, 50);
+
+        date2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(date2);
         date2.setBounds(1120, 136, 200, 50);
         jPanel1.add(jcontent);

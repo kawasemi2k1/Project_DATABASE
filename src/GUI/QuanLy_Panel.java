@@ -2,7 +2,7 @@
  * Click nbfs://nbhost/SystemFileSystem/Templates/Licenses/license-default.txt to change this license
  * Click nbfs://nbhost/SystemFileSystem/Templates/GUIForms/JPanel.java to edit this template
  */
-package GUI;
+package GUI; 
 
 import java.awt.Window;
 import javax.swing.JComponent;
@@ -47,7 +47,7 @@ public class QuanLy_Panel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(170, 220, 270, 140);
+        jButton1.setBounds(290, 240, 250, 130);
 
         jButton2.setContentAreaFilled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -56,7 +56,7 @@ public class QuanLy_Panel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(jButton2);
-        jButton2.setBounds(170, 400, 260, 140);
+        jButton2.setBounds(300, 420, 240, 120);
 
         jButton3.setContentAreaFilled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -65,7 +65,7 @@ public class QuanLy_Panel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(jButton3);
-        jButton3.setBounds(560, 220, 270, 130);
+        jButton3.setBounds(690, 240, 240, 130);
 
         jButton4.setContentAreaFilled(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -74,22 +74,23 @@ public class QuanLy_Panel extends javax.swing.JPanel {
             }
         });
         jPanel1.add(jButton4);
-        jButton4.setBounds(570, 410, 270, 140);
+        jButton4.setBounds(690, 420, 240, 130);
 
-        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/QL part2.png"))); // NOI18N
-        jLabel2.setText("jLabel2");
+        jLabel2.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/QLi bản mới nhất.png"))); // NOI18N
         jPanel1.add(jLabel2);
-        jLabel2.setBounds(0, 0, 1020, 800);
+        jLabel2.setBounds(0, 0, 1220, 860);
 
         javax.swing.GroupLayout jpnViewLayout = new javax.swing.GroupLayout(jpnView);
         jpnView.setLayout(jpnViewLayout);
         jpnViewLayout.setHorizontalGroup(
             jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1022, Short.MAX_VALUE)
+            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 1229, Short.MAX_VALUE)
         );
         jpnViewLayout.setVerticalGroup(
             jpnViewLayout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 806, Short.MAX_VALUE)
+            .addGroup(jpnViewLayout.createSequentialGroup()
+                .addComponent(jPanel1, javax.swing.GroupLayout.DEFAULT_SIZE, 849, Short.MAX_VALUE)
+                .addContainerGap())
         );
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
@@ -104,29 +105,29 @@ public class QuanLy_Panel extends javax.swing.JPanel {
         );
     }// </editor-fold>//GEN-END:initComponents
 
-    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
-        // TODO add your handling code here:
-        QL_SPChuoiCuaHang ql = new QL_SPChuoiCuaHang();
-        ql.setVisible(true);
-    }//GEN-LAST:event_jButton4ActionPerformed
-
     private void jButton2ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton2ActionPerformed
         // TODO add your handling code here:
         QL_SPNgoaiQuay ql = new QL_SPNgoaiQuay();
         ql.setVisible(true);
     }//GEN-LAST:event_jButton2ActionPerformed
 
-    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
-        // TODO add your handling code here:
-        QL_NhanVien ql = new QL_NhanVien();
-        ql.setVisible(true);
-    }//GEN-LAST:event_jButton1ActionPerformed
-
     private void jButton3ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton3ActionPerformed
         // TODO add your handling code here:
         QL_KhachHang ql = new QL_KhachHang();
         ql.setVisible(true);
     }//GEN-LAST:event_jButton3ActionPerformed
+
+    private void jButton4ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton4ActionPerformed
+        // TODO add your handling code here:
+        QL_SPChuoiCuaHang ql = new QL_SPChuoiCuaHang();
+        ql.setVisible(true);
+    }//GEN-LAST:event_jButton4ActionPerformed
+
+    private void jButton1ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton1ActionPerformed
+        // TODO add your handling code here:
+        QL_NhanVien ql = new QL_NhanVien();
+        ql.setVisible(true);
+    }//GEN-LAST:event_jButton1ActionPerformed
 
 
     // Variables declaration - do not modify//GEN-BEGIN:variables

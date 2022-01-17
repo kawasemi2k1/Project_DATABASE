@@ -54,6 +54,9 @@ CREATE TABLE sales.staffs (
 	FOREIGN KEY (store_id) REFERENCES sales.stores (store_id)  
 );
 
+alter table sales.staffs
+alter column password varchar (200) not null
+
 CREATE TABLE sales.orders (
 	order_id INT IDENTITY (1, 1) PRIMARY KEY,
 	customer_id INT not null,

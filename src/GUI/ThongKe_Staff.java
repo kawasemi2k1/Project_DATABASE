@@ -1,5 +1,5 @@
 package GUI;
-
+ 
 import java.awt.Toolkit;
 import java.awt.Window;
 import java.sql.Connection;
@@ -152,10 +152,14 @@ public class ThongKe_Staff extends javax.swing.JPanel {
         jLabel3 = new javax.swing.JLabel();
 
         jPanel1.setLayout(null);
+
+        date1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(date1);
         date1.setBounds(610, 140, 170, 50);
+
+        date2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(date2);
-        date2.setBounds(1100, 130, 180, 60);
+        date2.setBounds(1100, 130, 180, 50);
 
         jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
@@ -164,7 +168,7 @@ public class ThongKe_Staff extends javax.swing.JPanel {
             }
         });
         jPanel1.add(jButton1);
-        jButton1.setBounds(590, 250, 150, 70);
+        jButton1.setBounds(900, 210, 140, 60);
         jPanel1.add(jcontent);
         jcontent.setBounds(370, 340, 1150, 460);
 
@@ -186,8 +190,7 @@ public class ThongKe_Staff extends javax.swing.JPanel {
         jPanel1.add(jButton3);
         jButton3.setBounds(10, 690, 340, 120);
 
-        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/THỐNG KÊ nhân viên.png"))); // NOI18N
-        jLabel3.setText("jLabel3");
+        jLabel3.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/THỐNG KÊ full nhân viên.png"))); // NOI18N
         jPanel1.add(jLabel3);
         jLabel3.setBounds(-20, 0, 1570, 820);
 

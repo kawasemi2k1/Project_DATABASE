@@ -1,4 +1,4 @@
-package GUI;
+package GUI; 
 
 import java.awt.Toolkit;
 import java.awt.Window;
@@ -148,12 +148,14 @@ public class ThongKe_Customer extends javax.swing.JPanel {
         jPanel1.setLayout(null);
 
         date1.setDate(new java.util.Date(1578102937000L));
+        date1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(date1);
         date1.setBounds(620, 140, 160, 50);
 
         date2.setDate(new java.util.Date(1641261337000L));
+        date2.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jPanel1.add(date2);
-        date2.setBounds(1110, 140, 200, 40);
+        date2.setBounds(1110, 140, 200, 50);
 
         jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {

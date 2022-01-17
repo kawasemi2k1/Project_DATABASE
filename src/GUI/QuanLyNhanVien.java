@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package GUI; 
 
 
 import Utils.ValidateData;
@@ -129,7 +129,17 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                 }
                 tbn.addRow(row);
                 jTable1.setModel(tbn);  
-            } 
+            }
+            
+            jTable1.getColumnModel().getColumn(0).setPreferredWidth(10);
+            jTable1.getColumnModel().getColumn(1).setPreferredWidth(100);
+            jTable1.getColumnModel().getColumn(2).setPreferredWidth(100);
+            jTable1.getColumnModel().getColumn(3).setPreferredWidth(100);
+            jTable1.getColumnModel().getColumn(4).setPreferredWidth(30);
+            jTable1.getColumnModel().getColumn(5).setPreferredWidth(30);
+            jTable1.getColumnModel().getColumn(6).setPreferredWidth(30);
+            
+            jTable1.setRowHeight(30);
         st.close();
         rs.close();
         conn.close();  
@@ -186,42 +196,49 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
 
         jPanel1.setLayout(null);
 
+        txtStaffID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtStaffID.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtStaffIDActionPerformed(evt);
             }
         });
         jPanel1.add(txtStaffID);
-        txtStaffID.setBounds(490, 160, 200, 26);
+        txtStaffID.setBounds(460, 150, 220, 40);
 
+        txtPhone.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtPhone.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txtPhoneActionPerformed(evt);
             }
         });
         jPanel1.add(txtPhone);
-        txtPhone.setBounds(490, 280, 200, 22);
-        jPanel1.add(txtEmail);
-        txtEmail.setBounds(490, 320, 200, 22);
+        txtPhone.setBounds(460, 252, 220, 40);
 
+        txtEmail.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel1.add(txtEmail);
+        txtEmail.setBounds(460, 302, 300, 40);
+
+        cbActive.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cbActive.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbActiveActionPerformed(evt);
             }
         });
         jPanel1.add(cbActive);
-        cbActive.setBounds(900, 200, 220, 24);
+        cbActive.setBounds(900, 190, 220, 40);
 
+        cbManagerstate.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         jPanel1.add(cbManagerstate);
-        cbManagerstate.setBounds(900, 240, 220, 24);
+        cbManagerstate.setBounds(900, 240, 220, 40);
 
+        txtTimkiem.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txtTimkiem.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txtTimkiemKeyReleased(evt);
             }
         });
         jPanel1.add(txtTimkiem);
-        txtTimkiem.setBounds(490, 440, 250, 40);
+        txtTimkiem.setBounds(500, 450, 250, 50);
 
         btnThem.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnThem.setContentAreaFilled(false);
@@ -231,7 +248,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnThem);
-        btnThem.setBounds(1190, 90, 200, 90);
+        btnThem.setBounds(1190, 100, 200, 90);
 
         btnSua.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnSua.setContentAreaFilled(false);
@@ -241,7 +258,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnSua);
-        btnSua.setBounds(1190, 230, 210, 110);
+        btnSua.setBounds(1190, 250, 210, 110);
 
         btnXoa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnXoa.setContentAreaFilled(false);
@@ -251,7 +268,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnXoa);
-        btnXoa.setBounds(1190, 380, 200, 110);
+        btnXoa.setBounds(1190, 390, 200, 110);
 
         btnThoat.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnThoat.setContentAreaFilled(false);
@@ -263,6 +280,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
         jPanel1.add(btnThoat);
         btnThoat.setBounds(0, 690, 290, 110);
 
+        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null, null, null, null},
@@ -283,16 +301,19 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
 
         jPanel1.add(jScrollPane1);
         jScrollPane1.setBounds(345, 509, 1150, 270);
-        jPanel1.add(txtName);
-        txtName.setBounds(490, 200, 200, 22);
 
+        txtName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        jPanel1.add(txtName);
+        txtName.setBounds(460, 200, 220, 40);
+
+        cbGender.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         cbGender.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 cbGenderActionPerformed(evt);
             }
         });
         jPanel1.add(cbGender);
-        cbGender.setBounds(490, 240, 140, 24);
+        cbGender.setBounds(900, 134, 220, 40);
 
         btnSearch.setBackground(new java.awt.Color(51, 51, 255));
         btnSearch.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
@@ -305,11 +326,12 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnSearch);
-        btnSearch.setBounds(770, 440, 130, 40);
+        btnSearch.setBounds(770, 450, 130, 40);
 
+        BoxSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         BoxSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "Item 1", "Item 2", "Item 3", "Item 4" }));
         jPanel1.add(BoxSearch);
-        BoxSearch.setBounds(360, 440, 100, 40);
+        BoxSearch.setBounds(360, 450, 100, 40);
 
         Btn_Reset.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         Btn_Reset.setContentAreaFilled(false);
@@ -319,12 +341,12 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             }
         });
         jPanel1.add(Btn_Reset);
-        Btn_Reset.setBounds(950, 390, 200, 90);
+        Btn_Reset.setBounds(950, 400, 200, 90);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Frame Quản lý nhân viên.png"))); // NOI18N
         jLabel7.setText("jLabel7");
         jPanel1.add(jLabel7);
-        jLabel7.setBounds(0, 0, 1540, 814);
+        jLabel7.setBounds(0, 10, 1540, 814);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
@@ -442,7 +464,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
                         tbn.setRowCount(0);
                         loadData();
                         sendEmail_QuenMK send = new sendEmail_QuenMK();
-                        send.sendmail(Email, randomCode);
+                        send.sendmail(Email, randomCode, "Mật khẩu của bạn");
                     }
                 }   
             }

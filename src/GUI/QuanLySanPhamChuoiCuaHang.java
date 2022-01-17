@@ -3,7 +3,7 @@
  * To change this template file, choose Tools | Templates
  * and open the template in the editor.
  */
-package GUI;
+package GUI; 
 
 import Utils.ValidateData;
 import java.awt.Window;
@@ -69,6 +69,15 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
                 tbn.addRow(row);
                 tbl_sp.setModel(tbn);
             }
+            
+            tbl_sp.getColumnModel().getColumn(0).setPreferredWidth(10);
+            tbl_sp.getColumnModel().getColumn(1).setPreferredWidth(100);
+            tbl_sp.getColumnModel().getColumn(2).setPreferredWidth(50);
+            tbl_sp.getColumnModel().getColumn(3).setPreferredWidth(30);
+            tbl_sp.getColumnModel().getColumn(4).setPreferredWidth(30);
+            tbl_sp.getColumnModel().getColumn(5).setPreferredWidth(30);
+            
+            tbl_sp.setRowHeight(30);
 
             tbl_sp.getSelectionModel().addListSelectionListener(new ListSelectionListener() {
                 @Override
@@ -455,6 +464,7 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
         jPanel2.setMinimumSize(new java.awt.Dimension(5, 5));
         jPanel2.setPreferredSize(new java.awt.Dimension(1920, 1030));
 
+        tbl_sp.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         tbl_sp.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -482,19 +492,26 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
         add(jPanel2);
         jPanel2.setBounds(350, 510, 1140, 260);
 
+        txt_price.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_price.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_priceKeyReleased(evt);
             }
         });
         add(txt_price);
-        txt_price.setBounds(500, 370, 300, 30);
+        txt_price.setBounds(500, 360, 300, 40);
+
+        txt_brand.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add(txt_brand);
-        txt_brand.setBounds(500, 290, 300, 30);
+        txt_brand.setBounds(500, 280, 300, 40);
+
+        txt_id.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add(txt_id);
-        txt_id.setBounds(500, 160, 300, 30);
+        txt_id.setBounds(500, 150, 300, 40);
+
+        txt_name.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add(txt_name);
-        txt_name.setBounds(500, 200, 300, 30);
+        txt_name.setBounds(500, 200, 300, 40);
 
         btn_them.setContentAreaFilled(false);
         btn_them.addActionListener(new java.awt.event.ActionListener() {
@@ -523,15 +540,18 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
         add(btn_xoa);
         btn_xoa.setBounds(920, 290, 210, 100);
 
+        txt_cat.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_cat.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
                 txt_catActionPerformed(evt);
             }
         });
         add(txt_cat);
-        txt_cat.setBounds(500, 250, 300, 30);
+        txt_cat.setBounds(500, 240, 300, 40);
+
+        txt_country.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add(txt_country);
-        txt_country.setBounds(500, 330, 300, 30);
+        txt_country.setBounds(500, 320, 300, 40);
 
         btn_thoat.setContentAreaFilled(false);
         btn_thoat.addActionListener(new java.awt.event.ActionListener() {
@@ -551,10 +571,12 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
         add(btn_reset);
         btn_reset.setBounds(1183, 290, 210, 110);
 
+        jComboBoxSearch.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jComboBoxSearch.setModel(new javax.swing.DefaultComboBoxModel<>(new String[] { "ID", "Name", "Brand", "Category", "Country" }));
         add(jComboBoxSearch);
         jComboBoxSearch.setBounds(350, 430, 100, 50);
 
+        txt_search.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         txt_search.addKeyListener(new java.awt.event.KeyAdapter() {
             public void keyReleased(java.awt.event.KeyEvent evt) {
                 txt_searchKeyReleased(evt);
@@ -706,8 +728,8 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
             //String brand_name_copy;
             //String cat_name_copy;
 
-            brand_id = Lay_brand_id(txt_brand.getText());
-            cat_id = Lay_cat_id(txt_cat.getText());
+            brand_id = Lay_brand_id(vd.ChuanHoaChuoi(txt_brand.getText()));
+            cat_id = Lay_cat_id(vd.ChuanHoaChuoi(txt_cat.getText()));
             product_id = txt_id.getText();
 
             String brand_id_copy = Lay_brand_id_Tu_Product_Id(product_id);
@@ -724,26 +746,26 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
             if (brand_id.length() == 0) {
                 String sql_brand = "insert into production.brands(brand_name,country) Values(?,?)";
                 PreparedStatement ps_brand = conn.prepareStatement(sql_brand);
-                ps_brand.setString(1, txt_brand.getText());
-                ps_brand.setString(2, txt_country.getText());
+                ps_brand.setString(1, vd.ChuanHoaChuoi(txt_brand.getText()));
+                ps_brand.setString(2, vd.ChuanHoaChuoi(txt_country.getText()));
                 chk_brand = ps_brand.executeUpdate();
-                brand_id = Lay_brand_id(txt_brand.getText());
+                brand_id = Lay_brand_id(vd.ChuanHoaChuoi(txt_brand.getText()));
             }
 
             if (cat_id.length() == 0) {
                 String sql_cat = "insert into production.categories(category_name) Values(?)";
                 PreparedStatement ps_cat = conn.prepareStatement(sql_cat);
-                ps_cat.setString(1, txt_cat.getText());
+                ps_cat.setString(1, vd.ChuanHoaChuoi(txt_cat.getText()));
                 chk_cat = ps_cat.executeUpdate();
-                cat_id = Lay_cat_id(txt_cat.getText());
+                cat_id = Lay_cat_id(vd.ChuanHoaChuoi(txt_cat.getText()));
             }
 
             PreparedStatement comm = conn.prepareStatement("Update production.products set product_name = ?, brand_id = ?, category_id = ?, price = ? where product_id = ?");
-            comm.setString(1, txt_name.getText());
+            comm.setString(1, vd.ChuanHoaChuoi(txt_name.getText()));
             comm.setString(3, cat_id);
             comm.setString(2, brand_id);
             comm.setString(4, price);
-            comm.setString(5, txt_id.getText());
+            comm.setString(5, vd.ChuanHoaChuoi(txt_id.getText()));
             comm.executeUpdate();
 
             //brand_id = Lay_brand_id(brand_name_copy);
@@ -854,26 +876,27 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
 
             if (jComboBoxSearch.getSelectedItem().toString().equals("ID")) {
                 ps = con.prepareStatement(sql + "product_id like ?");
-                str1 = "%" + txt_search.getText() + "%";
+                str1 = "%" + vd.ChuanHoaChuoi(txt_search.getText()) + "%";
                 ps.setString(1, str1);
                 rs = ps.executeQuery();
             } else if (jComboBoxSearch.getSelectedItem().toString().equals("Name")) {
                 ps = con.prepareStatement(sql + "product_name like ?");
-                str1 = "%" + txt_search.getText() + "%";
+                str1 = "%" + vd.ChuanHoaChuoi(txt_search.getText()) + "%";
                 ps.setString(1, str1);
                 rs = ps.executeQuery();
             } else if (jComboBoxSearch.getSelectedItem().toString().equals("Brand")) {
                 ps = con.prepareStatement(sql + "brand_name like ?");
-                str1 = "%" + txt_search.getText() + "%";
+                str1 = "%" + vd.ChuanHoaChuoi(txt_search.getText()) + "%";
                 ps.setString(1, str1);
                 rs = ps.executeQuery();
             } else if (jComboBoxSearch.getSelectedItem().toString().equals("Category")) {
                 ps = con.prepareStatement(sql + "category_name like ?");
-                ps.setString(1, txt_search.getText());
+                str1 = "%" + vd.ChuanHoaChuoi(txt_search.getText()) + "%";
+                ps.setString(1, str1);
                 rs = ps.executeQuery();
             } else if (jComboBoxSearch.getSelectedItem().toString().equals("Country")) {
                 ps = con.prepareStatement(sql + "country like ?");
-                str1 = "%" + txt_search.getText() + "%";
+                str1 = "%" + vd.ChuanHoaChuoi(txt_search.getText()) + "%";
                 ps.setString(1, str1);
                 rs = ps.executeQuery();
             }
@@ -923,23 +946,23 @@ public class QuanLySanPhamChuoiCuaHang extends javax.swing.JPanel {
 
             if (jComboBoxSearch.getSelectedItem().toString().equals("ID")) {
                 ps = con.prepareStatement(sql + "product_id = ?");
-                ps.setString(1, txt_search.getText());
+                ps.setString(1, vd.ChuanHoaChuoi(txt_search.getText()));
                 rs = ps.executeQuery();
             } else if (jComboBoxSearch.getSelectedItem().toString().equals("Name")) {
                 ps = con.prepareStatement(sql + "product_name = ?");
-                ps.setString(1, txt_search.getText());
+                ps.setString(1, vd.ChuanHoaChuoi(txt_search.getText()));
                 rs = ps.executeQuery();
             } else if (jComboBoxSearch.getSelectedItem().toString().equals("Brand")) {
                 ps = con.prepareStatement(sql + "brand_name = ?");
-                ps.setString(1, txt_search.getText());
+                ps.setString(1, vd.ChuanHoaChuoi(txt_search.getText()));
                 rs = ps.executeQuery();
             } else if (jComboBoxSearch.getSelectedItem().toString().equals("Category")) {
                 ps = con.prepareStatement(sql + "category_name = ?");
-                ps.setString(1, txt_search.getText());
+                ps.setString(1, vd.ChuanHoaChuoi(txt_search.getText()));
                 rs = ps.executeQuery();
             } else if (jComboBoxSearch.getSelectedItem().toString().equals("Country")) {
                 ps = con.prepareStatement(sql + "country like ?");
-                ps.setString(1, txt_search.getText());
+                ps.setString(1, vd.ChuanHoaChuoi(txt_search.getText()));
                 rs = ps.executeQuery();
             }
 

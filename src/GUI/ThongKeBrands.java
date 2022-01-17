@@ -1,5 +1,5 @@
 package GUI;
-
+ 
 
 //import static com.sun.org.apache.xalan.internal.lib.ExsltDynamic.map;
 import java.awt.Window;
@@ -70,6 +70,7 @@ public class ThongKeBrands extends javax.swing.JPanel {
         add(BtnBanchay);
         BtnBanchay.setBounds(610, 250, 150, 70);
 
+        jTable1.setFont(new java.awt.Font("Segoe UI", 0, 14)); // NOI18N
         jTable1.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
@@ -115,10 +116,14 @@ public class ThongKeBrands extends javax.swing.JPanel {
         });
         add(BoxTKBrand_Cham);
         BoxTKBrand_Cham.setBounds(950, 270, 120, 50);
+
+        datefrom.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add(datefrom);
-        datefrom.setBounds(640, 130, 130, 50);
+        datefrom.setBounds(640, 130, 190, 50);
+
+        dateto.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
         add(dateto);
-        dateto.setBounds(1120, 140, 140, 40);
+        dateto.setBounds(1120, 130, 200, 50);
 
         jButton1.setContentAreaFilled(false);
         jButton1.addActionListener(new java.awt.event.ActionListener() {
