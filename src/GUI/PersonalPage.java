@@ -95,18 +95,38 @@ public class PersonalPage extends javax.swing.JFrame {
         jLabel9.setText("Thông tin cá nhân");
         getContentPane().add(jLabel9);
         jLabel9.setBounds(70, 90, 240, 30);
+
+        txtID.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtID.setText("a");
         getContentPane().add(txtID);
-        txtID.setBounds(180, 130, 140, 20);
+        txtID.setBounds(170, 130, 160, 30);
+
+        txtName.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtName.setText("a");
         getContentPane().add(txtName);
-        txtName.setBounds(187, 160, 120, 19);
+        txtName.setBounds(170, 170, 160, 30);
+
+        txtGender.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtGender.setText("a");
         getContentPane().add(txtGender);
-        txtGender.setBounds(180, 200, 137, 21);
+        txtGender.setBounds(170, 200, 150, 30);
+
+        txtPhone.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtPhone.setText("a");
         getContentPane().add(txtPhone);
-        txtPhone.setBounds(190, 230, 140, 21);
+        txtPhone.setBounds(170, 230, 140, 30);
+
+        txtStore.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtStore.setText("a");
         getContentPane().add(txtStore);
-        txtStore.setBounds(200, 270, 129, 21);
+        txtStore.setBounds(170, 260, 160, 30);
+
+        txtLevel.setFont(new java.awt.Font("Segoe UI", 0, 18)); // NOI18N
+        txtLevel.setText("a");
         getContentPane().add(txtLevel);
-        txtLevel.setBounds(180, 300, 140, 22);
+        txtLevel.setBounds(170, 300, 160, 30);
+
+        txtEmail.setFont(new java.awt.Font("Segoe UI", 0, 11)); // NOI18N
         getContentPane().add(txtEmail);
         txtEmail.setBounds(420, 140, 160, 24);
 

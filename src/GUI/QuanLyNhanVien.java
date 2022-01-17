@@ -248,7 +248,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnThem);
-        btnThem.setBounds(1190, 90, 200, 90);
+        btnThem.setBounds(1190, 100, 200, 90);
 
         btnSua.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnSua.setContentAreaFilled(false);
@@ -258,7 +258,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnSua);
-        btnSua.setBounds(1190, 230, 210, 110);
+        btnSua.setBounds(1190, 250, 210, 110);
 
         btnXoa.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnXoa.setContentAreaFilled(false);
@@ -268,7 +268,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             }
         });
         jPanel1.add(btnXoa);
-        btnXoa.setBounds(1190, 380, 200, 110);
+        btnXoa.setBounds(1190, 390, 200, 110);
 
         btnThoat.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnThoat.setContentAreaFilled(false);
@@ -341,7 +341,7 @@ public class QuanLyNhanVien extends javax.swing.JPanel {
             }
         });
         jPanel1.add(Btn_Reset);
-        Btn_Reset.setBounds(950, 390, 200, 90);
+        Btn_Reset.setBounds(950, 400, 200, 90);
 
         jLabel7.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Frame Quản lý nhân viên.png"))); // NOI18N
         jLabel7.setText("jLabel7");

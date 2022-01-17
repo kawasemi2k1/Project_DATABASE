@@ -44,13 +44,13 @@ public class TK_Store_byTime extends javax.swing.JFrame {
             try {
                 Connect a = new Connect();
                 Connection conn = a.getConnectDB();
-                String sql_doanhthu = "select MonthYear, sum(DoanhThu) as DoanhThu from (\n" +
+                String sql_doanhthu = "select top (12) MonthYear, sum(DoanhThu) as DoanhThu from (\n" +
                                     "	select convert(datetime,CONCAT(datepart(mm, created_date),'-','01-',YEAR(created_date)),102) as MonthYear , soi.profit as DoanhThu \n" +
                                     "	from sales.order_items soi\n" +
                                     "	left join sales.orders so on so.order_id = soi.order_id\n" +
                                     "	where store_id = ?) as Abc\n" +
                                     "	group by MonthYear\n" +
-                                    "	order by MonthYear";
+                                    "	order by MonthYear desc";
                 PreparedStatement ps;
                 ps = conn.prepareStatement(sql_doanhthu);
                 ps.setString(1, Login.Store_ID);

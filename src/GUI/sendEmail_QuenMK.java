@@ -28,7 +28,7 @@ public class sendEmail_QuenMK {
             email.setSSLOnConnect(true);
 
             // Người gửi
-            email.setFrom("hellomoinguinhe@gmail.com", "Công chúa phép thuật");
+            email.setFrom("hellomoinguinhe@gmail.com", "Store Hy Nguyệt");
 
             // Tiêu đề
             email.setSubject(tieuDe); //Tiêu đề khi gửi email

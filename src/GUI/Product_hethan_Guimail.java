@@ -168,7 +168,7 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
         jScrollPane1.setViewportView(jTable1);
 
         add(jScrollPane1);
-        jScrollPane1.setBounds(450, 462, 1080, 350);
+        jScrollPane1.setBounds(420, 460, 1060, 350);
 
         btnsend.setFont(new java.awt.Font("Times New Roman", 1, 14)); // NOI18N
         btnsend.setContentAreaFilled(false);

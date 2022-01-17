@@ -46,7 +46,7 @@ public class ThongKe_Panel extends javax.swing.JPanel {
             }
         });
         jpnView.add(jButton1);
-        jButton1.setBounds(730, 380, 200, 140);
+        jButton1.setBounds(800, 370, 200, 130);
 
         jButton2.setContentAreaFilled(false);
         jButton2.addActionListener(new java.awt.event.ActionListener() {
@@ -55,7 +55,7 @@ public class ThongKe_Panel extends javax.swing.JPanel {
             }
         });
         jpnView.add(jButton2);
-        jButton2.setBounds(730, 160, 210, 130);
+        jButton2.setBounds(800, 160, 190, 130);
 
         jButton3.setContentAreaFilled(false);
         jButton3.addActionListener(new java.awt.event.ActionListener() {
@@ -64,7 +64,7 @@ public class ThongKe_Panel extends javax.swing.JPanel {
             }
         });
         jpnView.add(jButton3);
-        jButton3.setBounds(460, 160, 200, 130);
+        jButton3.setBounds(540, 160, 190, 130);
 
         jButton4.setContentAreaFilled(false);
         jButton4.addActionListener(new java.awt.event.ActionListener() {
@@ -73,7 +73,7 @@ public class ThongKe_Panel extends javax.swing.JPanel {
             }
         });
         jpnView.add(jButton4);
-        jButton4.setBounds(190, 380, 200, 140);
+        jButton4.setBounds(280, 370, 200, 140);
 
         jButton5.setContentAreaFilled(false);
         jButton5.addActionListener(new java.awt.event.ActionListener() {
@@ -82,7 +82,7 @@ public class ThongKe_Panel extends javax.swing.JPanel {
             }
         });
         jpnView.add(jButton5);
-        jButton5.setBounds(460, 380, 210, 140);
+        jButton5.setBounds(540, 380, 190, 120);
 
         jButton6.setContentAreaFilled(false);
         jButton6.addActionListener(new java.awt.event.ActionListener() {
@@ -91,7 +91,7 @@ public class ThongKe_Panel extends javax.swing.JPanel {
             }
         });
         jpnView.add(jButton6);
-        jButton6.setBounds(460, 600, 210, 140);
+        jButton6.setBounds(540, 580, 190, 140);
 
         jButton7.setContentAreaFilled(false);
         jButton7.addActionListener(new java.awt.event.ActionListener() {
@@ -100,7 +100,7 @@ public class ThongKe_Panel extends javax.swing.JPanel {
             }
         });
         jpnView.add(jButton7);
-        jButton7.setBounds(190, 160, 200, 130);
+        jButton7.setBounds(280, 160, 200, 130);
 
         jButton8.setContentAreaFilled(false);
         jButton8.addActionListener(new java.awt.event.ActionListener() {
@@ -109,26 +109,24 @@ public class ThongKe_Panel extends javax.swing.JPanel {
             }
         });
         jpnView.add(jButton8);
-        jButton8.setBounds(190, 600, 210, 140);
+        jButton8.setBounds(300, 580, 180, 140);
 
-        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/Thống kê (bản chính).png"))); // NOI18N
+        jLabel1.setIcon(new javax.swing.ImageIcon(getClass().getResource("/images/thống kê bán mới nhất.png"))); // NOI18N
         jLabel1.setText("jLabel1");
         jpnView.add(jLabel1);
-        jLabel1.setBounds(0, 0, 1090, 820);
+        jLabel1.setBounds(0, 0, 1220, 850);
 
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(this);
         this.setLayout(layout);
         layout.setHorizontalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-            .addGroup(layout.createSequentialGroup()
-                .addComponent(jpnView, javax.swing.GroupLayout.PREFERRED_SIZE, 1086, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 32, Short.MAX_VALUE))
+            .addComponent(jpnView, javax.swing.GroupLayout.DEFAULT_SIZE, 1190, Short.MAX_VALUE)
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addComponent(jpnView, javax.swing.GroupLayout.PREFERRED_SIZE, 823, javax.swing.GroupLayout.PREFERRED_SIZE)
-                .addGap(0, 34, Short.MAX_VALUE))
+                .addComponent(jpnView, javax.swing.GroupLayout.PREFERRED_SIZE, 853, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addGap(0, 0, Short.MAX_VALUE))
         );
     }// </editor-fold>//GEN-END:initComponents
 

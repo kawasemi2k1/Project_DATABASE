@@ -120,13 +120,13 @@ public class ThongKe_Staff_byTimeNew extends javax.swing.JPanel {
             try {
                 Connect a = new Connect();
                 Connection conn = a.getConnectDB();
-                String sql_doanhthu = "select MonthYear, sum(DoanhThu) as DoanhThu from (\n" +
+                String sql_doanhthu = "select top (12) MonthYear, sum(DoanhThu) as DoanhThu from (\n" +
                                     "	select convert(datetime,CONCAT(datepart(mm, created_date),'-','01-',YEAR(created_date)),102) as MonthYear , soi.profit as DoanhThu from sales.staffs ss\n" +
                                     "	left join sales.orders so on so.staff_id = ss.staff_id\n" +
                                     "	left join sales.order_items soi on so.order_id = soi.order_id\n" +
                                     "	where ss.staff_id = ?) as Abc\n" +
                                     "	group by MonthYear\n" +
-                                    "	order by MonthYear";
+                                    "	order by MonthYear desc";
                 PreparedStatement ps;
                 ps = conn.prepareStatement(sql_doanhthu);
                 ps.setString(1, Staff_ID);
