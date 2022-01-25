@@ -90,7 +90,7 @@ public class SendCode extends javax.swing.JFrame {
             Random rand = new Random();
             randomCode = rand.nextInt(999999);
             sendEmail_QuenMK send = new sendEmail_QuenMK();
-            send.sendmail(txtEmail.getText(), randomCode, "Mã xác nhận");
+            send.sendmail(txtEmail.getText(), randomCode, "Mã xác nhận", "Hệ thống lấy lại mật khẩu", "Mã xác nhận của bạn là: " );
             JOptionPane.showMessageDialog(null, "code has been send to the email");
             txtVer.setEnabled(true);
         btn_ver.setEnabled(true);

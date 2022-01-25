@@ -52,14 +52,14 @@ public class Product_hethan_Guimail extends javax.swing.JPanel {
             email.setSSLOnConnect(true);
 
             // Người gửi
-            email.setFrom("hellomoinguinhe@gmail.com", "Công chúa phép thuật");
+            email.setFrom("hellomoinguinhe@gmail.com", Login.Store_Name);
 
             // Tiêu đề
-            email.setSubject("Ta sẽ trùng trị ngươi"); //Tiêu đề khi gửi email
+            email.setSubject("Các mặt hàng giảm giá"); //Tiêu đề khi gửi email
 
             // Nội dung email
             //String covert = String.valueOf(rand);
-            email.setMsg("Hãy xem đây, biến hình Winx\\n EN CHAN TÍT\\n"); //Nội dung email bạn muốn gửi.
+            email.setMsg("Xin chào quý khách, tại " + Login.Store_Name + " có một số mặt hàng giảm giá sau. Nếu có thời gian, quý khách hãy đến cửa hàng nhé. \\n"); //Nội dung email bạn muốn gửi.
             // Người nhận
             email.addTo(mail); //Đia chỉ email người nhận
             email.send(); //Thực hiện gửi.
