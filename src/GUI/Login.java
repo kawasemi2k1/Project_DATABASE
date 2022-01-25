@@ -27,6 +27,7 @@ public class Login extends javax.swing.JFrame {
      */
     public static String Staff_ID;
     public static String  Store_ID;
+    public static String Store_Name;
     public static int manager_state;
     ValidateData vd = new ValidateData();
     public Login() {
@@ -163,6 +164,41 @@ public class Login extends javax.swing.JFrame {
         }
         return store_id;
     }
+        
+    public String GetStoreNameFromID(String store_id) {
+        String name = "";
+        try {
+            Connect a = new Connect();
+            Connection conn = a.getConnectDB();
+            int number;
+            Vector row, column;
+            column = new Vector();
+            Statement st = conn.createStatement();
+            String sql = "select name from sales.stores\n" + "where store_id = (?)";
+            PreparedStatement ps;
+            ps = conn.prepareStatement(sql);
+            ps.setString(1, store_id);
+            ResultSet rs = ps.executeQuery();
+            ResultSetMetaData metadata = rs.getMetaData();
+            number = metadata.getColumnCount();
+
+            for (int i = 1; i <= number; i++) {
+                column.add(metadata.getColumnName(i));
+            }
+            while (rs.next()) {
+                row = new Vector();
+                for (int i = 1; i <= number; i++) {
+                    row.addElement(rs.getString(i));
+                    name = rs.getString(i);
+                }
+            }
+
+        } catch (Exception ex) {
+            System.out.println("Loi o store" + ex.toString());
+        }
+        return name;
+    }
+        
     public String GetStaff_IDFromEmail(String email) {
         String staff_id = "";
         try {
@@ -272,7 +308,7 @@ public class Login extends javax.swing.JFrame {
         Connect cn = new Connect();
         Connection conn = null;
         int active = 0;
-        try {
+        try { 
             conn = cn.getConnectDB();
             String sql = "Select * from sales.staffs where email = ? and password = ?";
             PreparedStatement pst = conn.prepareCall(sql);
@@ -283,11 +319,13 @@ public class Login extends javax.swing.JFrame {
                 Store_ID = GetStoreIDFromEmail(txt_email.getText());
                 Staff_ID = GetStaff_IDFromEmail(txt_email.getText());
                 active = GetActiveFromEmail(txt_email.getText());
+                Store_Name = GetStoreNameFromID(Store_ID);
                 manager_state = GetManager_StateFromEmail(txt_email.getText());
                 System.out.println("Staff_ID: *** : "+ Staff_ID);
                 System.out.println("active: ***: " + active);
                 System.out.println("STore_ID: *** : "+ Store_ID);
                 System.out.println("manager_state: ***: " + manager_state);
+                System.out.println("Store_name: *** : "+ Store_Name);
                 if(active == 0){
                     JOptionPane.showMessageDialog(this, "Tài khoản này đã bị khóa");
                     txt_email.setText("");

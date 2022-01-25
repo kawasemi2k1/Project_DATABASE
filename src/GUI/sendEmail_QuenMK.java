@@ -15,7 +15,7 @@ import org.apache.commons.mail.SimpleEmail;
  */
 public class sendEmail_QuenMK {
 
-    public void sendmail(String mail, int ver, String tieuDe) {
+    public void sendmail(String mail, int ver, String tieuDe, String store_name, String noiDung) {
         try {
             Email email = new SimpleEmail();
 
@@ -28,14 +28,14 @@ public class sendEmail_QuenMK {
             email.setSSLOnConnect(true);
 
             // Người gửi
-            email.setFrom("hellomoinguinhe@gmail.com", "Store Hy Nguyệt");
+            email.setFrom("hellomoinguinhe@gmail.com", store_name );
 
             // Tiêu đề
             email.setSubject(tieuDe); //Tiêu đề khi gửi email
 
             // Nội dung email
             //String covert = String.valueOf(rand);
-            email.setMsg("Mã code: " + ver); //Nội dung email bạn muốn gửi.
+            email.setMsg(noiDung + ver); //Nội dung email bạn muốn gửi.
             // Người nhận
             email.addTo(mail); //Đia chỉ email người nhận
             email.send(); //Thực hiện gửi.
@@ -50,7 +50,7 @@ public class sendEmail_QuenMK {
         try {
             sendEmail_QuenMK sm = new sendEmail_QuenMK();
             // sm.sendmail();
-            sm.sendmail("duchuy01102001@gmail.com", 111, "aaa");
+            //sm.sendmail("duchuy01102001@gmail.com", 111, "aaa");
         } catch (Exception e) {
             System.out.println("Loi o: " + e.toString());
         }
